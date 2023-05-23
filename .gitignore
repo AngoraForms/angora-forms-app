@@ -1,5 +1,22 @@
-node_modules
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+
 # Keep environment variables out of version control
 .env
+
+# database
 dev.db*
-.next
+
+# misc
+.DS_Store
+
+# next.js
+/.next/
+/out/
+next-env-d.ts
+
+# production
+/build
+*.pem
