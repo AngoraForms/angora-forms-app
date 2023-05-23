@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../../../../src/build/webpack/loaders/next-flight-loader/action-client-wrapper.ts"],"names":["createServerReference","callServer","id"],"mappings":"AAAA,gFAAgF;AAChF,0BAA0B;AAE1B,6DAA6D;AAC7D,SAASA,qBAAqB,QAAQ,kCAAiC;AACvE,SAASC,UAAU,QAAQ,mCAAkC;AAE7D,uEAAuE;AACvE,yDAAyD;AACzD,eAAe,SAAUC,EAAU,EAAE;IACnC,OAAOF,sBAAsBE,IAAID;AACnC,CAAC"}
