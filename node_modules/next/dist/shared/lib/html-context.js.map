@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../../src/shared/lib/html-context.ts"],"names":["HtmlContext","createContext","process","env","NODE_ENV","displayName"],"mappings":";;;;+BAkDaA;;;eAAAA;;;uBA5CiB;AA4CvB,MAAMA,cAAcC,IAAAA,oBAAa,EAAY,IAAI;AACxD,IAAIC,QAAQC,GAAG,CAACC,QAAQ,KAAK,cAAc;IACzCJ,YAAYK,WAAW,GAAG;AAC5B,CAAC"}
