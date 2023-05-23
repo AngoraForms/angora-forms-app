@@ -17,7 +17,7 @@ export default function TSEditor (props: any) {
     <div className='border'>
       <Editor
       className='bg-white'
-      value={`export class login implements OnInit {
+      value={`export class angoraForm implements OnInit {
   Angoraform: FormGroup;
 
   constructor(private formBuilder: FormBuilder) {}

@@ -8,8 +8,7 @@ export default function FormBuilder () {
   //this is where state is first defined for the form configuration
   //the formControl Arrray is going to contain all the html components and initialize to an empty array
   const [currentConfig, setCurrentConfig] = useState({
-    formControl: [],
-    typeScriptPage: {}
+    formControl: []
   });
 
   //Options component: passing down currentConfig State and the setCurrentConfig method to allow Options component to alter state

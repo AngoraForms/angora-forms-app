@@ -758,32 +758,6 @@ self.__RSC_MANIFEST={
         "async": false
       }
     },
-    "(app-client)/./node_modules/next/dist/client/link.js": {
-      "*": {
-        "id": "(sc_client)/./node_modules/next/dist/client/link.js",
-        "name": "*",
-        "chunks": [
-          "app/page:static/chunks/app/page.js"
-        ],
-        "async": false
-      },
-      "": {
-        "id": "(sc_client)/./node_modules/next/dist/client/link.js",
-        "name": "",
-        "chunks": [
-          "app/page:static/chunks/app/page.js"
-        ],
-        "async": false
-      },
-      "default": {
-        "id": "(sc_client)/./node_modules/next/dist/client/link.js",
-        "name": "default",
-        "chunks": [
-          "app/page:static/chunks/app/page.js"
-        ],
-        "async": false
-      }
-    },
     "(app-client)/./src/app/(components)/Customizers.tsx": {
       "*": {
         "id": "(sc_client)/./src/app/(components)/Customizers.tsx",
@@ -891,11 +865,11 @@ self.__RSC_MANIFEST={
   },
   "edgeSSRModuleMapping": {},
   "cssFiles": {
-    "/Users/achen9149/Desktop/Personal Projects/AngoraFormApp/src/app/layout": [
-      "static/css/app/layout.css"
-    ],
     "/Users/achen9149/Desktop/Personal Projects/AngoraFormApp/src/app/FormBuilder/page": [
       "static/css/app/FormBuilder/page.css"
+    ],
+    "/Users/achen9149/Desktop/Personal Projects/AngoraFormApp/src/app/layout": [
+      "static/css/app/layout.css"
     ]
   },
   "clientModules": {
@@ -2627,68 +2601,6 @@ self.__RSC_MANIFEST={
       ],
       "async": false
     },
-    "/Users/achen9149/Desktop/Personal Projects/AngoraFormApp/node_modules/next/dist/client/link.js": {
-      "id": "(app-client)/./node_modules/next/dist/client/link.js",
-      "name": "*",
-      "chunks": [
-        "app/page:static/chunks/app/page.js"
-      ],
-      "async": false
-    },
-    "/Users/achen9149/Desktop/Personal Projects/AngoraFormApp/node_modules/next/dist/esm/client/link.js": {
-      "id": "(app-client)/./node_modules/next/dist/client/link.js",
-      "name": "*",
-      "chunks": [
-        "app/page:static/chunks/app/page.js"
-      ],
-      "async": false
-    },
-    "/Users/achen9149/Desktop/Personal Projects/AngoraFormApp/node_modules/next/dist/client/link.js#": {
-      "id": "(app-client)/./node_modules/next/dist/client/link.js",
-      "name": "",
-      "chunks": [
-        "app/page:static/chunks/app/page.js"
-      ],
-      "async": false
-    },
-    "/Users/achen9149/Desktop/Personal Projects/AngoraFormApp/node_modules/next/dist/esm/client/link.js#": {
-      "id": "(app-client)/./node_modules/next/dist/client/link.js",
-      "name": "",
-      "chunks": [
-        "app/page:static/chunks/app/page.js"
-      ],
-      "async": false
-    },
-    "/Users/achen9149/Desktop/Personal Projects/AngoraFormApp/node_modules/next/dist/client/link.js#default": {
-      "id": "(app-client)/./node_modules/next/dist/client/link.js",
-      "name": "default",
-      "chunks": [
-        "app/page:static/chunks/app/page.js"
-      ],
-      "async": false
-    },
-    "/Users/achen9149/Desktop/Personal Projects/AngoraFormApp/node_modules/next/dist/esm/client/link.js#default": {
-      "id": "(app-client)/./node_modules/next/dist/client/link.js",
-      "name": "default",
-      "chunks": [
-        "app/page:static/chunks/app/page.js"
-      ],
-      "async": false
-    },
-    "/Users/achen9149/Desktop/Personal Projects/AngoraFormApp/src/app/globals.css#": {
-      "id": "null",
-      "name": "default",
-      "chunks": [
-        "static/css/app/layout.css"
-      ]
-    },
-    "/Users/achen9149/Desktop/Personal Projects/AngoraFormApp/node_modules/next/font/google/target.css?{\"path\":\"src/app/layout.tsx\",\"import\":\"Inter\",\"arguments\":[{\"subsets\":[\"latin\"]}],\"variableName\":\"inter\"}#": {
-      "id": "null",
-      "name": "default",
-      "chunks": [
-        "static/css/app/layout.css"
-      ]
-    },
     "/Users/achen9149/Desktop/Personal Projects/AngoraFormApp/node_modules/prismjs/themes/prism.css#": {
       "id": "null",
       "name": "default",
@@ -2791,6 +2703,20 @@ self.__RSC_MANIFEST={
         "app/FormBuilder/page:static/chunks/app/FormBuilder/page.js"
       ],
       "async": false
+    },
+    "/Users/achen9149/Desktop/Personal Projects/AngoraFormApp/src/app/globals.css#": {
+      "id": "null",
+      "name": "default",
+      "chunks": [
+        "static/css/app/layout.css"
+      ]
+    },
+    "/Users/achen9149/Desktop/Personal Projects/AngoraFormApp/node_modules/next/font/google/target.css?{\"path\":\"src/app/layout.tsx\",\"import\":\"Inter\",\"arguments\":[{\"subsets\":[\"latin\"]}],\"variableName\":\"inter\"}#": {
+      "id": "null",
+      "name": "default",
+      "chunks": [
+        "static/css/app/layout.css"
+      ]
     }
   }
 }
