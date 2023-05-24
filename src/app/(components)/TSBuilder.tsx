@@ -1,16 +1,31 @@
 'use client'
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Editor from 'react-simple-code-editor';
 import { highlight, languages } from 'prismjs/components/prism-core';
 import 'prismjs/components/prism-clike';
 import 'prismjs/components/prism-javascript';
 import 'prismjs/themes/prism.css'; //Example style, you can use another
+import { init } from 'next/dist/compiled/@vercel/og/satori';
 
 
 export default function TSEditor (props: any) {
   //currentConfig is the state that is drilled down from FormBuilder page
   const { currentConfig } = props;
+  const [formControlConfig, setFormControlConfig] = useState([]);
   const [code, setCode] = useState('');
+
+  //intialRender variable help us prevent useEffect from running on initial load
+  //useRef makes it so that initialRender doesn't go back to true (initial state) since useEffect rerenders component
+  let initialRender: {current: boolean} = useRef(true);
+  useEffect(() => {
+    if (initialRender.current === true) {
+      initialRender.current = false;
+    }
+    else {
+      console.log('useEffect', currentConfig)
+      // for (let i = 0; i < )
+    }
+  },[props])
   return (
     // Editor componenet is a code editor IDE
     <div className='border'>
@@ -22,7 +37,12 @@ export default function TSEditor (props: any) {
   constructor(private formBuilder: FormBuilder) {}
   ngOnInit() {
     this.Angoraform = this.formBuilder.group({
-      ${currentConfig.formControl[0]} : ['${currentConfig.initialValues[0]}'[${currentConfig.validators}]],
+      ${currentConfig.formControl[0]} : ['${currentConfig.initialValues[0]}', [${currentConfig.validators[0]}]], 
+      ${currentConfig.formControl[1]} : ['${currentConfig.initialValues[1]}', [${currentConfig.validators[1]}]]
+      ${currentConfig.formControl[2]} : ['${currentConfig.initialValues[2]}', [${currentConfig.validators[2]}]], 
+      ${currentConfig.formControl[3]} : ['${currentConfig.initialValues[3]}', [${currentConfig.validators[3]}]]
+      ${currentConfig.formControl[4]} : ['${currentConfig.initialValues[4]}', [${currentConfig.validators[4]}]], 
+      ${currentConfig.formControl[5]} : ['${currentConfig.initialValues[5]}', [${currentConfig.validators[5]}]]
     })
   }
         `}
