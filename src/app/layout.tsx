@@ -18,11 +18,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={inter.className + ' pt-8 pl-8'} >
       <header>
         <nav>
-          <Link href="/login">Login | </Link>
-          <Link href="/signup">Signup</Link>
+          <Link href="/login" className="text-lg"> Login</Link>
+          <span className="mx-6 text-lg">|</span>
+          <Link href="/signup" className="text-lg">Signup</Link>
+          <span className="mx-6 text-lg">|</span>
+          <Link href="/FormBuilder" className="text-lg">Form Builder</Link>
         </nav>
       </header>
       <div>
