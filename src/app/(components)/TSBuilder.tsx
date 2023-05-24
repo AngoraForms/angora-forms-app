@@ -11,7 +11,6 @@ export default function TSEditor (props: any) {
   //currentConfig is the state that is drilled down from FormBuilder page
   const { currentConfig } = props;
   const [code, setCode] = useState('');
-
   return (
     // Editor componenet is a code editor IDE
     <div className='border'>
@@ -23,8 +22,7 @@ export default function TSEditor (props: any) {
   constructor(private formBuilder: FormBuilder) {}
   ngOnInit() {
     this.Angoraform = this.formBuilder.group({
-      ${currentConfig.formControl[0]} : ['',[]],
-      ${currentConfig.formControl[1]} : ['',[]]
+      ${currentConfig.formControl[0]} : ['${currentConfig.initialValues[0]}'[${currentConfig.validators}]],
     })
   }
         `}
