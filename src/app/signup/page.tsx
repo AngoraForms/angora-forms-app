@@ -2,7 +2,7 @@
 
 import { useForm } from 'react-hook-form';
 
-export default function Login() {
+export default function Signup() {
 
   const { register, handleSubmit, formState: {errors} } = useForm({
     defaultValues: {
@@ -15,7 +15,7 @@ export default function Login() {
   return (
     <div>
       <div className = "min-h-screen grid place-content-center">
-      <p>login</p>
+      <p>signup</p>
       <form onSubmit = {handleSubmit((data) => {
         // handle async get to db here w/ try + catch
         // if their account doesn't exist, return error and route to sign up page
@@ -33,6 +33,5 @@ export default function Login() {
   )
 }
 
-// login should accept username OR email
+// signup should require username AND email
 // add pseudocode 
-
