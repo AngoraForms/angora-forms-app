@@ -38,28 +38,29 @@ export default function Customizers (props: any) {
       validators.push(currentInputValidator);
       return validators;
     });  
-    console.log('the validator', validators)
     //using useState to change the configuration of the form
     props.setCurrentConfig((prevState: {
       formControl: string[],
       initialValues: string[],
-      validators: string[][],
+      validators: [],
     }) => ({
       ...prevState,
       formControl: [...prevState.formControl, inputValue],
       initialValues: [...prevState.initialValues, formInitialValue],
       validators: [...prevState.validators, validators]
     }));
-    console.log('post sretCuyrrent', props)
   }
 
   return (
     <div className="bg-red-400 h-screen">
       <h1 className="text-center">Options</h1>
-      
+      {/* onSubmit, invoke addForm to build form controllers
+      e.target.reset() empties the form after submission
+       */}
       <form onSubmit={(e) => {
         e.preventDefault();
         addForm(formInputValue, formInitialValue, validatorConfiguration);
+        e.target.reset();
       }}>
         <div>
           <label htmlFor="inputName">inputName</label>
