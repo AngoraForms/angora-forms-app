@@ -16,9 +16,9 @@ export default function FormBuilder () {
   //Options component: passing down currentConfig State and the setCurrentConfig method to allow Options component to alter state
   //Result component: is going to sense the change in the currentConfig state and rerender itself
   return (
-    <div className='flex justify-around'>   
+    <div className='flex flex-col justify-around'>   
       <Customizers currentConfig={currentConfig} setCurrentConfig={setCurrentConfig} />
-      <div className="flex flex-col">
+      <div className="flex flex-row justify-evenly">
         <TSBuilder currentConfig={currentConfig}/>
         <HTMLBuilder currentConfig={currentConfig}/>
       </div>

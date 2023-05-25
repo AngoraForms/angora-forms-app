@@ -38,7 +38,7 @@ export default function HTMLBuilder (props: any) {
   }, [currentConfig.formControl.length]);
 
   return (
-    <div className="relative border border-black rounded-md">
+    <div className="relative p-2 border border-black rounded-md overflow-auto resize">
       <Editor
         className=''
         value={(`<form [formGroup]="angoraForm" \n (ngSubmit)="onSubmit()"> \n ${formStructure} \n</form>`).replaceAll(',','')}

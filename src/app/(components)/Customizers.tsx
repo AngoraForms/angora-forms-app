@@ -56,7 +56,7 @@ export default function Customizers (props: any) {
   }
 
   return (
-    <div className="flex justify-center">
+    <div className="">
       
       {/* onSubmit, invoke addForm to build form controllers
       e.target.reset() empties the form after submission
@@ -70,12 +70,12 @@ export default function Customizers (props: any) {
       }}
         className="flex-col border border-black shadow rounded-lg px-10 py-5"
       >
-        <div className="flex justify-between">
+        <div className="flex">
           <label htmlFor="inputName">inputName</label>
           <input className="border border-black rounded-md px-2"
           name="inputName" onChange={(e) => setFormInputValue(e.target.value)}/>
         </div>
-        <div className="flex justify-between">
+        <div className="flex">
           <label htmlFor="initialValue">InitialValue</label>
           <input className="border border-black rounded-md px-2"
           name="initialValue" onChange={(e) => setFormInitialValue(e.target.value)}/>
