@@ -1,5 +1,8 @@
+
 import './globals.css'
 import { Inter } from 'next/font/google'
+import Link from "next/link";
+
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -15,7 +18,20 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className + ' pt-8 pl-8'} >
+      <header>
+        <nav>
+          <Link href="/login" className="text-lg"> Login</Link>
+          <span className="mx-6 text-lg">|</span>
+          <Link href="/signup" className="text-lg">Signup</Link>
+          <span className="mx-6 text-lg">|</span>
+          <Link href="/FormBuilder" className="text-lg">Form Builder</Link>
+        </nav>
+      </header>
+      <div>
+        {children}
+      </div>
+      </body>
     </html>
   )
 }
