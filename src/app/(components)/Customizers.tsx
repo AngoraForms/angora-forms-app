@@ -12,7 +12,7 @@ const initialValidationState = {
 };
 
 export default function Customizers (props: any) {
-
+  const { currentConfig, setCurrentConfig } = props;
   const [formInputValue, setFormInputValue] = useState('');
   const [formInitialValue, setFormInitialValue] = useState('');
 
@@ -23,29 +23,27 @@ export default function Customizers (props: any) {
   const [validators , setValidators] = useState([]);
   //function that manipulate validatorConfiguration depending on selection
   //add form updates the state initially declare in FormBuilder page
-  const addForm = (inputValue: string, formInitialValue: string, validatorConfiguration: {}) => {
+  const addForm = () => {
+    // console.log('input:', inputValue)
+    // console.log('initial:', formInitialValue)
+    // console.log('validatorConfigurationt:', validatorConfiguration)
     const currentInputValidator: string[] = [];
     //setting up the validator state using setValidator based on validator configuration
     for (const [key, value] of Object.entries(validatorConfiguration)) {
       if (key === 'required' && value === true) {
         currentInputValidator.push('Validators.required');   
       } else if (key === 'emailValidation' && value === true) {
-        currentInputValidator.push('Validators.email')
+        currentInputValidator.push('Validators.email');
       }
     }
-
     setValidators(() => {
       validators.push(currentInputValidator);
       return validators;
     });  
     //using useState to change the configuration of the form
-    props.setCurrentConfig((prevState: {
-      formControl: string[],
-      initialValues: string[],
-      validators: [],
-    }) => ({
+    props.setCurrentConfig((prevState) => ({
       ...prevState,
-      formControl: [...prevState.formControl, inputValue],
+      formControl: [...prevState.formControl, formInputValue],
       initialValues: [...prevState.initialValues, formInitialValue],
       validators: [...prevState.validators, validators]
     }));
@@ -59,8 +57,10 @@ export default function Customizers (props: any) {
        */}
       <form onSubmit={(e) => {
         e.preventDefault();
-        addForm(formInputValue, formInitialValue, validatorConfiguration);
+        addForm();
         e.target.reset();
+        setValidatorConfiguration(initialValidationState);
+        setValidators([]);
       }}>
         <div>
           <label htmlFor="inputName">inputName</label>

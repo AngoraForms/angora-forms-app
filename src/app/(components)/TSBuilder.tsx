@@ -17,13 +17,22 @@ export default function TSEditor (props: any) {
   //intialRender variable help us prevent useEffect from running on initial load
   //useRef makes it so that initialRender doesn't go back to true (initial state) since useEffect rerenders component
   let initialRender: {current: boolean} = useRef(true);
+
   useEffect(() => {
     if (initialRender.current === true) {
       initialRender.current = false;
     }
     else {
-      console.log('useEffect', currentConfig)
-      // for (let i = 0; i < )
+      let newArray = [];
+      for (let i = 0; i < currentConfig.validators.length; i++) { 
+        let controller;
+        ( i === 0 ) ? controller = "     " + currentConfig.formControl[i] + " : ['" + currentConfig.initialValues[i] + "', [" + currentConfig.validators[i] + "]] " 
+        : controller = "\n     " + currentConfig.formControl[i] + " : ['" + currentConfig.initialValues[i] + "', [" + currentConfig.validators[i] + "]] ";
+        setFormControlConfig(() => {
+          newArray.push(controller);
+          return newArray;
+        })
+      }
     }
   },[props])
   return (
@@ -37,15 +46,9 @@ export default function TSEditor (props: any) {
   constructor(private formBuilder: FormBuilder) {}
   ngOnInit() {
     this.Angoraform = this.formBuilder.group({
-      ${currentConfig.formControl[0]} : ['${currentConfig.initialValues[0]}', [${currentConfig.validators[0]}]], 
-      ${currentConfig.formControl[1]} : ['${currentConfig.initialValues[1]}', [${currentConfig.validators[1]}]]
-      ${currentConfig.formControl[2]} : ['${currentConfig.initialValues[2]}', [${currentConfig.validators[2]}]], 
-      ${currentConfig.formControl[3]} : ['${currentConfig.initialValues[3]}', [${currentConfig.validators[3]}]]
-      ${currentConfig.formControl[4]} : ['${currentConfig.initialValues[4]}', [${currentConfig.validators[4]}]], 
-      ${currentConfig.formControl[5]} : ['${currentConfig.initialValues[5]}', [${currentConfig.validators[5]}]]
+${formControlConfig}
     })
-  }
-        `}
+  }`}
         onValueChange={code => setCode(code)}
         highlight={code => highlight(code, languages.js)}
         padding={10}
