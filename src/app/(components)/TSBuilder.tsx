@@ -66,7 +66,7 @@ ${formControlConfig}
       />
       <span onClick={(e) => copyCode(e)}
         className="material-symbols-outlined absolute top-2 right-2 hover:text-red-400 hover: cursor-pointer">
-        content_paste
+        copy
       </span>
     </div>
 
