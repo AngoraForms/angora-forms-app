@@ -13,6 +13,10 @@ export default function HTMLBuilder (props: any) {
   const [initialLoad, setInitialLoad] = useState(false)
   const [formStructure, setFormStructure] = useState([])
   
+  const copyCode = (e) => {
+    //Navigating to where the code is displayed and copy it to clipboard
+    navigator.clipboard.writeText(e.target.parentNode.children[0].children[1].textContent)
+  }
 //useEffect is used to detect any changes within formControl property of state by looking at the length
   useEffect(() => {
 //useEffect loads once on initial render so initialLoad set to false is used to make sure set Form structure isn't ran onLoad
@@ -24,7 +28,7 @@ export default function HTMLBuilder (props: any) {
       setFormStructure([...formStructure,`
   <div>
     <div> 
-      <label for="${inputName}">${inputName}:</label> 
+      <label for="${inputName}">${inputName}</label> 
       <input type="text" id="${inputName}" name="${inputName}">
     </div>
   </div>
@@ -34,10 +38,10 @@ export default function HTMLBuilder (props: any) {
   }, [currentConfig.formControl.length]);
 
   return (
-    <div className="border border-black rounded-md">
+    <div className="relative border border-black rounded-md">
       <Editor
         className=''
-        value={(`<form [formGroup]="angoraForm" (ngSubmit)="onSubmit()"> \n ${formStructure} \n</form>`).replaceAll(',','')}
+        value={(`<form [formGroup]="angoraForm" \n (ngSubmit)="onSubmit()"> \n ${formStructure} \n</form>`).replaceAll(',','')}
         onValueChange={code => setCode(code)}
         highlight={code => highlight(code, languages.js)}
         padding={10}
@@ -46,6 +50,10 @@ export default function HTMLBuilder (props: any) {
           fontSize: 12,
         }}
       />
+      <span onClick={(e) => copyCode(e)}
+        className="material-symbols-outlined absolute top-2 right-2 hover:text-red-400 hover: cursor-pointer">
+        content_paste
+      </span>
     </div>
   );
 }
