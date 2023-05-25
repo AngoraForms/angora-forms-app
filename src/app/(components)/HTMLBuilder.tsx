@@ -34,7 +34,7 @@ export default function HTMLBuilder (props: any) {
   }, [currentConfig.formControl.length]);
 
   return (
-    <div className="h-screen">
+    <div className="border border-black rounded-md">
       <Editor
         className=''
         value={(`<form [formGroup]="angoraForm" (ngSubmit)="onSubmit()"> \n ${formStructure} \n</form>`).replaceAll(',','')}
