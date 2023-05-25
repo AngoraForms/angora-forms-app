@@ -6,8 +6,8 @@ import { useState } from "react"
 const initialValidationState = {
   required: false,
   emailValidation: false,
-  minLengthValidation: null,
-  maxLengthValidation: null,
+  minLength: null,
+  maxLength: null,
   passwordValidation: null
 };
 
@@ -24,13 +24,18 @@ export default function Customizers (props: any) {
   //function that manipulate validatorConfiguration depending on selection
   //add form updates the state initially declare in FormBuilder page
   const addForm = () => {
+    console.log(validatorConfiguration)
     const currentInputValidator: string[] = [];
     //setting up the validator state using setValidator based on validator configuration
     for (const [key, value] of Object.entries(validatorConfiguration)) {
       if (key === 'required' && value === true) {
-        currentInputValidator.push('Validators.required');   
+        currentInputValidator.push(' Validators.required');   
       } else if (key === 'emailValidation' && value === true) {
-        currentInputValidator.push('Validators.email');
+        currentInputValidator.push(' Validators.email');
+      } else if (key === 'minLength' && typeof value === 'number') {
+        currentInputValidator.push(` minLength(${value})`)
+      } else if (key === 'maxLength' && typeof value === 'number') {
+        currentInputValidator.push(` maxLength(${value})`)
       }
     }
     setValidators(() => {
@@ -42,7 +47,7 @@ export default function Customizers (props: any) {
       ...prevState,
       formControl: [...prevState.formControl, formInputValue],
       initialValues: [...prevState.initialValues, formInitialValue],
-      validators: [...prevState.validators, validators]
+      validators: [...prevState.validators, validators],
     }));
   }
 
@@ -87,7 +92,7 @@ export default function Customizers (props: any) {
               }
             }} />
           </div>
-          {/* <div>
+          <div>
               <label htmlFor="minLengthValidation">MinLength</label>
               <input name="minLengthValidationInput" onChange={(e) => {
                 setMinLength(Number(e.target.value));
@@ -95,9 +100,24 @@ export default function Customizers (props: any) {
               <input type="checkBox" name="minLengthValidationConfirm" onChange={(e) => {
                 if (e.target.checked) {
                   setValidatorConfiguration({...validatorConfiguration, minLength: minLength});
+                } else {
+                  setValidatorConfiguration({...validatorConfiguration, minLength: null});                 
                 }
               }}/>
-          </div> */}
+          </div>
+          <div>
+              <label htmlFor="maxLengthValidation">MaxLength</label>
+              <input name="maxLengthValidationInput" onChange={(e) => {
+                setMaxLength(Number(e.target.value));
+              }}/>
+              <input type="checkBox" name="maxLengthValidationConfirm" onChange={(e) => {
+                if (e.target.checked) {
+                  setValidatorConfiguration({...validatorConfiguration, maxLength: maxLength});
+                } else {
+                  setValidatorConfiguration({...validatorConfiguration, maxLength: null});                 
+                }
+              }}/>
+          </div>
           {/* <div>
               <label htmlFor="maxLengthValidation">MaxLength</label>
               <input name="maxLengthValidation" onChange={(e) => {

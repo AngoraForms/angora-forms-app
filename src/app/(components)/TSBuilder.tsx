@@ -23,10 +23,11 @@ export default function TSEditor (props: any) {
     }
     else {
       //newArray is used to contain the new set of validations
-      let newArray = [];
+      let newArray:string[] = [];
       for (let i = 0; i < currentConfig.validators.length; i++) { 
         //controllers stores the string version of the form controllers and the spaces needed
-        let controller;
+        // DO NOT TOUCH!!!
+        let controller:string;
         ( i === 0 ) ? controller = "     " + currentConfig.formControl[i] + " : ['" + currentConfig.initialValues[i] + "', [" + currentConfig.validators[i] + "]] " 
         : controller = "\n     " + currentConfig.formControl[i] + " : ['" + currentConfig.initialValues[i] + "', [" + currentConfig.validators[i] + "]] ";
         setFormControlConfig(() => {
