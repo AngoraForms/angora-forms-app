@@ -5,7 +5,6 @@ import { highlight, languages } from 'prismjs/components/prism-core';
 import 'prismjs/components/prism-clike';
 import 'prismjs/components/prism-javascript';
 import 'prismjs/themes/prism.css'; //Example style, you can use another
-import { init } from 'next/dist/compiled/@vercel/og/satori';
 
 
 export default function TSEditor (props: any) {
@@ -17,14 +16,16 @@ export default function TSEditor (props: any) {
   //intialRender variable help us prevent useEffect from running on initial load
   //useRef makes it so that initialRender doesn't go back to true (initial state) since useEffect rerenders component
   let initialRender: {current: boolean} = useRef(true);
-
+  //useEffect is used to detect changes of props (the states from FormBuilder)
   useEffect(() => {
     if (initialRender.current === true) {
       initialRender.current = false;
     }
     else {
+      //newArray is used to contain the new set of validations
       let newArray = [];
       for (let i = 0; i < currentConfig.validators.length; i++) { 
+        //controllers stores the string version of the form controllers and the spaces needed
         let controller;
         ( i === 0 ) ? controller = "     " + currentConfig.formControl[i] + " : ['" + currentConfig.initialValues[i] + "', [" + currentConfig.validators[i] + "]] " 
         : controller = "\n     " + currentConfig.formControl[i] + " : ['" + currentConfig.initialValues[i] + "', [" + currentConfig.validators[i] + "]] ";
@@ -37,6 +38,7 @@ export default function TSEditor (props: any) {
   },[props])
   return (
     // Editor componenet is a code editor IDE
+    //value is the template of the typescript file of the form
     <div className='border'>
       <Editor
       className='bg-white'

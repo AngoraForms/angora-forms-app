@@ -24,9 +24,6 @@ export default function Customizers (props: any) {
   //function that manipulate validatorConfiguration depending on selection
   //add form updates the state initially declare in FormBuilder page
   const addForm = () => {
-    // console.log('input:', inputValue)
-    // console.log('initial:', formInitialValue)
-    // console.log('validatorConfigurationt:', validatorConfiguration)
     const currentInputValidator: string[] = [];
     //setting up the validator state using setValidator based on validator configuration
     for (const [key, value] of Object.entries(validatorConfiguration)) {
