@@ -12,19 +12,19 @@ const initialValidationState = {
 };
 
 export default function Customizers (props: any) {
+
   const { currentConfig, setCurrentConfig } = props;
-  const [formInputValue, setFormInputValue] = useState('');
-  const [formInitialValue, setFormInitialValue] = useState('');
+  const [formInputValue, setFormInputValue] = useState<string>('');
+  const [formInitialValue, setFormInitialValue] = useState<string>('');
 
   //validation States
-  const [validatorConfiguration, setValidatorConfiguration] = useState(initialValidationState)
-  const [minLength, setMinLength] = useState('');
-  const [maxLength, setMaxLength] = useState('');
-  const [validators , setValidators] = useState([]);
+  const [validatorConfiguration, setValidatorConfiguration] = useState<{}>(initialValidationState)
+  const [minLength, setMinLength] = useState<number | null>(null);
+  const [maxLength, setMaxLength] = useState<number | null>(null);
+  const [validators , setValidators] = useState<string[][]>([]);
   //function that manipulate validatorConfiguration depending on selection
   //add form updates the state initially declare in FormBuilder page
   const addForm = () => {
-    console.log(validatorConfiguration)
     const currentInputValidator: string[] = [];
     //setting up the validator state using setValidator based on validator configuration
     for (const [key, value] of Object.entries(validatorConfiguration)) {
@@ -43,7 +43,7 @@ export default function Customizers (props: any) {
       return validators;
     });  
     //using useState to change the configuration of the form
-    props.setCurrentConfig((prevState) => ({
+    props.setCurrentConfig((prevState:{}):{} => ({
       ...prevState,
       formControl: [...prevState.formControl, formInputValue],
       initialValues: [...prevState.initialValues, formInitialValue],
