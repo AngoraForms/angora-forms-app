@@ -10,9 +10,13 @@ import 'prismjs/themes/prism.css'; //Example style, you can use another
 export default function TSEditor (props: any) {
   //currentConfig is the state that is drilled down from FormBuilder page
   const { currentConfig } = props;
-  const [formControlConfig, setFormControlConfig] = useState([]);
-  const [code, setCode] = useState('');
-
+  const [formControlConfig, setFormControlConfig] = useState<string[]>([]);
+  const [code, setCode] = useState<string>('');
+  
+  const copyCode = (e) => {
+    //Navigating to where the code is displayed and copy it to clipboard
+    navigator.clipboard.writeText(e.target.parentNode.children[0].children[1].textContent)
+  }
   //intialRender variable help us prevent useEffect from running on initial load
   //useRef makes it so that initialRender doesn't go back to true (initial state) since useEffect rerenders component
   let initialRender: {current: boolean} = useRef(true);
@@ -40,9 +44,9 @@ export default function TSEditor (props: any) {
   return (
     // Editor componenet is a code editor IDE
     //value is the template of the typescript file of the form
-    <div className='border'>
+    <div
+      className='relative inline-block border border-black rounded-md p-2 overflow-auto resize'>
       <Editor
-      className='bg-white'
       value={`export class angoraForm implements OnInit {
   Angoraform: FormGroup;
 
@@ -60,6 +64,10 @@ ${formControlConfig}
           fontSize: 12,
         }}
       />
+      <span onClick={(e) => copyCode(e)}
+        className="material-symbols-outlined absolute top-2 right-2 hover:text-red-400 hover: cursor-pointer">
+        copy
+      </span>
     </div>
 
   );

@@ -18,7 +18,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className + ' pt-8 pl-8'} >
+      <body className={inter.className + ' pt-8 px-8'} >
       <header className="flex justify-between">
         <nav className="justify-start">
           <span className="text-lg">Angora Forms</span>
