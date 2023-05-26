@@ -56,7 +56,7 @@ export default function Customizers (props: any) {
   }
 
   return (
-    <div className="">
+    <div className="flex">
       
       {/* onSubmit, invoke addForm to build form controllers
       e.target.reset() empties the form after submission
