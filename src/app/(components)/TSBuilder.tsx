@@ -9,7 +9,7 @@ import 'prismjs/themes/prism.css'; //Example style, you can use another
 
 export default function TSEditor (props: any) {
   //currentConfig is the state that is drilled down from FormBuilder page
-  const { currentConfig } = props;
+  const { currentConfig, tabState } = props;
   const [formControlConfig, setFormControlConfig] = useState<string[]>([]);
   const [code, setCode] = useState<string>('');
   
@@ -26,6 +26,8 @@ export default function TSEditor (props: any) {
       initialRender.current = false;
     }
     else {
+      //check tab state
+
       //newArray is used to contain the new set of validations
       let newArray:string[] = [];
       for (let i = 0; i < currentConfig.validators.length; i++) { 
@@ -45,7 +47,7 @@ export default function TSEditor (props: any) {
     // Editor componenet is a code editor IDE
     //value is the template of the typescript file of the form
     <div
-      className='relative inline-block border border-black rounded-md p-2 overflow-auto resize'>
+      className='${state} relative inline-block border border-black rounded-b-md p-2 overflow-auto resize'>
       <Editor
       value={`export class angoraForm implements OnInit {
   Angoraform: FormGroup;

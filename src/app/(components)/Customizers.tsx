@@ -40,6 +40,8 @@ export default function Customizers (props: any) {
         currentInputValidator.push(` minLength(${value})`)
       } else if (key === 'maxLength' && typeof value === 'number') {
         currentInputValidator.push(` maxLength(${value})`)
+      } else if (key === 'passwordValidation' && value === true) {
+        currentInputValidator.push(`Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=[\]{};':"|,.<>/?]).*$/)`)
       }
     }
     setValidators(() => {
@@ -56,8 +58,7 @@ export default function Customizers (props: any) {
   }
 
   return (
-    <div className="flex">
-      
+    <div className="flex">    
       {/* onSubmit, invoke addForm to build form controllers
       e.target.reset() empties the form after submission
        */}
@@ -98,12 +99,22 @@ export default function Customizers (props: any) {
           }}/>            
         </div>
         <div>
-          <label htmlFor="emailValidation">EmailValidation</label>
+          <label htmlFor="emailValidation">Email Validation</label>
           <input name="emailValidation" type="checkBox" onChange={(e) => {
             if (e.target.checked) {
               setValidatorConfiguration({...validatorConfiguration, emailValidation: true});
             } else {
               setValidatorConfiguration({...validatorConfiguration, emailValidation: false});
+            }
+          }} />
+        </div>
+        <div>
+          <label htmlFor="passwordValidation">Password Validation</label>
+          <input name="emailValidation" type="checkBox" onChange={(e) => {
+            if (e.target.checked) {
+              setValidatorConfiguration({...validatorConfiguration, passwordValidation: true});
+            } else {
+              setValidatorConfiguration({...validatorConfiguration, passwordValidation: false});
             }
           }} />
         </div>
@@ -135,10 +146,6 @@ export default function Customizers (props: any) {
             }}/>
         </div>
       </div> 
-      <div className="text-center">Choose Validators</div>
-        {/* } */}
-        
-        {/* <input type="reset" value="Reset Input"/> */}
         <input className="border border-black p-3 rounded-md duration-500 hover:bg-black hover:text-white" type="submit" value="Create Input"/>
       </form>
     </div>
