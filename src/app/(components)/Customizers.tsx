@@ -16,10 +16,12 @@ export default function Customizers (props: any) {
 
   // const { currentConfig, setCurrentConfig } = props;
   const [ validatorDropdown, setValidatorDropdown] = useState<boolean>(false);
+  // const [formGroup, setFormGroup] = useState<string>('');
   const [formInputValue, setFormInputValue] = useState<string>('');
   const [formInputText, setFormInputText] = useState<string>('');
   const [formInitialValue, setFormInitialValue] = useState<string>('');
   const [formTypeValue, setFormTypeValue] = useState<string>('');
+
   //validation States
   const [validatorConfiguration, setValidatorConfiguration] = useState<{}>(initialValidationState)
   const [minLength, setMinLength] = useState<number | null>(null);
@@ -62,7 +64,6 @@ export default function Customizers (props: any) {
       validators: [...prevState.validators, validators],
     }));
   }
-
   return (
     <>
       {/* onSubmit, invoke addForm to build form controllers
@@ -75,11 +76,16 @@ export default function Customizers (props: any) {
         setValidatorConfiguration(initialValidationState);
         setValidators([]);
       }}
-        className="flex-col justify-evenly w-1/2
+        className="flex flex-col justify-evenly w-1/2
         border border-black shadow-xl rounded-lg px-10 py-5 
-        overflow-auto resize-y min-h-[400px]"
+        overflow-auto resize-y min-h-[600px]"
       >
         <h1 className="text-2xl text-center">Form Customizer</h1>
+        {/* <div className="flex justify-between">
+          <label htmlFor="formGroup">formGroup</label>
+          <input className="border border-black rounded-md px-2"
+          name="formGroup" onChange={(e) => setFormGroup(e.target.value)}/>
+        </div> */}
         <div className="flex justify-between">
           <label htmlFor="inputText">InputText</label>
           <input className="border border-black rounded-md px-2"
@@ -106,8 +112,7 @@ export default function Customizers (props: any) {
           hover:bg-black hover:text-white duration-500
           ">Validators</div>
         </div>
-        <div id="validators" className="flex flex-col
-          h-1/1
+        <div id="validators" className="flex flex-col justify-evenly
         ">
         <div className="flex justify-between">
           <label htmlFor="required">Required</label>

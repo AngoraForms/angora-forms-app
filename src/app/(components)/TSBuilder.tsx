@@ -47,7 +47,7 @@ export default function TSEditor (props: any) {
     // Editor componenet is a code editor IDE
     //value is the template of the typescript file of the form
     <div
-      className='relative border border border-black shadow-xl rounded-b-md p-2 w-full'>
+      className='relative min-h-[400px] border border-black shadow-xl rounded-b-md p-2 w-full resize-y overflow-auto'>
       <Editor
       value={`export class angoraForm implements OnInit {
   Angoraform: FormGroup;
@@ -67,7 +67,7 @@ ${formControlConfig}
         }}
       />
       <span onClick={(e) => copyCode(e)}
-        className="material-symbols-outlined absolute top-2 right-2 hover:text-red-400 hover: cursor-pointer">
+        className="material-symbols-outlined absolute top-2 right-2 duration-500 hover:text-blue-400 hover: cursor-pointer">
         content_paste
       </span>
     </div>

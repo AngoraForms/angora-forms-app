@@ -52,7 +52,7 @@ export default function HTMLBuilder (props: any) {
           fontSize: 12,
         }}/>
       <span onClick={(e) => copyCode(e)}
-        className="material-symbols-outlined absolute top-2 right-2 hover:text-red-400 hover: cursor-pointer">
+        className="material-symbols-outlined absolute top-2 right-2 duration-500 hover:text-red-400 hover: cursor-pointer">
         content_paste
       </span>
     </div>

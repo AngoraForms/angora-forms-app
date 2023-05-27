@@ -15,6 +15,7 @@ export default function FormBuilder () {
   //the formControl Arrray is going to contain all the html components and initialize to an empty array
   const [currentConfig, setCurrentConfig] = useState<{}>({
     formControl: [],
+    formGroup: [],
     initialValues: [],
     inputType: [],
     inputText: [],
