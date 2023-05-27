@@ -13,11 +13,11 @@ const initialValidationState = {
 
 export default function Customizers (props: any) {
 
-  const { currentConfig, setCurrentConfig } = props;
+  // const { currentConfig, setCurrentConfig } = props;
   const [ validatorDropdown, setValidatorDropdown] = useState<boolean>(false);
   const [formInputValue, setFormInputValue] = useState<string>('');
   const [formInitialValue, setFormInitialValue] = useState<string>('');
-
+  const [formTypeValue, setFormTypeValue] = useState<string>('');
   //validation States
   const [validatorConfiguration, setValidatorConfiguration] = useState<{}>(initialValidationState)
   const [minLength, setMinLength] = useState<number | null>(null);
@@ -53,6 +53,7 @@ export default function Customizers (props: any) {
       ...prevState,
       formControl: [...prevState.formControl, formInputValue],
       initialValues: [...prevState.initialValues, formInitialValue],
+      inputType: [...prevState.inputType, formTypeValue],
       validators: [...prevState.validators, validators],
     }));
   }
@@ -81,13 +82,17 @@ export default function Customizers (props: any) {
           <input className="border border-black rounded-md px-2"
           name="initialValue" onChange={(e) => setFormInitialValue(e.target.value)}/>
         </div>
+        <div className="flex">
+          <label htmlFor="InputType">InputType</label>
+          <input className="border border-black rounded-md px-2"
+          name="InputType" onChange={(e) => setFormTypeValue(e.target.value)} />
+        </div>
         <div className="flex justify-center">
           <div onClick={openValidator}
           className="border border-black px-5 py-1 rounded-md
           hover:bg-black hover:text-white duration-500
           ">Validators</div>
         </div>
-        {/* { validatorDropdown === true ?  */}
         <div id="validators" className="flex flex-col
           h-1/1
         ">

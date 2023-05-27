@@ -3,6 +3,7 @@ import { useState } from "react";
 import Customizers from "../(components)/Customizers";
 import TSBuilder from "../(components)/TSBuilder"
 import HTMLBuilder from "../(components)/HTMLBuilder";
+import { JsxElement } from "typescript";
 
 export default function FormBuilder () {
   //type definitions
@@ -15,43 +16,41 @@ export default function FormBuilder () {
   const [currentConfig, setCurrentConfig] = useState<{}>({
     formControl: [],
     initialValues: [],
+    inputType: [],
     validators: []
   });
-  // const [fileTab, setFileTab] = useState<{htmlTab:boolean, typescriptTab: boolean}>({
-  //   htmlTab: true,
-  //   typescriptTab: false
-  // })
-  // const tabControl = (e:any) => {
-  //   if (e.target.textContent === HTMLButtonText) {
-  //     setFileTab(() => ({
-  //       ...fileTab,
-  //       htmlTab: true,
-  //       typescriptTab: false
-  //     }))
-  //   } else if (e.target.textContent === TSButtonText) {
-  //     setFileTab(() => ({
-  //       ...fileTab,
-  //       htmlTab: false,
-  //       typescriptTab: true
-  //     }))
-  //   }
-  // }
+  const [fileTab, setFileTab] = useState<string>('html')
+
+  let currentTab: JSX.Element;
+  switch (fileTab) {
+    case 'ts':
+      currentTab = <TSBuilder currentConfig={currentConfig}/>;
+      break;
+    case 'html':
+      currentTab = <HTMLBuilder currentConfig={currentConfig}/>;
+      break;
+    default:
+      currentTab = <TSBuilder currentConfig={currentConfig}/>;
+  }
+
+
   //Options component: passing down currentConfig State and the setCurrentConfig method to allow Options component to alter state
   //Result component: is going to sense the change in the currentConfig state and rerender itself
   return (
-    <div className="mt-6 flex justify-center items-center">   
+    <div className="mt-6 flex justify-evenly items-center">   
       <Customizers currentConfig={currentConfig} setCurrentConfig={setCurrentConfig} />
-      <div className=" flex flex-col justify-evenly">
-        <header className="">
-          <button className="border border-black w-1/2 rounded-tl-md py-1 hover:bg-red-400 hover:text-white duration-500">
-            {HTMLButtonText}
+      <div className="flex flex-col justify-evenly w-1/2 ">
+        <header>
+          <button className="inline border border-black w-1/2 rounded-tl-md py-1 hover:bg-red-400 hover:text-white duration-500"
+          onClick={() => setFileTab('html')}>
+            HTML File
           </button>
-          <button className="border border-black w-1/2 rounded-tr-md py-1 hover:bg-blue-400 hover:text-white duration-500">
-            {TSButtonText}
+          <button className="inline border border-black w-1/2 rounded-tr-md py-1 whitespace-nowrap hover:bg-blue-400 hover:text-white duration-500"
+          onClick={() => setFileTab('ts')}>
+            TypeScript File
           </button>
         </header>
-        <TSBuilder currentConfig={currentConfig}/>
-        <HTMLBuilder currentConfig={currentConfig}/>
+        {currentTab}
       </div>
     </div>
   )

@@ -25,11 +25,12 @@ export default function HTMLBuilder (props: any) {
     } else {
 //generate new Component based on the name of the buttom that was clicked by looking at the last item of formControl
       const inputName = currentConfig.formControl[currentConfig.formControl.length - 1];
+      const inputType = currentConfig.inputType[currentConfig.inputType.length - 1];
       setFormStructure([...formStructure,`
   <div>
     <div> 
       <label for="${inputName}">${inputName}</label> 
-      <input type="text" id="${inputName}" name="${inputName}">
+      <input type="${inputType}" id="${inputName}" name="${inputName}">
     </div>
   </div>
   `
@@ -38,7 +39,7 @@ export default function HTMLBuilder (props: any) {
   }, [currentConfig.formControl.length]);
 
   return (
-    <div className="relative p-2 border border-black overflow-auto resize rounded-b-md">
+    <div className="inline-block relative p-2 border border-black overflow-auto rounded-b-md">
       <Editor
         className=''
         value={(`<form [formGroup]="angoraForm" \n (ngSubmit)="onSubmit()"> \n ${formStructure} \n</form>`).replaceAll(',','')}

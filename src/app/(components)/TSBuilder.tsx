@@ -47,7 +47,7 @@ export default function TSEditor (props: any) {
     // Editor componenet is a code editor IDE
     //value is the template of the typescript file of the form
     <div
-      className='${state} relative inline-block border border-black rounded-b-md p-2 overflow-auto resize'>
+      className='relative border border-black rounded-b-md p-2'>
       <Editor
       value={`export class angoraForm implements OnInit {
   Angoraform: FormGroup;
