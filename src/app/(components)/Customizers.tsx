@@ -64,7 +64,7 @@ export default function Customizers (props: any) {
   }
 
   return (
-    <div className="flex">    
+    <div className="flex"> 
       {/* onSubmit, invoke addForm to build form controllers
       e.target.reset() empties the form after submission
        */}
@@ -75,24 +75,27 @@ export default function Customizers (props: any) {
         setValidatorConfiguration(initialValidationState);
         setValidators([]);
       }}
-        className="flex-col border border-black shadow rounded-lg px-10 py-5 justify-between"
+        className="flex-col justify-evenly 
+        border border-black shadow-xl rounded-lg px-10 py-5 
+        overflow-auto resize"
       >
-        <div className="flex">
-          <label htmlFor="inputText">inputText</label>
+        <h1 className="text-2xl text-center">Form Customizer</h1>
+        <div className="flex justify-between">
+          <label htmlFor="inputText">InputText</label>
           <input className="border border-black rounded-md px-2"
           name="inputText" onChange={(e) => setFormInputText(e.target.value)}/>
         </div>
-        <div className="flex">
-          <label htmlFor="inputName">inputName</label>
+        <div className="flex justify-between">
+          <label htmlFor="inputName">InputName</label>
           <input className="border border-black rounded-md px-2"
           name="inputName" onChange={(e) => setFormInputValue(e.target.value)}/>
         </div>
-        <div className="flex">
+        <div className="flex justify-between">
           <label htmlFor="initialValue">InitialValue</label>
           <input className="border border-black rounded-md px-2"
           name="initialValue" onChange={(e) => setFormInitialValue(e.target.value)}/>
         </div>
-        <div className="flex">
+        <div className="flex justify-between">
           <label htmlFor="InputType">InputType</label>
           <input className="border border-black rounded-md px-2"
           name="InputType" onChange={(e) => setFormTypeValue(e.target.value)} />
@@ -106,14 +109,14 @@ export default function Customizers (props: any) {
         <div id="validators" className="flex flex-col
           h-1/1
         ">
-        <div>
-          <label htmlFor="">Required</label>
+        <div className="flex justify-between">
+          <label htmlFor="required">Required</label>
           <input name="required" type="checkBox" onClick={(e) => {
             if (e.target.checked) setValidatorConfiguration({...validatorConfiguration, required: true});
             else setValidatorConfiguration({...validatorConfiguration, required: false});
           }}/>            
         </div>
-        <div>
+        <div className="flex justify-between">
           <label htmlFor="emailValidation">Email Validation</label>
           <input name="emailValidation" type="checkBox" onChange={(e) => {
             if (e.target.checked) {
@@ -123,7 +126,7 @@ export default function Customizers (props: any) {
             }
           }} />
         </div>
-        <div>
+        <div className="flex justify-between">
           <label htmlFor="passwordValidation">Password Validation</label>
           <input name="passwordValidation" type="checkBox" onChange={(e) => {
             if (e.target.checked) {
@@ -133,7 +136,7 @@ export default function Customizers (props: any) {
             }
           }} />
         </div>
-        <div>
+        <div className="flex justify-between">
           <label htmlFor="phoneNumberValidation">Phone Number Validation</label>
           <input name="phoneNumberValidation" type="checkBox" onChange={(e) => {
             if (e.target.checked) {
@@ -143,7 +146,7 @@ export default function Customizers (props: any) {
             }
           }} />
         </div>
-        <div>
+        <div className="flex justify-between">
             <label htmlFor="minLengthValidation">MinLength</label>
             <input className="border border-black rounded-md px-2" name="minLengthValidationInput" onChange={(e) => {
               setMinLength(Number(e.target.value));
@@ -156,7 +159,7 @@ export default function Customizers (props: any) {
               }
             }}/>
         </div>
-        <div>
+        <div className="flex justify-between">
             <label htmlFor="maxLengthValidation">MaxLength</label>
             <input className="border border-black rounded-md px-2"
             name="maxLengthValidationInput" onChange={(e) => {
