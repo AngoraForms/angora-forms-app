@@ -64,7 +64,7 @@ export default function Customizers (props: any) {
   }
 
   return (
-    <div className="flex"> 
+    <>
       {/* onSubmit, invoke addForm to build form controllers
       e.target.reset() empties the form after submission
        */}
@@ -75,9 +75,9 @@ export default function Customizers (props: any) {
         setValidatorConfiguration(initialValidationState);
         setValidators([]);
       }}
-        className="flex-col justify-evenly 
+        className="flex-col justify-evenly w-1/2
         border border-black shadow-xl rounded-lg px-10 py-5 
-        overflow-auto resize"
+        overflow-auto resize-y min-h-[400px]"
       >
         <h1 className="text-2xl text-center">Form Customizer</h1>
         <div className="flex justify-between">
@@ -176,6 +176,6 @@ export default function Customizers (props: any) {
       </div> 
         <input className="border border-black p-3 rounded-md duration-500 hover:bg-black hover:text-white" type="submit" value="Create Input"/>
       </form>
-    </div>
+    </>          
   )
 }

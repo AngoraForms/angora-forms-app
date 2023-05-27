@@ -27,7 +27,7 @@ export default function FormBuilder () {
   return (
     <div className="mt-6 flex justify-evenly items-center">   
       <Customizers currentConfig={currentConfig} setCurrentConfig={setCurrentConfig} />
-      <div className="flex flex-col justify-center w-1/2 h-screen">
+      <div className="flex flex-col justify-center w-1/2 h-1/2">
         <header>
           <button className="inline border border-black w-1/2 rounded-tl-md py-1 hover:bg-red-400 hover:text-white duration-500"
           onClick={() => setFileTab('html')}>
@@ -38,7 +38,7 @@ export default function FormBuilder () {
             TypeScript File
           </button>
         </header>
-        <div style={{display: fileTab === 'html' ? 'inline-block' : 'none'}} >
+        <div style={{display: fileTab === 'html' ? 'inline-block' : 'none'}}>
           <HTMLBuilder currentConfig={currentConfig}/>
         </div>
         <div style={{display: fileTab === 'ts' ? 'inline-block' : 'none'}} >
