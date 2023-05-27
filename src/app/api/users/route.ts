@@ -1,26 +1,54 @@
-import { PrismaClient } from "@prisma/client"; 
-
-console.log('inside of the user route')
-
-
-const prisma = new PrismaClient()
-
-export async function POST(req: Request) {
-
-  // const reqObj = await req.json()
-
-  const { username, email, password } = await req.json()
+import { NextRequest, NextResponse } from 'next/server';
+import { PrismaClient } from '@prisma/client'
+//next/navigation
 
 
-  console.log(username, email, password)
+export async function POST(req: NextRequest) {
 
-  const newUser = await prisma.user.create({
-    data: {
-      username: username, 
-      email: email, 
-      password: password,
-    },
-  })
+  
+  // console.log('in the post')
 
-  console.log(newUser)
+  // console.log('here is the req',req)
+  // console.log('here are the headers:', req.headers)
+
+  // console.log(Request.nextUrl)
+
+  // const url = new URL('/FormBuilder','http://localhost:3000/signup')
+
+  // console.log(url.hostname)
+  // console.log(url.pathname)
+
+
+  const dataInHere = await req.json()
+  
+  const prisma = new PrismaClient()
+
+  try {
+
+    const newUser = await prisma.user.create({ 
+      data: {
+        username: dataInHere.username,
+        email: dataInHere.email,
+        password: dataInHere.password
+      }
+    })
+
+    console.log(newUser)
+
+
+    return NextResponse.json({ message: 'success' }, { status: 200 })
+
+  } catch(error) {
+    console.log(error)
+    return NextResponse.json({ error: error }, { status: 500 })
+  }
+
+    // const { name, email } = req.body
+
+    // console.log(name, email)
+
+
+      
+    // return NextResponse.json({message:'success in the post'})
+  
 }

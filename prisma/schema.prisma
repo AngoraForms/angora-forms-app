@@ -12,5 +12,5 @@ model User {
   username  String?   @unique @db.VarChar(255)
   email     String?   @unique @db.VarChar(255)
   password  String?   @db.VarChar(255)
-  createdat DateTime? @default(now()) @db.Timestamp(6)
+  createddate DateTime? @default(now()) @db.Timestamp(6)
 }
