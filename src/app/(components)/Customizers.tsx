@@ -75,7 +75,7 @@ export default function Customizers (props: any) {
         setValidatorConfiguration(initialValidationState);
         setValidators([]);
       }}
-        className="flex-col border border-black shadow rounded-lg px-10 py-5"
+        className="flex-col border border-black shadow rounded-lg px-10 py-5 justify-between"
       >
         <div className="flex">
           <label htmlFor="inputText">inputText</label>
