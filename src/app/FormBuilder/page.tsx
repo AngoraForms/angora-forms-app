@@ -21,17 +21,17 @@ export default function FormBuilder () {
   });
   const [fileTab, setFileTab] = useState<string>('html')
 
-  let currentTab: JSX.Element;
-  switch (fileTab) {
-    case 'ts':
-      currentTab = <TSBuilder currentConfig={currentConfig}/>;
-      break;
-    case 'html':
-      currentTab = <HTMLBuilder currentConfig={currentConfig}/>;
-      break;
-    default:
-      currentTab = <TSBuilder currentConfig={currentConfig}/>;
-  }
+  // let currentTab: JSX.Element;
+  // switch (fileTab) {
+  //   case 'ts':
+  //     currentTab = <TSBuilder currentConfig={currentConfig}/>;
+  //     break;
+  //   case 'html':
+  //     currentTab = <HTMLBuilder currentConfig={currentConfig}/>;
+  //     break;
+  //   default:
+  //     currentTab = <TSBuilder currentConfig={currentConfig}/>;
+  // }
 
 
   //Options component: passing down currentConfig State and the setCurrentConfig method to allow Options component to alter state
@@ -50,7 +50,12 @@ export default function FormBuilder () {
             TypeScript File
           </button>
         </header>
-        {currentTab}
+        <div style={{display: fileTab === 'html' ? 'inline-block' : 'none'}}>
+          <HTMLBuilder currentConfig={currentConfig}/>
+        </div>
+        <div style={{display: fileTab === 'ts' ? 'inline-block' : 'none'}} >
+          <TSBuilder currentConfig={currentConfig}/>
+        </div>
       </div>
     </div>
   )
