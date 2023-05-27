@@ -8,7 +8,8 @@ const initialValidationState = {
   emailValidation: false,
   minLength: null,
   maxLength: null,
-  passwordValidation: null
+  passwordValidation: null,
+  phoneNumberValidation: null
 };
 
 export default function Customizers (props: any) {
@@ -16,6 +17,7 @@ export default function Customizers (props: any) {
   // const { currentConfig, setCurrentConfig } = props;
   const [ validatorDropdown, setValidatorDropdown] = useState<boolean>(false);
   const [formInputValue, setFormInputValue] = useState<string>('');
+  const [formInputText, setFormInputText] = useState<string>('');
   const [formInitialValue, setFormInitialValue] = useState<string>('');
   const [formTypeValue, setFormTypeValue] = useState<string>('');
   //validation States
@@ -42,6 +44,8 @@ export default function Customizers (props: any) {
         currentInputValidator.push(` maxLength(${value})`)
       } else if (key === 'passwordValidation' && value === true) {
         currentInputValidator.push(`Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=[\]{};':"|,.<>/?]).*$/)`)
+      } else if (key === 'phoneNumberValidation' && value === true) {
+        currentInputValidator.push(`Validators.pattern(/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im)`)
       }
     }
     setValidators(() => {
@@ -54,6 +58,7 @@ export default function Customizers (props: any) {
       formControl: [...prevState.formControl, formInputValue],
       initialValues: [...prevState.initialValues, formInitialValue],
       inputType: [...prevState.inputType, formTypeValue],
+      inputText: [...prevState.inputText, formInputText],
       validators: [...prevState.validators, validators],
     }));
   }
@@ -72,6 +77,11 @@ export default function Customizers (props: any) {
       }}
         className="flex-col border border-black shadow rounded-lg px-10 py-5"
       >
+        <div className="flex">
+          <label htmlFor="inputText">inputText</label>
+          <input className="border border-black rounded-md px-2"
+          name="inputText" onChange={(e) => setFormInputText(e.target.value)}/>
+        </div>
         <div className="flex">
           <label htmlFor="inputName">inputName</label>
           <input className="border border-black rounded-md px-2"
@@ -115,11 +125,21 @@ export default function Customizers (props: any) {
         </div>
         <div>
           <label htmlFor="passwordValidation">Password Validation</label>
-          <input name="emailValidation" type="checkBox" onChange={(e) => {
+          <input name="passwordValidation" type="checkBox" onChange={(e) => {
             if (e.target.checked) {
               setValidatorConfiguration({...validatorConfiguration, passwordValidation: true});
             } else {
               setValidatorConfiguration({...validatorConfiguration, passwordValidation: false});
+            }
+          }} />
+        </div>
+        <div>
+          <label htmlFor="phoneNumberValidation">Phone Number Validation</label>
+          <input name="phoneNumberValidation" type="checkBox" onChange={(e) => {
+            if (e.target.checked) {
+              setValidatorConfiguration({...validatorConfiguration, phoneNumberValidation: true});
+            } else {
+              setValidatorConfiguration({...validatorConfiguration, phoneNumberValidation: false});
             }
           }} />
         </div>

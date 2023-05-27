@@ -9,7 +9,7 @@ import 'prismjs/themes/prism.css'; //Example style, you can use another
 
 export default function HTMLBuilder (props: any) {
   const [code, setCode] = useState('')
-  const { currentConfig, fileTab } = props;
+  const { currentConfig } = props;
   const [initialLoad, setInitialLoad] = useState(false)
   const [formStructure, setFormStructure] = useState([])
   
@@ -27,10 +27,11 @@ export default function HTMLBuilder (props: any) {
     //generate new Component based on the name of the buttom that was clicked by looking at the last item of formControl
     const inputName = currentConfig.formControl[currentConfig.formControl.length - 1];
     const inputType = currentConfig.inputType[currentConfig.inputType.length - 1];
+    const inputText = currentConfig.inputText[currentConfig.inputText.length - 1];
     setFormStructure([...formStructure,`
 <div>
   <div> 
-    <label for="${inputName}">${inputName}</label> 
+    <label for="${inputName}">${inputText}</label> 
     <input type="${inputType}" id="${inputName}" name="${inputName}">
   </div>
 </div>
@@ -49,8 +50,7 @@ export default function HTMLBuilder (props: any) {
         style={{
           fontFamily: '"Fira code", "Fira Mono", monospace',
           fontSize: 12,
-        }}
-      />
+        }}/>
       <span onClick={(e) => copyCode(e)}
         className="material-symbols-outlined absolute top-2 right-2 hover:text-red-400 hover: cursor-pointer">
         content_paste

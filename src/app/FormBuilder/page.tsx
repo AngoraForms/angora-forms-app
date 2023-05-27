@@ -17,22 +17,10 @@ export default function FormBuilder () {
     formControl: [],
     initialValues: [],
     inputType: [],
+    inputText: [],
     validators: []
   });
   const [fileTab, setFileTab] = useState<string>('html')
-
-  // let currentTab: JSX.Element;
-  // switch (fileTab) {
-  //   case 'ts':
-  //     currentTab = <TSBuilder currentConfig={currentConfig}/>;
-  //     break;
-  //   case 'html':
-  //     currentTab = <HTMLBuilder currentConfig={currentConfig}/>;
-  //     break;
-  //   default:
-  //     currentTab = <TSBuilder currentConfig={currentConfig}/>;
-  // }
-
 
   //Options component: passing down currentConfig State and the setCurrentConfig method to allow Options component to alter state
   //Result component: is going to sense the change in the currentConfig state and rerender itself
