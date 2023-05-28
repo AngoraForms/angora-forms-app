@@ -14,7 +14,7 @@ const initialValidationState = {
 
 export default function Customizers (props: any) {
 
-  // const { currentConfig, setCurrentConfig } = props;
+  const { currentConfig, setCurrentConfig, formGroupName } = props;
   const [ validatorDropdown, setValidatorDropdown] = useState<boolean>(false);
   // const [formGroup, setFormGroup] = useState<string>('');
   const [formInputValue, setFormInputValue] = useState<string>('');
@@ -57,6 +57,7 @@ export default function Customizers (props: any) {
     //using useState to change the configuration of the form
     props.setCurrentConfig((prevState:{}):{} => ({
       ...prevState,
+      formGroupName: formGroupName,
       formControl: [...prevState.formControl, formInputValue],
       initialValues: [...prevState.initialValues, formInitialValue],
       inputType: [...prevState.inputType, formTypeValue],
@@ -113,8 +114,7 @@ export default function Customizers (props: any) {
           hover:bg-black hover:text-white duration-500
           ">Validators</div>
         </div>
-        <div id="validators" className="flex flex-col justify-evenly
-        ">
+        <div id="validators" className="flex flex-col justify-evenly h-1/2">
         <div className="flex justify-between">
           <label htmlFor="required">Required</label>
           <input name="required" type="checkBox" onClick={(e) => {
@@ -180,7 +180,11 @@ export default function Customizers (props: any) {
             }}/>
         </div>
       </div> 
-        <input className="border border-black p-3 rounded-md duration-500 hover:bg-black hover:text-white" type="submit" value="Create Input"/>
+      <div className="flex justify-evenly">
+        <input className="border border-black p-3 rounded-md duration-500 hover:bg-red-600 hover:text-white" 
+        type="button" value="Reset form" />
+        <input className="border border-black p-3 rounded-md duration-500 hover:bg-blue-600 hover:text-white" type="submit" value="Create Input"/>
+      </div>
       </form>
     </>          
   )

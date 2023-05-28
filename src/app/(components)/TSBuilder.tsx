@@ -49,12 +49,12 @@ export default function TSEditor (props: any) {
     <div
       className='relative min-h-[400px] border border-black shadow-xl rounded-b-md p-2 w-full resize-y overflow-auto'>
       <Editor
-      value={`export class angoraForm implements OnInit {
-  Angoraform: FormGroup;
+      value={`export class ${currentConfig.formGroupName} implements OnInit {
+        ${currentConfig.formGroupName}: FormGroup;
 
   constructor(private formBuilder: FormBuilder) {}
   ngOnInit() {
-    this.Angoraform = this.formBuilder.group({
+    this.${currentConfig.formGroupName} = this.formBuilder.group({
 ${formControlConfig}
     })
   }`}

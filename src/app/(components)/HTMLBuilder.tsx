@@ -46,7 +46,7 @@ export default function HTMLBuilder (props: any) {
     w-full min-h-[400px] overflow-auto resize-y"
     >
       <Editor
-        value={(`<form [formGroup]="angoraForm" \n (ngSubmit)="onSubmit()"> \n ${formStructure} \n</form>`).replaceAll(',','')}
+        value={(`<form [formGroup]="${currentConfig.formGroupName}" \n (ngSubmit)="onSubmit()"> \n ${formStructure} \n</form>`).replaceAll(',','')}
         onValueChange={code => setCode(code)}
         highlight={code => highlight(code, languages.js)}
         padding={10}
