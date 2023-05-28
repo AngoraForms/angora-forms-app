@@ -41,7 +41,10 @@ export default function HTMLBuilder (props: any) {
   }, [currentConfig]);
 
   return (
-    <div className="inline-block relative p-2 border border border-black shadow-xl rounded-b-md w-full min-h-[400px] overflow-auto resize-y">
+    <div className="inline-block relative p-2 
+    border border-black shadow-xl rounded-b-md 
+    w-full min-h-[400px] overflow-auto resize-y"
+    >
       <Editor
         value={(`<form [formGroup]="angoraForm" \n (ngSubmit)="onSubmit()"> \n ${formStructure} \n</form>`).replaceAll(',','')}
         onValueChange={code => setCode(code)}

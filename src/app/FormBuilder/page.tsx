@@ -26,9 +26,9 @@ export default function FormBuilder () {
   //Options component: passing down currentConfig State and the setCurrentConfig method to allow Options component to alter state
   //Result component: is going to sense the change in the currentConfig state and rerender itself
   return (
-    <div className="mt-6 flex justify-evenly items-center">   
+    <div className="mt-6 flex flex-row justify-evenly items-center max-sm:flex-col">   
       <Customizers currentConfig={currentConfig} setCurrentConfig={setCurrentConfig} />
-      <div className="flex flex-col justify-center w-1/2 h-1/2">
+      <div className="flex flex-col justify-center w-1/2 h-1/2 max-sm:w-full max-sm:mt-5">
         <header>
           <button className="inline border border-black w-1/2 rounded-tl-md py-1 hover:bg-red-400 hover:text-white duration-500"
           onClick={() => setFileTab('html')}>

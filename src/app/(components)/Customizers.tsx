@@ -78,7 +78,8 @@ export default function Customizers (props: any) {
       }}
         className="flex flex-col justify-evenly w-1/2
         border border-black shadow-xl rounded-lg px-10 py-5 
-        overflow-auto resize-y min-h-[600px]"
+        overflow-auto resize-y min-h-[600px]
+        max-sm:w-full"
       >
         <h1 className="text-2xl text-center">Form Customizer</h1>
         {/* <div className="flex justify-between">
@@ -88,22 +89,22 @@ export default function Customizers (props: any) {
         </div> */}
         <div className="flex justify-between">
           <label htmlFor="inputText">InputText</label>
-          <input className="border border-black rounded-md px-2"
+          <input className="border border-black rounded-md px-2 w-1/2"
           name="inputText" onChange={(e) => setFormInputText(e.target.value)}/>
         </div>
         <div className="flex justify-between">
           <label htmlFor="inputName">InputName</label>
-          <input className="border border-black rounded-md px-2"
+          <input className="border border-black rounded-md px-2 w-1/2"
           name="inputName" onChange={(e) => setFormInputValue(e.target.value)}/>
         </div>
         <div className="flex justify-between">
           <label htmlFor="initialValue">InitialValue</label>
-          <input className="border border-black rounded-md px-2"
+          <input className="border border-black rounded-md px-2 w-1/2"
           name="initialValue" onChange={(e) => setFormInitialValue(e.target.value)}/>
         </div>
         <div className="flex justify-between">
           <label htmlFor="InputType">InputType</label>
-          <input className="border border-black rounded-md px-2"
+          <input className="border border-black rounded-md px-2 w-1/2"
           name="InputType" onChange={(e) => setFormTypeValue(e.target.value)} />
         </div>
         <div className="flex justify-center">
@@ -153,7 +154,7 @@ export default function Customizers (props: any) {
         </div>
         <div className="flex justify-between">
             <label htmlFor="minLengthValidation">MinLength</label>
-            <input className="border border-black rounded-md px-2" name="minLengthValidationInput" onChange={(e) => {
+            <input className="border border-black rounded-md px-2 w-1/2" name="minLengthValidationInput" onChange={(e) => {
               setMinLength(Number(e.target.value));
             }}/>
             <input type="checkBox" name="minLengthValidationConfirm" onChange={(e) => {
@@ -166,7 +167,7 @@ export default function Customizers (props: any) {
         </div>
         <div className="flex justify-between">
             <label htmlFor="maxLengthValidation">MaxLength</label>
-            <input className="border border-black rounded-md px-2"
+            <input className="border border-black rounded-md px-2 w-1/2"
             name="maxLengthValidationInput" onChange={(e) => {
               setMaxLength(Number(e.target.value));
             }}/>
