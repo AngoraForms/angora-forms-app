@@ -64,6 +64,11 @@ export default function Customizers (props: any) {
       labelText: [...prevState.labelText, formLabelText],
       validators: [...prevState.validators, validators],
     }));
+    //reset state
+    setFormInputValue('');
+    setFormLabelText('');
+    setFormInitialValue('');
+    setFormTypeValue('');
   }
   return (
     <>

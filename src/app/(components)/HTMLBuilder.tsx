@@ -28,7 +28,6 @@ export default function HTMLBuilder (props: any) {
     const inputName = currentConfig.formControl[currentConfig.formControl.length - 1];
     const inputType = currentConfig.inputType[currentConfig.inputType.length - 1];
     const labelText = currentConfig.labelText[currentConfig.labelText.length - 1];
-    console.log('labelTExt', currentConfig)
     setFormStructure([...formStructure,`
 <div>
   <div> 
