@@ -18,7 +18,7 @@ export default function Customizers (props: any) {
   const [ validatorDropdown, setValidatorDropdown] = useState<boolean>(false);
   // const [formGroup, setFormGroup] = useState<string>('');
   const [formInputValue, setFormInputValue] = useState<string>('');
-  const [formInputText, setFormInputText] = useState<string>('');
+  const [formLabelText, setFormLabelText] = useState<string>('');
   const [formInitialValue, setFormInitialValue] = useState<string>('');
   const [formTypeValue, setFormTypeValue] = useState<string>('');
 
@@ -61,7 +61,7 @@ export default function Customizers (props: any) {
       formControl: [...prevState.formControl, formInputValue],
       initialValues: [...prevState.initialValues, formInitialValue],
       inputType: [...prevState.inputType, formTypeValue],
-      inputText: [...prevState.inputText, formInputText],
+      labelText: [...prevState.labelText, formLabelText],
       validators: [...prevState.validators, validators],
     }));
   }
@@ -83,15 +83,13 @@ export default function Customizers (props: any) {
         max-sm:w-full"
       >
         <h1 className="text-2xl text-center">Form Customizer</h1>
-        {/* <div className="flex justify-between">
-          <label htmlFor="formGroup">formGroup</label>
-          <input className="border border-black rounded-md px-2"
-          name="formGroup" onChange={(e) => setFormGroup(e.target.value)}/>
-        </div> */}
         <div className="flex justify-between">
-          <label htmlFor="inputText">InputText</label>
+          <label htmlFor="label">LabelText</label>
           <input className="border border-black rounded-md px-2 w-1/2"
-          name="inputText" onChange={(e) => setFormInputText(e.target.value)}/>
+          name="labelText" onChange={(e) =>{
+            console.log(e.target.value)
+            setFormLabelText(e.target.value)
+          }}/>
         </div>
         <div className="flex justify-between">
           <label htmlFor="inputName">InputName</label>

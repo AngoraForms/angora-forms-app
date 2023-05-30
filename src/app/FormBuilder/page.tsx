@@ -19,7 +19,7 @@ export default function FormBuilder () {
     formControl: [],
     initialValues: [],
     inputType: [],
-    inputText: [],
+    labelText: [],
     validators: []
   });
   const [fileTab, setFileTab] = useState<string>('html')

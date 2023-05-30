@@ -27,11 +27,12 @@ export default function HTMLBuilder (props: any) {
     //generate new Component based on the name of the buttom that was clicked by looking at the last item of formControl
     const inputName = currentConfig.formControl[currentConfig.formControl.length - 1];
     const inputType = currentConfig.inputType[currentConfig.inputType.length - 1];
-    const inputText = currentConfig.inputText[currentConfig.inputText.length - 1];
+    const labelText = currentConfig.labelText[currentConfig.labelText.length - 1];
+    console.log('labelTExt', currentConfig)
     setFormStructure([...formStructure,`
 <div>
   <div> 
-    <label for="${inputName}">${inputText}</label> 
+    <label for="${inputName}">${labelText}</label> 
     <input type="${inputType}" id="${inputName}" name="${inputName}">
   </div>
 </div>
