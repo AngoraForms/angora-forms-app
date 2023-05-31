@@ -84,7 +84,7 @@ export default function Customizers (props: any) {
       }}
         className="flex flex-col justify-evenly w-1/2
         border border-black shadow-xl rounded-lg px-10 py-5 
-        overflow-auto resize-y min-h-[600px]
+        overflow-auto resize-y h-[600px]
         max-sm:w-full"
       >
         <h1 className="text-2xl text-center">Form Customizer</h1>

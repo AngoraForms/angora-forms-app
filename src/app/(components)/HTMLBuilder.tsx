@@ -9,7 +9,7 @@ import 'prismjs/themes/prism.css'; //Example style, you can use another
 
 export default function HTMLBuilder (props: any) {
   const [code, setCode] = useState('')
-  const { currentConfig } = props;
+  const { currentConfig, pressResetButton} = props;
   const [initialLoad, setInitialLoad] = useState(false)
   const [formStructure, setFormStructure] = useState([])
   
@@ -39,6 +39,10 @@ export default function HTMLBuilder (props: any) {
       ])
     }
   }, [currentConfig]);
+
+  useEffect (() => {
+    setFormStructure([])
+  },[pressResetButton])
 
   return (
     <div className="inline-block relative p-2 

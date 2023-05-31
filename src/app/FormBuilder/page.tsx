@@ -6,12 +6,12 @@ import HTMLBuilder from "../(components)/HTMLBuilder";
 import { JsxElement } from "typescript";
 
 export default function FormBuilder () {
-  //type definitions
+  //detects when reset button is pressed by incrementing the numericla value 
+  //allow child component to detch when the button is pressed by looking at the value/count
+  const [pressResetButton, setPressResetButton] = useState<number>(0);
 
   const [formGroupName, setFormGroupName] = useState('');
-  //define the text content of the tab buttons
-  const HTMLButtonText: string = "HTML File";
-  const TSButtonText: string = "TypeScript File";
+
   //this is where state is first defined for the form configuration
   //the formControl Arrray is going to contain all the html components and initialize to an empty array
   const [currentConfig, setCurrentConfig] = useState<{}>({
@@ -35,9 +35,25 @@ export default function FormBuilder () {
           onChange={(e) => setFormGroupName(e.target.value)}
           name="formGroup" type="text" />
         </div>
-        <button className="p-2 border border-black rounded-md hover:bg-red-400 duration-500">RESET</button>
+        <button className="p-2 border border-black rounded-md hover:bg-red-400 duration-500"
+          onClick={() => {
+            //increment pressResetbutton so child can detech button press
+            setPressResetButton(pressResetButton + 1);
+            //turn it back to the default configuration after pressing reset
+            setCurrentConfig({
+              formGroupName: '',
+              formControl: [],
+              initialValues: [],
+              inputType: [],
+              labelText: [],
+              validators: []
+            })
+          }}
+        >
+          RESET
+        </button>
       </div>
-      <div className="mt-6 flex flex-row justify-evenly items-center max-sm:flex-col">   
+      <div className="mt-6 flex flex-row justify-evenly items-start max-sm:flex-col">   
         <Customizers formGroupName={formGroupName} currentConfig={currentConfig} setCurrentConfig={setCurrentConfig} />
         <div className="flex flex-col justify-center w-1/2 h-1/2 max-sm:w-full max-sm:mt-5">
           <header>
@@ -51,10 +67,10 @@ export default function FormBuilder () {
             </button>
           </header>
           <div style={{display: fileTab === 'html' ? 'inline-block' : 'none'}}>
-            <HTMLBuilder currentConfig={currentConfig}/>
+            <HTMLBuilder pressResetButton={pressResetButton} currentConfig={currentConfig}/>
           </div>
           <div style={{display: fileTab === 'ts' ? 'inline-block' : 'none'}} >
-            <TSBuilder currentConfig={currentConfig}/>
+            <TSBuilder pressResetButton={pressResetButton} currentConfig={currentConfig}/>
           </div>
         </div>
       </div>
