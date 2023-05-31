@@ -28,11 +28,14 @@ export default function FormBuilder () {
   //Result component: is going to sense the change in the currentConfig state and rerender itself
   return (
     <>
-      <div className="flex flex-col text-center mt-5">
-        <label htmlFor="formGroup">Form Group Name</label>
-        <input className="border border-black rounded-md p-2" 
-        onChange={(e) => setFormGroupName(e.target.value)}
-        name="formGroup" type="text" />
+      <div className="flex justify-evenly items-end">
+        <div className="flex flex-col w-1/2 text-center mt-5">
+          <label htmlFor="formGroup">Form Group Name</label>
+          <input className="border border-black rounded-md p-2" 
+          onChange={(e) => setFormGroupName(e.target.value)}
+          name="formGroup" type="text" />
+        </div>
+        <button className="p-2 border border-black rounded-md hover:bg-red-400 duration-500">RESET</button>
       </div>
       <div className="mt-6 flex flex-row justify-evenly items-center max-sm:flex-col">   
         <Customizers formGroupName={formGroupName} currentConfig={currentConfig} setCurrentConfig={setCurrentConfig} />
