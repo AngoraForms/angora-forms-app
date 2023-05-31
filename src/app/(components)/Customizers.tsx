@@ -1,5 +1,4 @@
 'use client'
-import PreviousMap from "postcss/lib/previous-map";
 import React from "react"
 import { useState } from "react"
 
@@ -21,6 +20,19 @@ export default function Customizers (props: any) {
   const [formLabelText, setFormLabelText] = useState<string>('');
   const [formInitialValue, setFormInitialValue] = useState<string>('');
   const [formTypeValue, setFormTypeValue] = useState<string>('');
+
+  const [isTouched, setIsTouched] = useState<{}>({
+    labelTextTouched: false,
+    inputNameTouched: false,
+    initialValueTouched: false,
+    inputTypeTouched: false
+  });
+
+  const handleBlur = (inputName: string) => {
+      isTouched[inputName] = true;
+      console.log(isTouched)
+      return isTouched;
+  };
 
   //validation States
   const [validatorConfiguration, setValidatorConfiguration] = useState<{}>(initialValidationState)
@@ -88,29 +100,47 @@ export default function Customizers (props: any) {
         max-sm:w-full"
       >
         <h1 className="text-2xl text-center">Form Customizer</h1>
+
         <div className="flex justify-between">
           <label htmlFor="label">LabelText</label>
           <input className="border border-black rounded-md px-2 w-1/2"
-          name="labelText" onChange={(e) =>{
-            console.log(e.target.value)
-            setFormLabelText(e.target.value)
-          }}/>
+            name="labelText" 
+            onChange={(e) =>{setFormLabelText(e.target.value)}}
+            onBlur={() => handleBlur("inputTypeTouched")}
+          />
         </div>
+        {/* Will display the message under the input if condition isn't fullfilled: required and touched */}
+        { (formLabelText.length < 1) && (isTouched.labelTextTouched == true) && <p className="text-end">This is a required field</p>}
+
         <div className="flex justify-between">
           <label htmlFor="inputName">InputName</label>
           <input className="border border-black rounded-md px-2 w-1/2"
-          name="inputName" onChange={(e) => setFormInputValue(e.target.value)}/>
+            name="inputName" 
+            onChange={(e) => setFormInputValue(e.target.value)}
+            onBlur={() => handleBlur("inputNameTouched")}
+          />
         </div>
-        <div className="flex justify-between">
-          <label htmlFor="initialValue">InitialValue</label>
-          <input className="border border-black rounded-md px-2 w-1/2"
-          name="initialValue" onChange={(e) => setFormInitialValue(e.target.value)}/>
-        </div>
+        {/* Will display message under the input if condition isn't fullfilled: required and touched */}
+        { (formLabelText.length < 1) && (isTouched.inputNameTouched == true) && <p className="text-end">This is a required field</p>}
+
         <div className="flex justify-between">
           <label htmlFor="InputType">InputType</label>
           <input className="border border-black rounded-md px-2 w-1/2"
-          name="InputType" onChange={(e) => setFormTypeValue(e.target.value)} />
+            name="InputType" 
+            onChange={(e) => setFormTypeValue(e.target.value)} 
+            onBlur={() => handleBlur("inputTypeTouched")}
+          />
         </div>
+        {/* Will display message under the input if condition isn't fullfilled: required and touched */}
+        { (formLabelText.length < 1) && (isTouched.inputTypeTouched == true) && <p className="text-end">This is a required field</p>}
+        <div className="flex justify-between">
+          <label htmlFor="initialValue">InitialValue</label>
+          <input className="border border-black rounded-md px-2 w-1/2"
+            name="initialValue" 
+            onChange={(e) => setFormInitialValue(e.target.value)}
+          />
+        </div>
+
         <div className="flex justify-center">
           <div onClick={openValidator}
           className="border border-black px-5 py-1 rounded-md
