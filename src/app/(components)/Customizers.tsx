@@ -30,7 +30,6 @@ export default function Customizers (props: any) {
 
   const handleBlur = (inputName: string) => {
       isTouched[inputName] = true;
-      console.log(isTouched)
       return isTouched;
   };
 
@@ -106,11 +105,11 @@ export default function Customizers (props: any) {
           <input className="border border-black rounded-md px-2 w-1/2"
             name="labelText" 
             onChange={(e) =>{setFormLabelText(e.target.value)}}
-            onBlur={() => handleBlur("inputTypeTouched")}
+            onBlur={() => handleBlur("labelTextTouched")}
           />
         </div>
         {/* Will display the message under the input if condition isn't fullfilled: required and touched */}
-        { (formLabelText.length < 1) && (isTouched.labelTextTouched == true) && <p className="text-end">This is a required field</p>}
+        { (formLabelText.length < 1) && (isTouched.labelTextTouched == true) && <p className="text-end text-red-400">This is a required field</p>}
 
         <div className="flex justify-between">
           <label htmlFor="inputName">InputName</label>
@@ -121,7 +120,7 @@ export default function Customizers (props: any) {
           />
         </div>
         {/* Will display message under the input if condition isn't fullfilled: required and touched */}
-        { (formInputValue.length < 1) && (isTouched.inputNameTouched == true) && <p className="text-end">This is a required field</p>}
+        { (formInputValue.length < 1) && (isTouched.inputNameTouched == true) && <p className="text-end text-red-400">This is a required field</p>}
 
         <div className="flex justify-between">
           <label htmlFor="InputType">InputType</label>
@@ -132,7 +131,7 @@ export default function Customizers (props: any) {
           />
         </div>
         {/* Will display message under the input if condition isn't fullfilled: required and touched */}
-        { (formTypeValue.length < 1) && (isTouched.inputTypeTouched == true) && <p className="text-end">This is a required field</p>}
+        { (formTypeValue.length < 1) && (isTouched.inputTypeTouched == true) && <p className="text-end text-red-400">This is a required field</p>}
         <div className="flex justify-between">
           <label htmlFor="initialValue">InitialValue</label>
           <input className="border border-black rounded-md px-2 w-1/2"
