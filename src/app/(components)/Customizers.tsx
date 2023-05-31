@@ -121,7 +121,7 @@ export default function Customizers (props: any) {
           />
         </div>
         {/* Will display message under the input if condition isn't fullfilled: required and touched */}
-        { (formLabelText.length < 1) && (isTouched.inputNameTouched == true) && <p className="text-end">This is a required field</p>}
+        { (formInputValue.length < 1) && (isTouched.inputNameTouched == true) && <p className="text-end">This is a required field</p>}
 
         <div className="flex justify-between">
           <label htmlFor="InputType">InputType</label>
@@ -132,7 +132,7 @@ export default function Customizers (props: any) {
           />
         </div>
         {/* Will display message under the input if condition isn't fullfilled: required and touched */}
-        { (formLabelText.length < 1) && (isTouched.inputTypeTouched == true) && <p className="text-end">This is a required field</p>}
+        { (formTypeValue.length < 1) && (isTouched.inputTypeTouched == true) && <p className="text-end">This is a required field</p>}
         <div className="flex justify-between">
           <label htmlFor="initialValue">InitialValue</label>
           <input className="border border-black rounded-md px-2 w-1/2"
