@@ -28,16 +28,27 @@ export default function FormBuilder () {
   });
   const [fileTab, setFileTab] = useState<string>('html')
 
+  //these states are used to register the changes within the TS and HTML editors/IDE 
   const [htmlCode, setHTMLCode] = useState<string>('');
   const [tsCode, setTsCode] = useState<string>('');
-  useEffect(() => {
-    console.log('main page:', tsCode)
-  },[htmlCode, tsCode])
 
   //save code, make post request 
-  const saveEditor = () => {
-    console.log(tsCode)
-    console.log(htmlCode)
+  const saveEditor = async () => {
+    // console.log(tsCode)
+    // console.log(htmlCode)
+    const savedCode: {htmlCode:string, tsCode:string} = {
+      htmlCode: htmlCode,
+      tsCode: tsCode
+    }
+    const response = await fetch('/api/savedComponents', {
+      method: 'POST',
+      headers: {
+        'Content-Type' : 'application/json'
+      },
+      body: JSON.stringify(savedCode)
+    })
+    const data = await response.json();
+    console.log('data:', data)
   }
   return (
     <>
@@ -93,7 +104,7 @@ export default function FormBuilder () {
           >
             Save template
           </button>
-          <button onClick={() => console.log(tsCode)}>click</button>
+          <button onClick={saveEditor}>click</button>
         </div>
       </div>
     </>
