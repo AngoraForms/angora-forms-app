@@ -21,7 +21,7 @@ export default function Customizers (props: any) {
   const [formInitialValue, setFormInitialValue] = useState<string>('');
   const [formTypeValue, setFormTypeValue] = useState<string>('');
 
-  const [isTouched, setIsTouched] = useState<{}>({
+  const [isTouched, setIsTouched] = useState<{labelTextTouched: boolean, inputNameTouched: boolean, inputTypeTouched: boolean}>({
     labelTextTouched: false,
     inputNameTouched: false,
     inputTypeTouched: false
@@ -38,10 +38,10 @@ export default function Customizers (props: any) {
   const [maxLength, setMaxLength] = useState<number | null>(null);
   const [validators , setValidators] = useState<string[][]>([]);
   
-  const [ validatorDropdown, setValidatorDropdown] = useState<{}>({ height: 0, overflow: 'hidden' });
+  const [ validatorDropdown, setValidatorDropdown] = useState<{height: number | string, overflow: string}>({ height: 0, overflow: 'hidden' });
   //function that open the validator dropdown
   const openValidator = ():void => {
-    if (validatorDropdown.height === 0) setValidatorDropdown({ height: 'auto'});
+    if (validatorDropdown.height === 0) setValidatorDropdown({ height: 'auto', overflow: 'auto'});
     else setValidatorDropdown({ height: 0, overflow: 'hidden'});
     // (validatorDropdown.display === 'none') ? setValidatorDropdown({display: 'flex'}) : setValidatorDropdown({display: 'none'})
   }
@@ -239,7 +239,8 @@ export default function Customizers (props: any) {
       {/* second input is a submit input that will trigger an event noted within the form */}
       <div className="flex justify-evenly">
         <input className="border border-black p-3 rounded-md duration-500 hover:bg-red-600 hover:text-white" 
-        type="button" value="Reset form" onClick={(e) => {
+        type="button" value="Clear Form" 
+        onClick={(e) => {
           e.target.closest('form').reset();
         }}/>
         <input className={`border border-black p-3 duration-500 
