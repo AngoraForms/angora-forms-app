@@ -45,6 +45,15 @@ export default function Customizers (props: any) {
     else setValidatorDropdown({ height: 0, overflow: 'hidden'});
     // (validatorDropdown.display === 'none') ? setValidatorDropdown({display: 'flex'}) : setValidatorDropdown({display: 'none'})
   }
+
+  //function that checks if conditions are met and if so disable the submit functionality
+  const checkConditions = ():boolean => {
+    if (formInputValue.length > 0 && formLabelText.length > 0 && formTypeValue.length > 0) {
+      return false;
+    }
+    return true;
+  }
+
   //add form updates the state initially declare in FormBuilder page
   const addForm = ():void => {
     //this is the logic to ensure all the required input of the customizer form is fullfilled
@@ -57,7 +66,7 @@ export default function Customizers (props: any) {
       }
     }
     if (requirementFullfilled === false) return;
-
+  
     const currentInputValidator: string[] = [];
     //setting up the validator state using setValidator based on validator configuration
     for (const [key, value] of Object.entries(validatorConfiguration)) {
@@ -109,7 +118,7 @@ export default function Customizers (props: any) {
       }}
         className="flex flex-col justify-evenly w-1/2
         border border-black shadow-xl rounded-lg px-10 py-5 
-        overflow-auto resize-y h-[600px]
+        overflow-auto resize-y min-h-[500px]
         max-sm:w-full"
       >
         <h1 className="text-2xl text-center">Form Customizer</h1>
@@ -227,14 +236,20 @@ export default function Customizers (props: any) {
         </div>
       </div> 
       {/* first input (button) resets form by detecting the form that wraps it */}
-      {/* second input is a submit input that will trigger an event noted within the form line */}
+      {/* second input is a submit input that will trigger an event noted within the form */}
       <div className="flex justify-evenly">
         <input className="border border-black p-3 rounded-md duration-500 hover:bg-red-600 hover:text-white" 
         type="button" value="Reset form" onClick={(e) => {
           e.target.closest('form').reset();
         }}/>
-        <input className="border border-black p-3 rounded-md duration-500 hover:bg-blue-600 hover:text-white" type="submit" value="Create Input"/>
+        <input className={`border border-black p-3 duration-500 
+          ${ checkConditions() ? 'bg-gray-800 cursor-not-allowed' : 'hover:bg-blue-600 hover:text-white rounded-md'} `}
+          type="submit" 
+          value="Create Input"
+          disabled={checkConditions} 
+        />
       </div>
+      { checkConditions() === true && <p className="text-center text-red-400">Create Input button disabled, please fill out required field</p>}
       </form>
     </>          
   )
