@@ -14,7 +14,7 @@ const initialValidationState = {
 export default function Customizers (props: any) {
 
   const { currentConfig, setCurrentConfig, formGroupName } = props;
-  const [ validatorDropdown, setValidatorDropdown] = useState<boolean>(false);
+
   // const [formGroup, setFormGroup] = useState<string>('');
   const [formInputValue, setFormInputValue] = useState<string>('');
   const [formLabelText, setFormLabelText] = useState<string>('');
@@ -24,7 +24,6 @@ export default function Customizers (props: any) {
   const [isTouched, setIsTouched] = useState<{}>({
     labelTextTouched: false,
     inputNameTouched: false,
-    initialValueTouched: false,
     inputTypeTouched: false
   });
 
@@ -38,12 +37,27 @@ export default function Customizers (props: any) {
   const [minLength, setMinLength] = useState<number | null>(null);
   const [maxLength, setMaxLength] = useState<number | null>(null);
   const [validators , setValidators] = useState<string[][]>([]);
+  
+  const [ validatorDropdown, setValidatorDropdown] = useState<{}>({ height: 0, overflow: 'hidden' });
   //function that open the validator dropdown
   const openValidator = ():void => {
-    setValidatorDropdown(!validatorDropdown);
+    if (validatorDropdown.height === 0) setValidatorDropdown({ height: 'auto'});
+    else setValidatorDropdown({ height: 0, overflow: 'hidden'});
+    // (validatorDropdown.display === 'none') ? setValidatorDropdown({display: 'flex'}) : setValidatorDropdown({display: 'none'})
   }
   //add form updates the state initially declare in FormBuilder page
   const addForm = ():void => {
+    //this is the logic to ensure all the required input of the customizer form is fullfilled
+      //if it isn't stop the function, else do the other logic
+    let requirementFullfilled: boolean = true;
+    for (const keys in isTouched) {
+      if (!isTouched[keys]){
+        requirementFullfilled = false;
+        break;
+      }
+    }
+    if (requirementFullfilled === false) return;
+
     const currentInputValidator: string[] = [];
     //setting up the validator state using setValidator based on validator configuration
     for (const [key, value] of Object.entries(validatorConfiguration)) {
@@ -144,9 +158,9 @@ export default function Customizers (props: any) {
           <div onClick={openValidator}
           className="border border-black px-5 py-1 rounded-md
           hover:bg-black hover:text-white duration-500
-          ">Validators</div>
+          ">Validators &#9660;</div>
         </div>
-        <div id="validators" className="flex flex-col justify-evenly h-1/2">
+        <div id="validators" className="flex flex-col justify-evenly" style={validatorDropdown}>
         <div className="flex justify-between">
           <label htmlFor="required">Required</label>
           <input name="required" type="checkBox" onClick={(e) => {
