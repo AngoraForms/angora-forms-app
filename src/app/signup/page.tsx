@@ -12,7 +12,8 @@ export default function Signup() {
     const data = {
       username: String(event.target.username.value),
       email: String(event.target.email.value),
-      password: String(event.target.password.value)
+      password: String(event.target.password.value),
+      type: 'sign up'
     }
 
     console.log(data)
@@ -29,7 +30,7 @@ export default function Signup() {
       
     }
     if (!response.ok) {
-      console.log('error with message')
+      console.log('sign up request failed')
     }
   }
 
