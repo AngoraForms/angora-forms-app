@@ -9,7 +9,7 @@ import 'prismjs/themes/prism.css'; //Example style, you can use another
 
 export default function TSEditor (props: any) {
   //currentConfig is the state that is drilled down from FormBuilder page
-  const { currentConfig, tabState } = props;
+  const { currentConfig, pressResetButton } = props;
   const [formControlConfig, setFormControlConfig] = useState<string[]>([]);
   const [code, setCode] = useState<string>('');
   
@@ -26,8 +26,6 @@ export default function TSEditor (props: any) {
       initialRender.current = false;
     }
     else {
-      //check tab state
-
       //newArray is used to contain the new set of validations
       let newArray:string[] = [];
       for (let i = 0; i < currentConfig.validators.length; i++) { 
@@ -42,19 +40,29 @@ export default function TSEditor (props: any) {
         })
       }
     }
-  },[props])
+  },[currentConfig])
+
+  useEffect(() => {
+    if (initialRender.current === true) {
+      initialRender.current = false;
+    } else {
+      setFormControlConfig([]);
+      console.log(formControlConfig)
+      console.log(currentConfig)
+    }
+  },[pressResetButton])
   return (
     // Editor componenet is a code editor IDE
     //value is the template of the typescript file of the form
     <div
-      className='relative border border-black rounded-b-md p-2 w-full'>
+      className='relative min-h-[400px] border border-black shadow-xl rounded-b-md p-2 w-full resize-y overflow-auto'>
       <Editor
-      value={`export class angoraForm implements OnInit {
-  Angoraform: FormGroup;
+      value={`export class ${currentConfig.formGroupName} implements OnInit {
+        ${currentConfig.formGroupName}: FormGroup;
 
   constructor(private formBuilder: FormBuilder) {}
   ngOnInit() {
-    this.Angoraform = this.formBuilder.group({
+    this.${currentConfig.formGroupName} = this.formBuilder.group({
 ${formControlConfig}
     })
   }`}
@@ -67,7 +75,7 @@ ${formControlConfig}
         }}
       />
       <span onClick={(e) => copyCode(e)}
-        className="material-symbols-outlined absolute top-2 right-2 hover:text-red-400 hover: cursor-pointer">
+        className="material-symbols-outlined absolute top-2 right-2 duration-500 hover:text-blue-400 hover: cursor-pointer">
         content_paste
       </span>
     </div>

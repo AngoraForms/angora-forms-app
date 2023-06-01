@@ -9,7 +9,7 @@ import 'prismjs/themes/prism.css'; //Example style, you can use another
 
 export default function HTMLBuilder (props: any) {
   const [code, setCode] = useState('')
-  const { currentConfig } = props;
+  const { currentConfig, pressResetButton} = props;
   const [initialLoad, setInitialLoad] = useState(false)
   const [formStructure, setFormStructure] = useState([])
   
@@ -27,11 +27,11 @@ export default function HTMLBuilder (props: any) {
     //generate new Component based on the name of the buttom that was clicked by looking at the last item of formControl
     const inputName = currentConfig.formControl[currentConfig.formControl.length - 1];
     const inputType = currentConfig.inputType[currentConfig.inputType.length - 1];
-    const inputText = currentConfig.inputText[currentConfig.inputText.length - 1];
+    const labelText = currentConfig.labelText[currentConfig.labelText.length - 1];
     setFormStructure([...formStructure,`
 <div>
   <div> 
-    <label for="${inputName}">${inputText}</label> 
+    <label for="${inputName}">${labelText}</label> 
     <input type="${inputType}" id="${inputName}" name="${inputName}">
   </div>
 </div>
@@ -40,10 +40,17 @@ export default function HTMLBuilder (props: any) {
     }
   }, [currentConfig]);
 
+  useEffect (() => {
+    setFormStructure([])
+  },[pressResetButton])
+
   return (
-    <div className="inline-block relative p-2 border border-black overflow-auto rounded-b-md w-full ">
+    <div className="inline-block relative p-2 
+    border border-black shadow-xl rounded-b-md 
+    w-full min-h-[400px] overflow-auto resize-y"
+    >
       <Editor
-        value={(`<form [formGroup]="angoraForm" \n (ngSubmit)="onSubmit()"> \n ${formStructure} \n</form>`).replaceAll(',','')}
+        value={(`<form [formGroup]="${currentConfig.formGroupName}" \n (ngSubmit)="onSubmit()"> \n ${formStructure} \n</form>`).replaceAll(',','')}
         onValueChange={code => setCode(code)}
         highlight={code => highlight(code, languages.js)}
         padding={10}
@@ -52,7 +59,7 @@ export default function HTMLBuilder (props: any) {
           fontSize: 12,
         }}/>
       <span onClick={(e) => copyCode(e)}
-        className="material-symbols-outlined absolute top-2 right-2 hover:text-red-400 hover: cursor-pointer">
+        className="material-symbols-outlined absolute top-2 right-2 duration-500 hover:text-red-400 hover: cursor-pointer">
         content_paste
       </span>
     </div>
