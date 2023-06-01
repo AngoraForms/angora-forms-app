@@ -226,9 +226,13 @@ export default function Customizers (props: any) {
             }}/>
         </div>
       </div> 
+      {/* first input (button) resets form by detecting the form that wraps it */}
+      {/* second input is a submit input that will trigger an event noted within the form line */}
       <div className="flex justify-evenly">
         <input className="border border-black p-3 rounded-md duration-500 hover:bg-red-600 hover:text-white" 
-        type="button" value="Reset form" />
+        type="button" value="Reset form" onClick={(e) => {
+          e.target.closest('form').reset();
+        }}/>
         <input className="border border-black p-3 rounded-md duration-500 hover:bg-blue-600 hover:text-white" type="submit" value="Create Input"/>
       </div>
       </form>
