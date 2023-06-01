@@ -28,9 +28,9 @@ export default function RootLayout({
 
         </nav>
         <nav className="justify-end">
-          <Link href="/login" className="text-lg mx-6 hover:underline"> Login</Link>
+          <Link href="/login" className="text-lg mx-6 hover:underline"> Log In</Link>
           <span className="text-lg">|</span>
-          <Link href="/signup" className="text-lg mx-6 hover:underline">Signup</Link>
+          <Link href="/signup" className="text-lg mx-6 hover:underline">Sign Up</Link>
           <span className="text-lg">|</span>
           <Link href="/FormBuilder" className="mx-6 me-8 text-lg hover:underline">Form Builder</Link>
           {/* <div className="text-xl flex justified-center"> Angora Forms </div> */}
