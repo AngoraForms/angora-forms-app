@@ -1,5 +1,5 @@
 'use client'
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Customizers from "../(components)/Customizers";
 import TSBuilder from "../(components)/TSBuilder"
 import HTMLBuilder from "../(components)/HTMLBuilder";
@@ -28,8 +28,12 @@ export default function FormBuilder () {
   });
   const [fileTab, setFileTab] = useState<string>('html')
 
-  //Options component: passing down currentConfig State and the setCurrentConfig method to allow Options component to alter state
-  //Result component: is going to sense the change in the currentConfig state and rerender itself
+  const [htmlCode, setHTMLCode] = useState<string>('');
+  const [tsCode, setTsCode] = useState<string>('');
+  useEffect(() => {
+    console.log('main page:', htmlCode)
+  },[htmlCode])
+
   return (
     <>
       <div className="flex justify-evenly items-end">
@@ -74,11 +78,16 @@ export default function FormBuilder () {
             </button>
           </header>
           <div style={{display: fileTab === 'html' ? 'inline-block' : 'none'}}>
-            <HTMLBuilder pressResetButton={pressResetButton} currentConfig={currentConfig}/>
+            <HTMLBuilder setHTMLCode={setHTMLCode} pressResetButton={pressResetButton} currentConfig={currentConfig}/>
           </div>
           <div style={{display: fileTab === 'ts' ? 'inline-block' : 'none'}} >
-            <TSBuilder pressResetButton={pressResetButton} currentConfig={currentConfig}/>
+            <TSBuilder setTsCode={setTsCode} pressResetButton={pressResetButton} currentConfig={currentConfig}/>
           </div>
+          <button className=" m-auto border-2 border-red-400 text-red-400 rounded-md w-1/4 p-2 duration-500 hover:text-white hover:bg-red-400"
+            onClick={() => console.log(htmlCode)}
+          >
+            Save template
+          </button>
         </div>
       </div>
     </>

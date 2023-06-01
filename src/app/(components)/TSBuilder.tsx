@@ -9,7 +9,7 @@ import 'prismjs/themes/prism.css'; //Example style, you can use another
 
 export default function TSEditor (props: any) {
   //currentConfig is the state that is drilled down from FormBuilder page
-  const { currentConfig, pressResetButton } = props;
+  const { currentConfig, pressResetButton, setTsCode } = props;
   const [formControlConfig, setFormControlConfig] = useState<string[]>([]);
   const [code, setCode] = useState<string>('');
   
