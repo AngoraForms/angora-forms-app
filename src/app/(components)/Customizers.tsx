@@ -247,7 +247,7 @@ export default function Customizers (props: any) {
           ${ checkConditions() ? 'bg-gray-800 cursor-not-allowed' : 'hover:bg-blue-600 hover:text-white rounded-md'} `}
           type="submit" 
           value="Create Input"
-          disabled={checkConditions} 
+          disabled={() => checkConditions()} 
         />
       </div>
       { checkConditions() === true && <p className="text-center text-red-400">Create Input button disabled, please fill out required field</p>}

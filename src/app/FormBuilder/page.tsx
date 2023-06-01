@@ -31,9 +31,14 @@ export default function FormBuilder () {
   const [htmlCode, setHTMLCode] = useState<string>('');
   const [tsCode, setTsCode] = useState<string>('');
   useEffect(() => {
-    console.log('main page:', htmlCode)
-  },[htmlCode])
+    console.log('main page:', tsCode)
+  },[htmlCode, tsCode])
 
+  //save code, make post request 
+  const saveEditor = () => {
+    console.log(tsCode)
+    console.log(htmlCode)
+  }
   return (
     <>
       <div className="flex justify-evenly items-end">
@@ -84,10 +89,11 @@ export default function FormBuilder () {
             <TSBuilder setTsCode={setTsCode} pressResetButton={pressResetButton} currentConfig={currentConfig}/>
           </div>
           <button className=" m-auto border-2 border-red-400 text-red-400 rounded-md w-1/4 p-2 duration-500 hover:text-white hover:bg-red-400"
-            onClick={() => console.log(htmlCode)}
+            onClick={saveEditor}
           >
             Save template
           </button>
+          <button onClick={() => console.log(tsCode)}>click</button>
         </div>
       </div>
     </>

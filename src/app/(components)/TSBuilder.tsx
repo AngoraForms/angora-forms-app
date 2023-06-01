@@ -8,9 +8,14 @@ import 'prismjs/themes/prism.css'; //Example style, you can use another
 
 
 export default function TSEditor (props: any) {
+
+  //create a reference to the Editor component allowing to grab the value which is the code in the editor
+  const IdeRef = useRef(null);
+
   //currentConfig is the state that is drilled down from FormBuilder page
   const { currentConfig, pressResetButton, setTsCode } = props;
   const [formControlConfig, setFormControlConfig] = useState<string[]>([]);
+
   const [code, setCode] = useState<string>('');
   
   const copyCode = (e) => {
@@ -38,25 +43,33 @@ export default function TSEditor (props: any) {
           newArray.push(controller);
           return newArray;
         })
-      }
+      }           
     }
+      // setTimeout(() => setTsCode(IdeRef.current.props.value), 250)
   },[currentConfig])
 
+  //useEffect to detect changes in the TS code editor and gives it to parent to save
+  useEffect(() => {
+    //there needs to be a delay for the TS code editor to be editted before going in
+    setTsCode(IdeRef.current.props.value)
+  }, [currentConfig.formGroupName,formControlConfig])
+
+  //whenever resetbutton is pressed, we refet the form configuration
   useEffect(() => {
     if (initialRender.current === true) {
       initialRender.current = false;
     } else {
       setFormControlConfig([]);
-      console.log(formControlConfig)
-      console.log(currentConfig)
     }
   },[pressResetButton])
+
   return (
     // Editor componenet is a code editor IDE
     //value is the template of the typescript file of the form
     <div
       className='relative min-h-[400px] border border-black shadow-xl rounded-b-md p-2 w-full resize-y overflow-auto'>
       <Editor
+      ref={IdeRef}
       value={`export class ${currentConfig.formGroupName} implements OnInit {
         ${currentConfig.formGroupName}: FormGroup;
 
@@ -66,14 +79,12 @@ export default function TSEditor (props: any) {
 ${formControlConfig}
     })
   }`}
-        onValueChange={code => setCode(code)}
-        highlight={code => highlight(code, languages.js)}
-        padding={10}
-        style={{
-          fontFamily: '"Fira code", "Fira Mono", monospace',
-          fontSize: 12,
-        }}
-      />
+      highlight={code => highlight(code, languages.js)}
+      padding={10}
+      style={{
+        fontFamily: '"Fira code", "Fira Mono", monospace',
+        fontSize: 12,
+      }}/>
       <span onClick={(e) => copyCode(e)}
         className="material-symbols-outlined absolute top-2 right-2 duration-500 hover:text-blue-400 hover: cursor-pointer">
         content_paste
