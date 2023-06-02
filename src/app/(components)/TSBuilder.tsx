@@ -78,6 +78,9 @@ export default function TSEditor (props: any) {
     this.${currentConfig.formGroupName} = this.formBuilder.group({
 ${formControlConfig}
     })
+  }
+  onSubmit() {
+    //this is where the submit logic goes
   }`}
       highlight={code => highlight(code, languages.js)}
       padding={10}
