@@ -22,12 +22,12 @@ export default function RootLayout({
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
       </head>
       <body className={inter.className} >
-      <header className="fixed top-0 left-0 right-0 flex justify-evenly bg-white p-6 shadow-xl">
-        <nav className="justify-start">
+      <header className="fixed flex top-0 left-0 right-0 flex justify-evenly bg-white p-6 shadow-xl">
+        <nav className="flex">
           <Link href="/" className="text-lg font-sans font-bold mr-10 whitespace-nowrap">Angora Forms</Link>
           <Link href="/FormBuilder" className="text-sm me-8 hover:underline">Docs</Link>
         </nav>
-        <nav className="justify-end">
+        <nav className="flex">
           <Link href="/FormBuilder" className=" text-sm me-8 hover:underline">Form Builder</Link>
           <span className="text-lg font-bold"></span>
           <Link href="/login" className="text-sm mx-6 me-8 hover:underline"> Login</Link>
