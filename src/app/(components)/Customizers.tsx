@@ -118,7 +118,7 @@ export default function Customizers (props: any) {
         setValidators([]);
       }}
         className="flex flex-col justify-evenly w-1/2
-        border border-black shadow-xl rounded-lg px-10 py-5 
+        border border-red-700 shadow-xl rounded-lg px-10 py-5 
         overflow-auto resize-y min-h-[500px]
         max-sm:w-full"
       >
@@ -132,7 +132,8 @@ export default function Customizers (props: any) {
               onBlur={() => handleBlur("labelTextTouched")}
             />
           </div>
-
+          {/* Will display message under the input if condition isn't fullfilled: required and touched */}
+          { (formLabelText.length < 1) && (isTouched.labelTextTouched == true) && <p className="text-end text-red-400">This is a required field</p>}
           <div className="flex justify-between">
             <label htmlFor="inputName">InputName</label>
             <input className="border border-black rounded-md px-2 w-1/2"

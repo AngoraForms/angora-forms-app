@@ -34,11 +34,11 @@ export default function FormBuilder () {
 
   //save code, make post request 
   const saveEditor = async () => {
-    // console.log(tsCode)
-    // console.log(htmlCode)
-    const savedCode: {htmlCode:string, tsCode:string} = {
+    const savedCode: {htmlCode:string, tsCode:string, userid: number, type: string} = {
       htmlCode: htmlCode,
-      tsCode: tsCode
+      tsCode: tsCode,
+      userid: 51,
+      type: 'saveCode'
     }
     const response = await fetch('/api/savedComponents', {
       method: 'POST',
@@ -58,7 +58,13 @@ export default function FormBuilder () {
   const [code, setCode] = useState('');
   //get code from database and the loop over it and save into variable
   const getCode = async () => {
-    const response = await fetch('/api/savedComponents')
+    const response = await fetch('/api/savedComponents', {
+      method: 'POST',
+      headers: {
+        'Content-Type' : 'application/json'
+      },
+      body: JSON.stringify({type: 'getCode', userid: 51})
+    })
     const data = await response.json();
     for (let i = 0; i < data.message.length; i++) {
       htmlComponents.push(data.message[i].html);
@@ -69,8 +75,8 @@ export default function FormBuilder () {
 
   return (
     <>
-      <div className="flex justify-evenly items-end">
-        <div className="flex flex-col w-1/2 text-center mt-5">
+      <div className="mt-[100px] flex justify-evenly items-end">
+        <div className="flex flex-col w-1/2 text-center">
           <label htmlFor="formGroup">Form Group Name</label>
           <input className="border border-black rounded-md p-2" 
             onChange={(e) => setFormGroupName(e.target.value)}
@@ -97,15 +103,15 @@ export default function FormBuilder () {
           RESET
         </button>
       </div>
-      <div className="mt-6 flex flex-row justify-evenly items-start max-sm:flex-col">   
+      <div className="mt-6 mx-5 flex flex-row justify-evenly items-start max-sm:flex-col">   
         <Customizers formGroupName={formGroupName} currentConfig={currentConfig} setCurrentConfig={setCurrentConfig} />
         <div className="flex flex-col justify-center w-1/2 h-1/2 max-sm:w-full max-sm:mt-5">
           <header>
-            <button className="inline border border-black w-1/2 rounded-tl-md py-1 hover:bg-red-400 hover:text-white duration-500"
+            <button className="inline border border-red-400 w-1/2 rounded-tl-md py-1 hover:bg-red-400 hover:text-white duration-500"
             onClick={() => setFileTab('html')}>
               HTML File
             </button>
-            <button className="inline border border-black w-1/2 rounded-tr-md py-1 whitespace-nowrap hover:bg-blue-400 hover:text-white duration-500"
+            <button className="inline border border-blue-400 w-1/2 rounded-tr-md py-1 whitespace-nowrap hover:bg-blue-400 hover:text-white duration-500"
             onClick={() => setFileTab('ts')}>
               TypeScript File
             </button>
