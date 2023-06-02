@@ -29,7 +29,6 @@
   },
   "devDependencies": {
     "@types/prismjs": "^1.26.0",
-    "@types/react-syntax-highlighter": "^15.5.7",
-    "prisma": "^4.14.1"
+    "prisma": "^4.15.0"
   }
 }
