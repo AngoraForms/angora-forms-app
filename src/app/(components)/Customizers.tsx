@@ -21,6 +21,7 @@ export default function Customizers (props: any) {
   const [formInitialValue, setFormInitialValue] = useState<string>('');
   const [formTypeValue, setFormTypeValue] = useState<string>('');
 
+  //detect if we touched the input elements 
   const [isTouched, setIsTouched] = useState<{labelTextTouched: boolean, inputNameTouched: boolean, inputTypeTouched: boolean}>({
     labelTextTouched: false,
     inputNameTouched: false,
@@ -48,7 +49,7 @@ export default function Customizers (props: any) {
 
   //function that checks if conditions are met and if so disable the submit functionality
   const checkConditions = ():boolean => {
-    if (formInputValue.length > 0 && formLabelText.length > 0 && formTypeValue.length > 0) {
+    if (formInputValue.length > 0 && formTypeValue.length > 0) {
       return false;
     }
     return true;
@@ -75,9 +76,9 @@ export default function Customizers (props: any) {
       } else if (key === 'emailValidation' && value === true) {
         currentInputValidator.push(' Validators.email');
       } else if (key === 'minLength' && typeof value === 'number') {
-        currentInputValidator.push(` minLength(${value})`)
+        currentInputValidator.push(` Validators.minLength(${value})`)
       } else if (key === 'maxLength' && typeof value === 'number') {
-        currentInputValidator.push(` maxLength(${value})`)
+        currentInputValidator.push(` Validators.maxLength(${value})`)
       } else if (key === 'passwordValidation' && value === true) {
         currentInputValidator.push(`Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=[\]{};':"|,.<>/?]).*$/)`)
       } else if (key === 'phoneNumberValidation' && value === true) {
@@ -117,52 +118,75 @@ export default function Customizers (props: any) {
         setValidators([]);
       }}
         className="flex flex-col justify-evenly w-1/2
-        border border-black shadow-xl rounded-lg px-10 py-5 
+        border border-red-700 shadow-xl rounded-lg px-10 py-5 
         overflow-auto resize-y min-h-[500px]
         max-sm:w-full"
       >
         <h1 className="text-2xl text-center">Form Customizer</h1>
+        <div id="input-customizer">
+          <div className="flex justify-between">
+            <label htmlFor="label">LabelText</label>
+            <input className="border border-black rounded-md px-2 w-1/2"
+              name="labelText" 
+              onChange={(e) =>{setFormLabelText(e.target.value)}}
+              onBlur={() => handleBlur("labelTextTouched")}
+            />
+          </div>
+          {/* Will display message under the input if condition isn't fullfilled: required and touched */}
+          { (formLabelText.length < 1) && (isTouched.labelTextTouched == true) && <p className="text-end text-red-400">This is a required field</p>}
+          <div className="flex justify-between">
+            <label htmlFor="inputName">InputName</label>
+            <input className="border border-black rounded-md px-2 w-1/2"
+              name="inputName" 
+              onChange={(e) => setFormInputValue(e.target.value)}
+              onBlur={() => handleBlur("inputNameTouched")}
+            />
+          </div>
+          {/* Will display message under the input if condition isn't fullfilled: required and touched */}
+          { (formInputValue.length < 1) && (isTouched.inputNameTouched == true) && <p className="text-end text-red-400">This is a required field</p>}
 
-        <div className="flex justify-between">
-          <label htmlFor="label">LabelText</label>
-          <input className="border border-black rounded-md px-2 w-1/2"
-            name="labelText" 
-            onChange={(e) =>{setFormLabelText(e.target.value)}}
-            onBlur={() => handleBlur("labelTextTouched")}
-          />
-        </div>
-        {/* Will display the message under the input if condition isn't fullfilled: required and touched */}
-        { (formLabelText.length < 1) && (isTouched.labelTextTouched == true) && <p className="text-end text-red-400">This is a required field</p>}
-
-        <div className="flex justify-between">
-          <label htmlFor="inputName">InputName</label>
-          <input className="border border-black rounded-md px-2 w-1/2"
-            name="inputName" 
-            onChange={(e) => setFormInputValue(e.target.value)}
-            onBlur={() => handleBlur("inputNameTouched")}
-          />
-        </div>
-        {/* Will display message under the input if condition isn't fullfilled: required and touched */}
-        { (formInputValue.length < 1) && (isTouched.inputNameTouched == true) && <p className="text-end text-red-400">This is a required field</p>}
-
-        <div className="flex justify-between">
-          <label htmlFor="InputType">InputType</label>
-          <input className="border border-black rounded-md px-2 w-1/2"
-            name="InputType" 
+          <div className="flex justify-between">
+            <label htmlFor="InputType">InputType</label>
+            <select className="border border-black rounded-md px-2 w-1/2"
+            name="InputType" id="selectInputTypes"
             onChange={(e) => setFormTypeValue(e.target.value)} 
-            onBlur={() => handleBlur("inputTypeTouched")}
-          />
+            onBlur={() => handleBlur("inputTypeTouched")}>
+              <option value=""></option>
+              <option value="button">button</option>
+              <option value="checkbox">checkbox</option>
+              <option value="color">color</option>
+              <option value="date">date</option>
+              <option value="datetime-local">datetime-local</option>
+              <option value="email">email</option>
+              <option value="file">file</option>
+              <option value="hidden">hidden</option>
+              <option value="image">image</option>
+              <option value="month">month</option>
+              <option value="number">number</option>
+              <option value="password">password</option>
+              <option value="radio">radio</option>
+              <option value="range">range</option>
+              <option value="reset">reset</option>
+              <option value="search">search</option>
+              <option value="submit">submit</option>
+              <option value="tel">tel</option>
+              <option value="text">text</option>
+              <option value="time">time</option>
+              <option value="url">url</option>
+              <option value="">week</option>
+            </select>
+          </div>
+          {/* Will display message under the input if condition isn't fullfilled: required and touched */}
+          { (formTypeValue.length < 1) && (isTouched.inputTypeTouched == true) && <p className="text-end text-red-400">This is a required field</p>}
+          <div className="flex justify-between">
+            <label htmlFor="initialValue">InitialValue</label>
+            <input className="border border-black rounded-md px-2 w-1/2"
+              name="initialValue" 
+              onChange={(e) => setFormInitialValue(e.target.value)}
+            />
+          </div>
         </div>
-        {/* Will display message under the input if condition isn't fullfilled: required and touched */}
-        { (formTypeValue.length < 1) && (isTouched.inputTypeTouched == true) && <p className="text-end text-red-400">This is a required field</p>}
-        <div className="flex justify-between">
-          <label htmlFor="initialValue">InitialValue</label>
-          <input className="border border-black rounded-md px-2 w-1/2"
-            name="initialValue" 
-            onChange={(e) => setFormInitialValue(e.target.value)}
-          />
-        </div>
-
+        
         <div className="flex justify-center">
           <div onClick={openValidator}
           className="border border-black px-5 py-1 rounded-md
