@@ -21,6 +21,7 @@ export default function Customizers (props: any) {
   const [formInitialValue, setFormInitialValue] = useState<string>('');
   const [formTypeValue, setFormTypeValue] = useState<string>('');
 
+  //detect if we touched the input elements 
   const [isTouched, setIsTouched] = useState<{labelTextTouched: boolean, inputNameTouched: boolean, inputTypeTouched: boolean}>({
     labelTextTouched: false,
     inputNameTouched: false,
@@ -147,11 +148,34 @@ export default function Customizers (props: any) {
 
         <div className="flex justify-between">
           <label htmlFor="InputType">InputType</label>
-          <input className="border border-black rounded-md px-2 w-1/2"
-            name="InputType" 
-            onChange={(e) => setFormTypeValue(e.target.value)} 
-            onBlur={() => handleBlur("inputTypeTouched")}
-          />
+          <select className="border border-black rounded-md px-2 w-1/2"
+          name="InputType" id="selectInputTypes"
+          onChange={(e) => setFormTypeValue(e.target.value)} 
+          onBlur={() => handleBlur("inputTypeTouched")}>
+            <option value=""></option>
+            <option value="button">button</option>
+            <option value="checkbox">checkbox</option>
+            <option value="color">color</option>
+            <option value="date">date</option>
+            <option value="datetime-local">datetime-local</option>
+            <option value="email">email</option>
+            <option value="file">file</option>
+            <option value="hidden">hidden</option>
+            <option value="image">image</option>
+            <option value="month">month</option>
+            <option value="number">number</option>
+            <option value="password">password</option>
+            <option value="radio">radio</option>
+            <option value="range">range</option>
+            <option value="reset">reset</option>
+            <option value="search">search</option>
+            <option value="submit">submit</option>
+            <option value="tel">tel</option>
+            <option value="text">text</option>
+            <option value="time">time</option>
+            <option value="url">url</option>
+            <option value="">week</option>
+          </select>
         </div>
         {/* Will display message under the input if condition isn't fullfilled: required and touched */}
         { (formTypeValue.length < 1) && (isTouched.inputTypeTouched == true) && <p className="text-end text-red-400">This is a required field</p>}
@@ -247,7 +271,7 @@ export default function Customizers (props: any) {
           ${ checkConditions() ? 'bg-gray-800 cursor-not-allowed' : 'hover:bg-blue-600 hover:text-white rounded-md'} `}
           type="submit" 
           value="Create Input"
-          disabled={checkConditions()} 
+          disabled={checkConditions} 
         />
       </div>
       { checkConditions() === true && <p className="text-center text-red-400">Create Input button disabled, please fill out required field</p>}
