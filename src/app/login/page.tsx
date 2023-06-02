@@ -1,6 +1,6 @@
 'use client'
 import { useRouter } from 'next/navigation';
-
+import { getCookies, setCookie, deleteCookie } from 'cookies-next';
 
 export default function Signup() {
 
@@ -22,14 +22,19 @@ export default function Signup() {
       headers: {'Content-Type':'application/json'},
       body: JSON.stringify(data)
     })
+    const jsonResponse = await response.json()
 
-    if (response.ok) {
+    if (jsonResponse.status === 200) {
+
+      console.log('response is 200',jsonResponse)
+
+      setCookie('key',jsonResponse.body);
       router.push('/FormBuilder')
       
-    }
-    if (!response.ok) {
-      console.log('log in request failed')
-    }
+    } else {
+      console.log('response is not 200', jsonResponse)
+
+    } 
   }
 
   return (
@@ -40,7 +45,7 @@ export default function Signup() {
       <p className = 'text-3xl my-6'>Log In</p>
         <div>
           <label htmlFor = 'usernameEmail'></label>
-          <input type = 'text' required id = 'usernameEmail' className = 'box-border h-1/10 w-full p-4 border-4 cursor-pointer bg-cover bg-center mb-2 rounded-lg hover:border-gray-400 border-4 hover:shadow-2xl' autoFocus placeholder = 'Username or Password'/>
+          <input type = 'text' required id = 'usernameEmail' className = 'box-border h-1/10 w-full p-4 border-4 cursor-pointer bg-cover bg-center mb-2 rounded-lg hover:border-gray-400 border-4 hover:shadow-2xl' autoFocus placeholder = 'Username or Email'/>
         </div>
         <div>
           <label htmlFor = 'password' ></label>
