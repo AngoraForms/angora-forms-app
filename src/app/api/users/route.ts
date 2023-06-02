@@ -1,54 +1,89 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { PrismaClient } from '@prisma/client'
-//next/navigation
+import jwt from 'jsonwebtoken';
 
 
-export async function POST(req: NextRequest) {
+let KEY = process.env.JWT_KEY;
 
+const prisma = new PrismaClient()
+
+
+export async function POST(req: NextRequest, res: NextResponse) {
+
+  const dataInPost = await req.json()
+
+  if (dataInPost.type === 'sign up') {
+
+    try {
   
-  // console.log('in the post')
-
-  // console.log('here is the req',req)
-  // console.log('here are the headers:', req.headers)
-
-  // console.log(Request.nextUrl)
-
-  // const url = new URL('/FormBuilder','http://localhost:3000/signup')
-
-  // console.log(url.hostname)
-  // console.log(url.pathname)
-
-
-  const dataInHere = await req.json()
+      const newUser = await prisma.user.create({ 
+        data: {
+          username: dataInPost.username,
+          email: dataInPost.email,
+          password: dataInPost.password
+        }
+      })
   
-  const prisma = new PrismaClient()
+      console.log(newUser)
+  
+  
+      return NextResponse.json({ message: 'success', status: 200 })
+  
+    } catch(error) {
+      console.log(error)
+      return NextResponse.json({ error: error, status: 500 })
+    }
 
-  try {
-
-    const newUser = await prisma.user.create({ 
-      data: {
-        username: dataInHere.username,
-        email: dataInHere.email,
-        password: dataInHere.password
-      }
-    })
-
-    console.log(newUser)
-
-
-    return NextResponse.json({ message: 'success' }, { status: 200 })
-
-  } catch(error) {
-    console.log(error)
-    return NextResponse.json({ error: error }, { status: 500 })
   }
 
-    // const { name, email } = req.body
+  if (dataInPost.type === 'log in') {
 
-    // console.log(name, email)
+    console.log('in the log in POST')
+
+      try {
+
+        console.log('in the try')
+    
+        const findUser = await prisma.user.findFirst({ 
+          where: { OR: [{username: dataInPost.usernameEmail},{email: dataInPost.usernameEmail}]}
+        })
+
+        console.log('here is the found user:', findUser)
 
 
-      
-    // return NextResponse.json({message:'success in the post'})
+        if (findUser !== null) {
+          
+          if (dataInPost.password === findUser.password) {
+
+            console.log(findUser)
+
+            const payload = {
+              id: findUser.id
+            }
+
+            const cookie = jwt.sign(payload, KEY, {expiresIn: 31556926})
+
+            console.log(typeof cookie)
+            
+            return NextResponse.json({ message: 'success', status:200, body: cookie })
+
+          } else {
+            return NextResponse.json({ error: 'log in request failed', status: 401 })
+          }
+
+        } else {
+
+          console.log('user is null, therefore we are in the else')
+
+          return NextResponse.json({ error: 'log in request failed', status: 401 })
+        }
   
+      } catch(error) {
+        console.log(error)
+        return NextResponse.json({ error: error, status: 401 })
+      }
+
+  }
+  
+
 }
