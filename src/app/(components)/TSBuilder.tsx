@@ -13,6 +13,8 @@ export default function TSEditor (props: any) {
   const IdeRef = useRef(null);
 
   //currentConfig is the state that is drilled down from FormBuilder page
+  //press reset button allow us toreset form configuration within this component
+  //setTSCode is a method that will help save the current TS code
   const { currentConfig, pressResetButton, setTsCode } = props;
   const [formControlConfig, setFormControlConfig] = useState<string[]>([]);
 
@@ -34,6 +36,7 @@ export default function TSEditor (props: any) {
       //newArray is used to contain the new set of validations
       let newArray:string[] = [];
       for (let i = 0; i < currentConfig.validators.length; i++) { 
+        if (currentConfig.inputType[i] === 'submit') continue;
         //controllers stores the string version of the form controllers and the spaces needed
         // DO NOT TOUCH!!!
         let controller:string;

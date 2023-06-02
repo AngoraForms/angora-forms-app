@@ -49,7 +49,7 @@ export default function Customizers (props: any) {
 
   //function that checks if conditions are met and if so disable the submit functionality
   const checkConditions = ():boolean => {
-    if (formInputValue.length > 0 && formLabelText.length > 0 && formTypeValue.length > 0) {
+    if (formInputValue.length > 0 && formTypeValue.length > 0) {
       return false;
     }
     return true;
@@ -132,8 +132,6 @@ export default function Customizers (props: any) {
               onBlur={() => handleBlur("labelTextTouched")}
             />
           </div>
-          {/* Will display the message under the input if condition isn't fullfilled: required and touched */}
-          { (formLabelText.length < 1) && (isTouched.labelTextTouched == true) && <p className="text-end text-red-400">This is a required field</p>}
 
           <div className="flex justify-between">
             <label htmlFor="inputName">InputName</label>
