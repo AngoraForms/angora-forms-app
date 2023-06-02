@@ -55,6 +55,7 @@ export default function FormBuilder () {
   //store all the html and typescript code in a string as an array
   const htmlComponents: [] = [];
   const tsComponents: [] = [];
+  const [code, setCode] = useState('');
   //get code from database and the loop over it and save into variable
   const getCode = async () => {
     const response = await fetch('/api/savedComponents')
@@ -63,6 +64,7 @@ export default function FormBuilder () {
       htmlComponents.push(data.message[i].html);
       tsComponents.push(data.message[i].typescript);
     }
+    setCode(tsComponents[0]);
   }
 
   return (
@@ -121,6 +123,9 @@ export default function FormBuilder () {
           </button>
           <button onClick={saveEditor}>Save Code</button>
           <button onClick={getCode}>Get code</button>
+          <pre style={{ whiteSpace: "pre-wrap", fontFamily: "monospace" }}>
+            {code}
+          </pre>
         </div>
       </div>
     </>
