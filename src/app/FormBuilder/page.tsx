@@ -3,8 +3,13 @@ import { useEffect, useState } from "react";
 import Customizers from "../(components)/Customizers";
 import TSBuilder from "../(components)/TSBuilder"
 import HTMLBuilder from "../(components)/HTMLBuilder";
+import { getCookies, setCookie, deleteCookie } from 'cookies-next';
+import { useRouter } from 'next/navigation';
+
 
 export default function FormBuilder () {
+  const router = useRouter()
+
   //detects when reset button is pressed by incrementing the numericla value 
   //allow child component to detch when the button is pressed by looking at the value/count
   const [pressResetButton, setPressResetButton] = useState<number>(0);
@@ -33,6 +38,30 @@ export default function FormBuilder () {
   const [tsCode, setTsCode] = useState<string>('');
 
   //save code, make post request 
+
+  const getUserId = async () => {
+
+    const currentToken = getCookies('key')
+
+    if (Object.keys(currentToken).length > 0) {
+      const data = {
+        currentToken: currentToken,
+        type: 'auth'
+      }
+  
+      const currentSession = await fetch('/api/users',{
+        method: 'POST',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify(data),
+    })
+      const authenticatedSession = await currentSession.json()
+      console.log('authenticated session:', authenticatedSession)
+      
+    } else {
+      router.push('/login')
+    }
+  }
+
   const saveEditor = async () => {
     const savedCode: {htmlCode:string, tsCode:string, userid: number, type: string} = {
       htmlCode: htmlCode,
@@ -129,6 +158,7 @@ export default function FormBuilder () {
           </button>
           <button onClick={saveEditor}>Save Code</button>
           <button onClick={getCode}>Get code</button>
+          <button onClick={getUserId}>Get User</button>
           <pre style={{ whiteSpace: "pre-wrap", fontFamily: "monospace" }}>
             {code}
           </pre>
