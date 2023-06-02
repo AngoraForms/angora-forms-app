@@ -50,6 +50,21 @@ export default function FormBuilder () {
     const data = await response.json();
     console.log('data:', data)
   }
+  // const [htmlComponents,setHtmlComponents] = useState<string[]>([])
+  // const [tsComponents,setTsComponents] = useState<string[]>([])
+  //store all the html and typescript code in a string as an array
+  const htmlComponents: [] = [];
+  const tsComponents: [] = [];
+  //get code from database and the loop over it and save into variable
+  const getCode = async () => {
+    const response = await fetch('/api/savedComponents')
+    const data = await response.json();
+    for (let i = 0; i < data.message.length; i++) {
+      htmlComponents.push(data.message[i].html);
+      tsComponents.push(data.message[i].typescript);
+    }
+  }
+
   return (
     <>
       <div className="flex justify-evenly items-end">
@@ -104,7 +119,8 @@ export default function FormBuilder () {
           >
             Save template
           </button>
-          <button onClick={saveEditor}>click</button>
+          <button onClick={saveEditor}>Save Code</button>
+          <button onClick={getCode}>Get code</button>
         </div>
       </div>
     </>
