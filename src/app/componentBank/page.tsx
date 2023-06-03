@@ -62,7 +62,7 @@ export default function ComponentBank () {
   const [htmlCodes, setHtmlCodes] = useState<string[]>([]);
   const [tsCodes, setTsCodes] = useState<string[]>([])
   const changePages = (action: string) => {
-    console.log(code)
+
     let maxPageIndex = code.length - 1;
     //ensures that page number of aligned with how many saved code templates there are
     if (action === '+') {
@@ -75,19 +75,30 @@ export default function ComponentBank () {
 
   return (
     <div className="mx-2 mt-[100px] h-screen">
-      <div className="w-1/2">
-        <Editor
-          className='border-2 bg-gray-100 rounded-md'
-          value={`3123`}
-          highlight={code => highlight(code, languages.js)}
-          padding={10}
-          style={{
-            fontFamily: '"Fira code", "Fira Mono", monospace',
-            fontSize: 12,
-          }}
-        />
-        
+      <div className="w-full flex">
+        { (code === '') ? (
+          <h1 className='text-4xl m-auto p-5'>Loading...</h1>
+        ) : (
+          <>
+            <Editor
+              className='border-2 bg-gray-100 rounded-md w-1/2'
+              value={`${code[pageIndex]?.html}` }
+              highlight={code => highlight(code, languages.js)}
+              padding={10}
+              style={{ fontFamily: '"Fira code", "Fira Mono", monospace', fontSize: 12}}
+            />
+            <Editor
+              className='border-2 bg-gray-100 rounded-md w-1/2'
+              value={`${code[pageIndex]?.typescript}` }
+              highlight={code => highlight(code, languages.js)}
+              padding={10}
+              style={{fontFamily: '"Fira code", "Fira Mono", monospace',fontSize: 12,}}
+            />
+          </>
+        )}
+
       </div>
+
       <div className='flex justify-evenly'>
           <button className='duration-500 hover:text-red-400'
             onClick={() => changePages('-')}>
