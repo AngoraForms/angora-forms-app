@@ -29,9 +29,10 @@ export default function RootLayout({
     <Link href="/docs" className="text-sm me-8 hover:underline">Docs</Link>
   </nav>
   <nav className="justify-end">
-    <Link href="/FormBuilder" className="text-sm me-8 hover:underline">Form Builder</Link>
+    <Link href="/formBuilder" className="text-sm me-8 hover:underline">Form Builder</Link>
     <span className="text-lg font-bold"></span>
     <Link href="/login" className="text-sm mx-6 me-8 hover:underline">Login</Link>
+    <Link href="/componentBank" className="text-sm mx-6 me-8 hover:underline">Component Bank</Link>
     <span className="text-lg"></span>
     <Link href="/signup" className="text-sm bg-red-600 me-8 mx-8 hover:bg-red-400 text-white py-1 px-3 border-b-4 border-red-700 hover:border-red-700 rounded">Signup</Link>
   </nav>

@@ -7,10 +7,11 @@ import 'prismjs/components/prism-javascript';
 import 'prismjs/themes/prism.css'; //Example style, you can use another
 import controllers from '../../../lib/controllers'
 import { useEffect, useState } from 'react';
+
 export default function ComponentBank () {
 
   const [code, setCode] = useState< {componentid: number, html:string, ts:string}[] | string>('');
-  
+
   const getCode = async () => {
     console.log(code)
     const userid = await controllers.getUserId();
@@ -55,7 +56,8 @@ export default function ComponentBank () {
       body: JSON.stringify({type:'deleteCode', componentid: currentComponentId})
     });
     const data = await response.json();
-    if (!data.error) getCode();
+    //update the page to reflect the change in code, should be a better way to do this??
+    location.reload();
   }
 
   return (
@@ -86,7 +88,7 @@ export default function ComponentBank () {
           <div className='w-1/2 relative max-sm:w-full'>
             <Editor
               className='border-2 bg-gray-100 rounded-md w-full'
-              value={`${code[pageIndex]?.html}` }
+              value={`${code[pageIndex]?.html}`}
               highlight={code => highlight(code, languages.js)}
               padding={10}
               style={{ fontFamily: '"Fira code", "Fira Mono", monospace', fontSize: 12}}
