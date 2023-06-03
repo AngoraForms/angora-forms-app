@@ -67,7 +67,7 @@ export default function TSEditor (props: any) {
     // Editor componenet is a code editor IDE
     //value is the template of the typescript file of the form
     <div
-      className='relative min-h-[400px] border border-blue-400 shadow-xl rounded-b-md p-2 w-full resize-y overflow-auto'>
+      className='relative min-h-[400px] border border-black shadow-xl rounded-b-md p-2 w-full resize-y overflow-auto'>
       <Editor
       ref={IdeRef}
       value={`export class ${currentConfig.formGroupName} implements OnInit {

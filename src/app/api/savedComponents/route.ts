@@ -4,8 +4,10 @@ import { prisma } from '../../../../lib/prisma/db';
 
 export async function POST (req: Request, res:Response) {
   const dataInPost = await req.json();
+
   if ( dataInPost.type === 'saveCode') {
     const { htmlCode, tsCode, userid } = dataInPost;
+    
     try {
       const newSavedComponent = await prisma.SavedComponents.create({
         data: {
@@ -20,17 +22,32 @@ export async function POST (req: Request, res:Response) {
       return NextResponse.json({ error: error }, { status: 500 })
     }
   }
-  else if ( dataInPost.type === 'getCode') {
-    console.log('getting the code in the backend:', dataInPost)
+
+  else if (dataInPost.type === 'getCode') {
+
     try {
-      const getSavedComponent = await prisma.SavedComponents.findMany({
-        where: { userid: dataInPost.userid }
+      const getSavedComponent = await prisma.savedComponents.findMany({
+        where: { 
+          userid: dataInPost.userid 
+        }
       })
       return NextResponse.json({ message: getSavedComponent }, { status: 200 })
     } catch (error) {
-      console.log(error)
+      return NextResponse.json({ error: error }, { status: 500 })
+    }
+  } 
+
+  else if (dataInPost.type === 'deleteCode') {
+    
+    try {
+      const getDeletedComponent = await prisma.savedComponents.delete({
+        where: {
+          componentid: dataInPost.componentid
+        }
+      })
+      return NextResponse.json({ message: 'deletedComp:' + getDeletedComponent }, { status: 200 })
+    } catch (error) {
       return NextResponse.json({ error: error }, { status: 500 })
     }
   }
-
 }

@@ -58,7 +58,7 @@ export default function HTMLBuilder (props: any) {
 
   return (
     <div className="inline-block relative p-2 
-    border border-red-700 shadow-xl rounded-b-md 
+    border border-black shadow-xl rounded-b-md 
     w-full min-h-[400px] overflow-auto resize-y"
     >
       <Editor
