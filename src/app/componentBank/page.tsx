@@ -52,7 +52,6 @@ export default function ComponentBank () {
       })
       const data = await response.json();
       setCode(data.message);
-
     }
     getCode();
   },[])
@@ -75,20 +74,20 @@ export default function ComponentBank () {
 
   return (
     <div className="mx-2 mt-[100px] h-screen">
-      <div className="w-full flex">
+      <div className="w-full flex max-sm:grid max-sm:grid-cols-1 ">
         { (code === '') ? (
           <h1 className='text-4xl m-auto p-5'>Loading...</h1>
         ) : (
           <>
             <Editor
-              className='border-2 bg-gray-100 rounded-md w-1/2'
+              className='border-2 bg-gray-100 rounded-md w-1/2 max-sm:w-full'
               value={`${code[pageIndex]?.html}` }
               highlight={code => highlight(code, languages.js)}
               padding={10}
               style={{ fontFamily: '"Fira code", "Fira Mono", monospace', fontSize: 12}}
             />
             <Editor
-              className='border-2 bg-gray-100 rounded-md w-1/2'
+              className='border-2 bg-gray-100 rounded-md w-1/2 max-sm:w-full'
               value={`${code[pageIndex]?.typescript}` }
               highlight={code => highlight(code, languages.js)}
               padding={10}
