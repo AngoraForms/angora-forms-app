@@ -8,6 +8,7 @@ import Code from "./Code"
 export default function Default (props: any) {
     const [selectedFile, setSelectedFile] = useState(null)
 
+    // array of files that will be displayed under the 'Defualt Angular' option
     const files: Array<object> = [
         { name: 'FileUploadComponent.ts', content: 
 `import { Component } from '@angular/core';
@@ -137,6 +138,7 @@ export class hadarComp1 implements ControlValueAccessor {
     ]
 
     const handleSelectedFile: Function = (file: any): void => {
+        // set file to the file selected in the sidebar
         setSelectedFile(file)
     }
 
@@ -144,6 +146,7 @@ export class hadarComp1 implements ControlValueAccessor {
         <div className="grid grid-cols-4 m-10 bg-gray-100 rounded-lg shadow-xl">
             <Sidebar className="col-span-1" files={files} handleSelectedFile={handleSelectedFile}/>
             <div className="col-start-2 col-span-3">
+                {/* if file selected has a value, display the selected file, else display the first file in the array */}
                 {selectedFile ? <Code file={selectedFile}/> : <Code file={files[0]}/>}
             </div>
         </div>
