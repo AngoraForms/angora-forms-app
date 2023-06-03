@@ -1,7 +1,6 @@
 
 import { NextRequest, NextResponse } from 'next/server';
-import { PrismaClient } from '@prisma/client'
-const prisma = new PrismaClient();
+import { prisma } from '../../../../lib/prisma/db';
 
 export async function POST (req: Request, res:Response) {
   const dataInPost = await req.json();
@@ -22,9 +21,9 @@ export async function POST (req: Request, res:Response) {
     }
   }
   else if ( dataInPost.type === 'getCode') {
+    console.log('getting the code in the backend:', dataInPost)
     try {
       const getSavedComponent = await prisma.SavedComponents.findMany({
-        // 51 is where there cookiie is suppose to inform our backend what saved components to fetch
         where: { userid: dataInPost.userid }
       })
       return NextResponse.json({ message: getSavedComponent }, { status: 200 })

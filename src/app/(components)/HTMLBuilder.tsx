@@ -5,7 +5,7 @@ import { highlight, languages } from 'prismjs/components/prism-core';
 import 'prismjs/components/prism-clike';
 import 'prismjs/components/prism-javascript';
 import 'prismjs/themes/prism.css'; //Example style, you can use another
-
+import controllers from '../../../lib/controllers';
 
 export default function HTMLBuilder (props: any) {
   //create a reference to the Editor component allowing to grab the value which is the code in the editor
@@ -16,10 +16,10 @@ export default function HTMLBuilder (props: any) {
   const [initialLoad, setInitialLoad] = useState<boolean>(false)
   const [formStructure, setFormStructure] = useState<[]>([])
   
-  const copyCode = (e) => {
-    //Navigating to where the code is displayed and copy it to clipboard
-    navigator.clipboard.writeText(e.target.parentNode.children[0].children[1].textContent)
-  }
+  // const copyCode = (e) => {
+  //   //Navigating to where the code is displayed and copy it to clipboard
+  //   navigator.clipboard.writeText(e.target.parentNode.children[0].children[1].textContent)
+  // }
   
 //useEffect is used to detect any changes within formControl property of state by looking at the length
   useEffect(() => {
@@ -70,7 +70,7 @@ export default function HTMLBuilder (props: any) {
           fontFamily: '"Fira code", "Fira Mono", monospace',
           fontSize: 12,
         }}/>
-      <span onClick={(e) => copyCode(e)}
+      <span onClick={(e) => controllers.copyCode(e)}
         className="material-symbols-outlined absolute top-2 right-2 duration-500 hover:text-red-400 hover: cursor-pointer">
         content_paste
       </span>

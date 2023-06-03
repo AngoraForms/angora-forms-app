@@ -118,7 +118,7 @@ export default function Customizers (props: any) {
         setValidators([]);
       }}
         className="flex flex-col justify-evenly w-1/2
-        border border-red-700 shadow-xl rounded-lg px-10 py-5 
+        border border-black shadow-xl rounded-lg px-10 py-5 
         overflow-auto resize-y min-h-[500px]
         max-sm:w-full"
       >
