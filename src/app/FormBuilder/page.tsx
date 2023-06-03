@@ -68,11 +68,11 @@ export default function FormBuilder () {
 
   //save code, make post request 
   const saveEditor = async () => {
-    const currentUserId = getUserId();
-    const savedCode: {htmlCode:string, tsCode:string, userid: number, type: string} = {
+    const currentUserId = await getUserId();
+    const savedCode: {htmlCode:string, tsCode:string, userid: number | string, type: string} = {
       htmlCode: htmlCode,
       tsCode: tsCode,
-      userid: 51,
+      userid: currentUserId,
       type: 'saveCode'
     }
     const response = await fetch('/api/savedComponents', {
@@ -143,16 +143,11 @@ export default function FormBuilder () {
             <AngoraBuilder setAngCode={setAngCode} pressResetButton={pressResetButton} currentConfig={currentConfig}/>
           </div>
           <button className=" m-auto border-2 border-black text-red-400 rounded-md w-1/4 p-2 duration-500 hover:text-white hover:bg-red-400"
-            onClick={saveEditor}
-          >
+            onClick={saveEditor}>
             Save template
           </button>
           <button onClick={saveEditor}>Save Code</button>
-          {/* <button onClick={getCode}>Get code</button> */}
           <button onClick={getUserId}>Get User</button>
-          {/* <pre style={{ whiteSpace: "pre-wrap", fontFamily: "monospace" }}>
-            {code}
-          </pre> */}
         </div>
       </div>
     </>

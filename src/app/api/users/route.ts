@@ -47,10 +47,9 @@ export async function POST(req: NextRequest, res: NextResponse) {
             const payload = {
               id: findUser.id
             }
-
             const cookie = jwt.sign(payload, KEY, {expiresIn: 31556926})
             
-            return NextResponse.json({ message: 'success', status:200, body: cookie })
+            return NextResponse.json({ message: `successsful log in by ${dataInPost.usernameEmail}`, status:200, body: cookie })
 
           } else {
             return NextResponse.json({ error: 'log in request failed', status: 401 })

@@ -41,7 +41,8 @@ export default function ComponentBank () {
   useEffect(() => {
     //get code from database and the loop over it and save into variable
     const getCode = async () => {
-      const userid = getUserId();
+      const userid = await getUserId();
+      console.log(userid)
       const response = await fetch('/api/savedComponents', {
         method: 'POST',
         headers: {
@@ -51,9 +52,9 @@ export default function ComponentBank () {
       })
       const data = await response.json();
       setCode(data.message);
+
     }
     getCode();
-    setTimeout(() => console.log('code:', code),500)
   },[])
 
   //changes page aka go to the next page 
@@ -61,6 +62,7 @@ export default function ComponentBank () {
   const [htmlCodes, setHtmlCodes] = useState<string[]>([]);
   const [tsCodes, setTsCodes] = useState<string[]>([])
   const changePages = (action: string) => {
+    console.log(code)
     let maxPageIndex = code.length - 1;
     //ensures that page number of aligned with how many saved code templates there are
     if (action === '+') {
@@ -76,7 +78,7 @@ export default function ComponentBank () {
       <div className="w-1/2">
         <Editor
           className='border-2 bg-gray-100 rounded-md'
-          value={`${code[pageIndex]}`}
+          value={`3123`}
           highlight={code => highlight(code, languages.js)}
           padding={10}
           style={{
