@@ -61,7 +61,6 @@ export default function ComponentBank () {
   const [htmlCodes, setHtmlCodes] = useState<string[]>([]);
   const [tsCodes, setTsCodes] = useState<string[]>([])
   const changePages = (action: string) => {
-
     let maxPageIndex = code.length - 1;
     //ensures that page number of aligned with how many saved code templates there are
     if (action === '+') {
@@ -73,7 +72,7 @@ export default function ComponentBank () {
   }
 
   return (
-    <div className="mx-2 mt-[100px] h-screen">
+    <div className="flex flex-col mx-2 mt-[110px] h-screen ">
       <div className="w-full flex max-sm:grid max-sm:grid-cols-1 ">
         { (code === '') ? (
           <h1 className='text-4xl m-auto p-5'>Loading...</h1>
@@ -95,10 +94,12 @@ export default function ComponentBank () {
             />
           </>
         )}
-
       </div>
-
-      <div className='flex justify-evenly'>
+      <div id="buttons" className='flex justify-between mt-10'>
+        <button className='p-5 border border-red-400 text-red-400 rounded duration-500 hover:bg-red-400 hover:text-white'>
+          Remove Current Code
+        </button>
+        <div className='flex justify-between items-center w-1/4'>
           <button className='duration-500 hover:text-red-400'
             onClick={() => changePages('-')}>
             &#9664;
@@ -109,6 +110,8 @@ export default function ComponentBank () {
             &#9654;
           </button>
         </div>
+      </div>
+
     </div>
   )
 }
