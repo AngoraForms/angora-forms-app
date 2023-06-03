@@ -20,6 +20,7 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+        
       </head>
       <body className={inter.className} >
       <header className="fixed top-0 left-0 right-0 flex justify-evenly bg-white p-6 shadow-xl z-50">

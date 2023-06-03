@@ -5,6 +5,7 @@ import { highlight, languages } from 'prismjs/components/prism-core';
 import 'prismjs/components/prism-clike';
 import 'prismjs/components/prism-javascript';
 import 'prismjs/themes/prism.css'; //Example style, you can use another
+import controllers from '../../../lib/controllers';
 
 
 export default function TSEditor (props: any) {
@@ -20,10 +21,6 @@ export default function TSEditor (props: any) {
 
   const [code, setCode] = useState<string>('');
   
-  const copyCode = (e) => {
-    //Navigating to where the code is displayed and copy it to clipboard
-    navigator.clipboard.writeText(e.target.parentNode.children[0].children[1].textContent)
-  }
   //intialRender variable help us prevent useEffect from running on initial load
   //useRef makes it so that initialRender doesn't go back to true (initial state) since useEffect rerenders component
   let initialRender: {current: boolean} = useRef(true);
@@ -91,7 +88,7 @@ ${formControlConfig}
         fontFamily: '"Fira code", "Fira Mono", monospace',
         fontSize: 12,
       }}/>
-      <span onClick={(e) => copyCode(e)}
+      <span onClick={(e) => controllers.copyCode(e)}
         className="material-symbols-outlined absolute top-2 right-2 duration-500 hover:text-blue-400 hover: cursor-pointer">
         content_paste
       </span>
