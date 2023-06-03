@@ -25,7 +25,7 @@ export default function RootLayout({
       <header className="flex justify-between bg-white m-0 p-6 shadow-2xl">
         <nav className="justify-start">
           <Link href="/" className="text-lg font-sans font-bold ml-48 mr-10">Angora Forms</Link>
-          <Link href="/FormBuilder" className=" text-sm me-8 hover:underline">Docs</Link>
+          <Link href="/docs" className=" text-sm me-8 hover:underline">Docs</Link>
         </nav>
         <nav className="justify-end">
           <Link href="/FormBuilder" className=" text-sm me-8 hover:underline">Form Builder</Link>

@@ -9,6 +9,7 @@ export default function AngoraForm (props: any) {
 
     const [selectedFile, setSelectedFile] = useState(null)
 
+    // array of files that will be displayed under the 'Angora Forms' option
     const files: Array<object> = [
         { name: 'CustomComponents.ts', content: 
 `class FileUploadComponent {
