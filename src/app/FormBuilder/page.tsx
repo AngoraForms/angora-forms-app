@@ -4,12 +4,10 @@ import Customizers from "../(components)/Customizers";
 import TSBuilder from "../(components)/TSBuilder"
 import HTMLBuilder from "../(components)/HTMLBuilder";
 import AngoraBuilder from "../(components)/AngoraBuilder";
-import { getCookies, setCookie, deleteCookie } from 'cookies-next';
-import { useRouter } from 'next/navigation';
+import controllers from '../../../lib/controllers';
 
 
 export default function FormBuilder () {
-  const router = useRouter()
 
   //detects when reset button is pressed by incrementing the numericla value 
   //allow child component to detch when the button is pressed by looking at the value/count
@@ -39,36 +37,9 @@ export default function FormBuilder () {
   const [tsCode, setTsCode] = useState<string>('');
   const [angCode, setAngCode] = useState<string>('');
 
-  //function that gets userID from cookie
-  const getUserId = async () => {
-
-    const currentToken = getCookies('key');
-
-    //if the currentToken returns a value then we make fetch requst, else we reroute to login
-    if (Object.keys(currentToken).length > 0) {
-
-      const data = {
-        currentToken: currentToken,
-        type: 'auth'
-      }
-  
-      const currentSession = await fetch('/api/users',{
-        method: 'POST',
-        headers: {'Content-Type':'application/json'},
-        body: JSON.stringify(data),
-    })
-      const authenticatedSession = await currentSession.json()
-      console.log('authenticated session:', authenticatedSession)
-      return authenticatedSession.userId;
-
-    } else {
-      router.push('/login')
-    }
-  }
-
   //save code, make post request 
   const saveEditor = async () => {
-    const currentUserId = await getUserId();
+    const currentUserId = await controllers.getUserId();
     const savedCode: {htmlCode:string, tsCode:string, userid: number | string, type: string} = {
       htmlCode: htmlCode,
       tsCode: tsCode,
@@ -146,8 +117,6 @@ export default function FormBuilder () {
             onClick={saveEditor}>
             Save template
           </button>
-          <button onClick={saveEditor}>Save Code</button>
-          <button onClick={getUserId}>Get User</button>
         </div>
       </div>
     </>

@@ -5,44 +5,17 @@ import { highlight, languages } from 'prismjs/components/prism-core';
 import 'prismjs/components/prism-clike';
 import 'prismjs/components/prism-javascript';
 import 'prismjs/themes/prism.css'; //Example style, you can use another
-import { getCookies } from 'cookies-next';
-import router from 'next/router';
+import controllers from '../../../lib/controllers'
 import { useEffect, useState } from 'react';
 
 export default function ComponentBank () {
-  //function that gets userID from cookie
-  const getUserId = async () => {
-
-    const currentToken = getCookies('key');
-
-    //if the currentToken returns a value then we make fetch requst, else we reroute to login
-    if (Object.keys(currentToken).length > 0) {
-
-      const data = {
-        currentToken: currentToken,
-        type: 'auth'
-      }
-  
-      const currentSession = await fetch('/api/users',{
-        method: 'POST',
-        headers: {'Content-Type':'application/json'},
-        body: JSON.stringify(data),
-    })
-      const authenticatedSession = await currentSession.json()
-      return authenticatedSession.userId;
-
-    } else {
-      router.push('/login')
-    }
-  }
 
   const [code, setCode] = useState('');
 
   useEffect(() => {
     //get code from database and the loop over it and save into variable
     const getCode = async () => {
-      const userid = await getUserId();
-      console.log(userid)
+      const userid = await controllers.getUserId();
       const response = await fetch('/api/savedComponents', {
         method: 'POST',
         headers: {
@@ -58,8 +31,6 @@ export default function ComponentBank () {
 
   //changes page aka go to the next page 
   const [pageIndex, setPageIndex] = useState<number>(0);
-  const [htmlCodes, setHtmlCodes] = useState<string[]>([]);
-  const [tsCodes, setTsCodes] = useState<string[]>([])
   const changePages = (action: string) => {
     let maxPageIndex = code.length - 1;
     //ensures that page number of aligned with how many saved code templates there are
@@ -78,20 +49,33 @@ export default function ComponentBank () {
           <h1 className='text-4xl m-auto p-5'>Loading...</h1>
         ) : (
           <>
-            <Editor
-              className='border-2 bg-gray-100 rounded-md w-1/2 max-sm:w-full'
-              value={`${code[pageIndex]?.html}` }
-              highlight={code => highlight(code, languages.js)}
-              padding={10}
-              style={{ fontFamily: '"Fira code", "Fira Mono", monospace', fontSize: 12}}
-            />
-            <Editor
-              className='border-2 bg-gray-100 rounded-md w-1/2 max-sm:w-full'
-              value={`${code[pageIndex]?.typescript}` }
-              highlight={code => highlight(code, languages.js)}
-              padding={10}
-              style={{fontFamily: '"Fira code", "Fira Mono", monospace',fontSize: 12,}}
-            />
+            <div className='w-1/2 relative'>
+              <Editor
+                className='border-2 bg-gray-100 rounded-md w-full max-sm:w-full'
+                value={`${code[pageIndex]?.html}` }
+                highlight={code => highlight(code, languages.js)}
+                padding={10}
+                style={{ fontFamily: '"Fira code", "Fira Mono", monospace', fontSize: 12}}
+              />
+              <span onClick={(e) => controllers.copyCode(e)}
+                className="material-symbols-outlined absolute top-2 right-2 duration-500 hover:text-red-400 hover: cursor-pointer">
+                content_paste
+              </span>
+            </div>
+            <div className='w-1/2 relative'>
+              <Editor
+                className='border-2 bg-gray-100 rounded-md w-full max-sm:w-full'
+                value={`${code[pageIndex]?.typescript}` }
+                highlight={code => highlight(code, languages.js)}
+                padding={10}
+                style={{fontFamily: '"Fira code", "Fira Mono", monospace',fontSize: 12,}}
+              />
+              <span onClick={(e) => controllers.copyCode(e)}
+                className="material-symbols-outlined absolute top-2 right-2 duration-500 hover:text-blue-400 hover: cursor-pointer">
+                content_paste
+              </span>
+            </div>
+
           </>
         )}
       </div>
