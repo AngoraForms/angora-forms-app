@@ -1,11 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { PrismaClient } from '@prisma/client'
+import { prisma } from '../../../../lib/prisma/db';
 import jwt from 'jsonwebtoken';
 
 
 let KEY = process.env.JWT_KEY;
 
-const prisma = new PrismaClient()
 
 
 export async function POST(req: NextRequest, res: NextResponse) {

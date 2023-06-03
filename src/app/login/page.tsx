@@ -2,7 +2,7 @@
 import { useRouter } from 'next/navigation';
 import { getCookies, setCookie, deleteCookie } from 'cookies-next';
 
-export default function Signup() {
+export default function Login() {
 
   const router = useRouter()
 
@@ -29,7 +29,7 @@ export default function Signup() {
       console.log('response is 200',jsonResponse)
 
       setCookie('key',jsonResponse.body);
-      router.push('/FormBuilder')
+      router.push('/formBuilder')
       
     } else {
       console.log('response is not 200', jsonResponse)

@@ -39,13 +39,14 @@ export default function FormBuilder () {
   const [tsCode, setTsCode] = useState<string>('');
   const [angCode, setAngCode] = useState<string>('');
 
-  //save code, make post request 
-
+  //function that gets userID from cookie
   const getUserId = async () => {
 
-    const currentToken = getCookies('key')
+    const currentToken = getCookies('key');
 
+    //if the currentToken returns a value then we make fetch requst, else we reroute to login
     if (Object.keys(currentToken).length > 0) {
+
       const data = {
         currentToken: currentToken,
         type: 'auth'
@@ -58,13 +59,16 @@ export default function FormBuilder () {
     })
       const authenticatedSession = await currentSession.json()
       console.log('authenticated session:', authenticatedSession)
-      
+      return authenticatedSession.userId;
+
     } else {
       router.push('/login')
     }
   }
 
+  //save code, make post request 
   const saveEditor = async () => {
+    const currentUserId = getUserId();
     const savedCode: {htmlCode:string, tsCode:string, userid: number, type: string} = {
       htmlCode: htmlCode,
       tsCode: tsCode,
@@ -80,28 +84,6 @@ export default function FormBuilder () {
     })
     const data = await response.json();
     console.log('data:', data)
-  }
-  // const [htmlComponents,setHtmlComponents] = useState<string[]>([])
-  // const [tsComponents,setTsComponents] = useState<string[]>([])
-  //store all the html and typescript code in a string as an array
-  const htmlComponents: [] = [];
-  const tsComponents: [] = [];
-  const [code, setCode] = useState('');
-  //get code from database and the loop over it and save into variable
-  const getCode = async () => {
-    const response = await fetch('/api/savedComponents', {
-      method: 'POST',
-      headers: {
-        'Content-Type' : 'application/json'
-      },
-      body: JSON.stringify({type: 'getCode', userid: 51})
-    })
-    const data = await response.json();
-    for (let i = 0; i < data.message.length; i++) {
-      htmlComponents.push(data.message[i].html);
-      tsComponents.push(data.message[i].typescript);
-    }
-    setCode(tsComponents[0]);
   }
 
   return (
@@ -166,11 +148,11 @@ export default function FormBuilder () {
             Save template
           </button>
           <button onClick={saveEditor}>Save Code</button>
-          <button onClick={getCode}>Get code</button>
+          {/* <button onClick={getCode}>Get code</button> */}
           <button onClick={getUserId}>Get User</button>
-          <pre style={{ whiteSpace: "pre-wrap", fontFamily: "monospace" }}>
+          {/* <pre style={{ whiteSpace: "pre-wrap", fontFamily: "monospace" }}>
             {code}
-          </pre>
+          </pre> */}
         </div>
       </div>
     </>
