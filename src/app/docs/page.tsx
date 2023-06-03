@@ -72,9 +72,9 @@ const incrementDisabled =
 
 
     return (
-        <article>
-            <section className="flex flex-col items-center justify-center">
-                <div className="bg-white rounded-lg p-5 mt-5 w-3/4">
+        <article className="bg-primary">
+            <section className="flex flex-col items-center justify-center bg-primary mt-20">
+                <div className="bg-white rounded-lg p-5 mt-5 w-3/4 mt-10">
                     <h1 className="text-2xl">WebpackConfig.ts</h1>
                     <SyntaxHighlighter language="typescript">{webpackConfig}</SyntaxHighlighter>
                 </div>

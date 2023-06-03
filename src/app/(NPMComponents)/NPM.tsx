@@ -31,7 +31,7 @@ export default function NPM (props: any) {
           <button className="bg-red-700 text-sm hover:bg-red-800 text-white py-3 px-4 rounded-lg mr-6">See how it works</button>
         </div>
         </div>
-        <div className="mx-48 mt-32 p-5 flex-1 flex flex-col justify-evenly">
+        <div className="mx-48 mt-32 p-5 flex-1 flex flex-col justify-evenly mb-32">
             <div className="flex-1 bg-white rounded-lg mb-5 shadow-3xl">
                 <h3 className="text-red-700 text-3xl p-5">Step One</h3>
                 <p className="pb-5 pl-5">NPM Install @AngoraForms</p>

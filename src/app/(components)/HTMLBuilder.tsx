@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Editor from 'react-simple-code-editor';
 import { highlight, languages } from 'prismjs/components/prism-core';
 import 'prismjs/components/prism-clike';
@@ -8,10 +8,13 @@ import 'prismjs/themes/prism.css'; //Example style, you can use another
 
 
 export default function HTMLBuilder (props: any) {
-  const [code, setCode] = useState('')
-  const { currentConfig, pressResetButton} = props;
-  const [initialLoad, setInitialLoad] = useState(false)
-  const [formStructure, setFormStructure] = useState([])
+  //create a reference to the Editor component allowing to grab the value which is the code in the editor
+  const IdeRef = useRef(null);
+
+  // const [code, setCode] = useState('')
+  const { currentConfig, pressResetButton, setHTMLCode } = props;
+  const [initialLoad, setInitialLoad] = useState<boolean>(false)
+  const [formStructure, setFormStructure] = useState<[]>([])
   
   const copyCode = (e) => {
     //Navigating to where the code is displayed and copy it to clipboard
@@ -39,19 +42,28 @@ export default function HTMLBuilder (props: any) {
       ])
     }
   }, [currentConfig]);
-
+  //useEffect to detect changes in the HTML code editor and gives it to parent to save
   useEffect (() => {
-    setFormStructure([])
+    if (initialLoad === false) {
+      setInitialLoad(true);
+    } else setHTMLCode(IdeRef.current.props.value)
+  },[formStructure])
+
+  //will detect reset button pressing in parent component 
+  useEffect (() => {
+    if (initialLoad === false) {
+      setInitialLoad(true);
+    } else setFormStructure([])
   },[pressResetButton])
 
   return (
     <div className="inline-block relative p-2 
-    border border-black shadow-xl rounded-b-md 
+    border border-red-700 shadow-xl rounded-b-md 
     w-full min-h-[400px] overflow-auto resize-y"
     >
       <Editor
+        ref={IdeRef}
         value={(`<form [formGroup]="${currentConfig.formGroupName}" \n (ngSubmit)="onSubmit()"> \n ${formStructure} \n</form>`).replaceAll(',','')}
-        onValueChange={code => setCode(code)}
         highlight={code => highlight(code, languages.js)}
         padding={10}
         style={{
