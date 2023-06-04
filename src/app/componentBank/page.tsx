@@ -13,7 +13,6 @@ export default function ComponentBank () {
   const [code, setCode] = useState< {componentid: number, html:string, ts:string}[] | string>('');
 
   const getCode = async () => {
-    console.log(code)
     const userid = await controllers.getUserId();
     const response = await fetch('/api/savedComponents', {
       method: 'POST',
@@ -25,7 +24,6 @@ export default function ComponentBank () {
     const data = await response.json();
     setCode(data.message);
   }
-
   useEffect(() => {
     //get code from database and the loop over it and save into variable
     getCode();
@@ -56,8 +54,10 @@ export default function ComponentBank () {
       body: JSON.stringify({type:'deleteCode', componentid: currentComponentId})
     });
     const data = await response.json();
-    //update the page to reflect the change in code, should be a better way to do this??
-    location.reload();
+    //invoking getCode allow us to reload code state which determines what is displayed on the editor component
+    getCode();
+    //resets back to initial page after resetting
+    setPageIndex(0);
   }
 
   return (

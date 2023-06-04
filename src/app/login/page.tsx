@@ -33,7 +33,6 @@ export default function Login() {
       
     } else {
       console.log('response is not 200', jsonResponse)
-
     } 
   }
 
