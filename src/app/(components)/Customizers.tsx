@@ -1,5 +1,5 @@
 'use client'
-import React from "react"
+import React, { useEffect } from "react"
 import { useState } from "react"
 
 const initialValidationState = {
@@ -15,11 +15,11 @@ export default function Customizers (props: any) {
 
   const { currentConfig, setCurrentConfig, formGroupName } = props;
 
-  // const [formGroup, setFormGroup] = useState<string>('');
   const [formInputValue, setFormInputValue] = useState<string>('');
   const [formLabelText, setFormLabelText] = useState<string>('');
   const [formInitialValue, setFormInitialValue] = useState<string>('');
   const [formTypeValue, setFormTypeValue] = useState<string>('');
+  const [formErrorMessage, setFormErrorMessage] = useState<string>('');
 
   //detect if we touched the input elements 
   const [isTouched, setIsTouched] = useState<{labelTextTouched: boolean, inputNameTouched: boolean, inputTypeTouched: boolean}>({
@@ -54,6 +54,7 @@ export default function Customizers (props: any) {
     }
     return true;
   }
+  const [checkValidators, setCheckValidators] = useState<boolean>(true)
 
   //add form updates the state initially declare in FormBuilder page
   const addForm = ():void => {
@@ -67,7 +68,7 @@ export default function Customizers (props: any) {
       }
     }
     if (requirementFullfilled === false) return;
-  
+    
     const currentInputValidator: string[] = [];
     //setting up the validator state using setValidator based on validator configuration
     for (const [key, value] of Object.entries(validatorConfiguration)) {
@@ -97,6 +98,7 @@ export default function Customizers (props: any) {
       initialValues: [...prevState.initialValues, formInitialValue],
       inputType: [...prevState.inputType, formTypeValue],
       labelText: [...prevState.labelText, formLabelText],
+      errorMessage: [...prevState.errorMessage, formErrorMessage],
       validators: [...prevState.validators, validators],
     }));
     //reset state
@@ -183,6 +185,14 @@ export default function Customizers (props: any) {
             <input className="border border-black rounded-md px-2 w-1/2"
               name="initialValue" 
               onChange={(e) => setFormInitialValue(e.target.value)}
+            />
+          </div>
+          <div className="flex justify-between">
+            <label htmlFor="errorMessage">Error Message</label>
+            <input className="border border-black rounded-md px-2 w-1/2"
+              name="errorMessage" 
+              onChange={(e) => setFormErrorMessage(e.target.value)}
+              disabled={checkValidators}
             />
           </div>
         </div>

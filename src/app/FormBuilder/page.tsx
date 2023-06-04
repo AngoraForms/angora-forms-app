@@ -28,6 +28,7 @@ export default function FormBuilder () {
     initialValues: [],
     inputType: [],
     labelText: [],
+    errorMessage: [],
     validators: []
   });
   const [fileTab, setFileTab] = useState<string>('html')
@@ -80,6 +81,7 @@ export default function FormBuilder () {
               initialValues: [],
               inputType: [],
               labelText: [],
+              errorMessage: [],
               validators: []
             })
           }}

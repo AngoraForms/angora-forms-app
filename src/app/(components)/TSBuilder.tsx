@@ -79,6 +79,7 @@ export default function TSEditor (props: any) {
 ${formControlConfig}
     })
   }
+  get form() { return this.${currentConfig.formGroupName}.controls; }
   onSubmit() {
     //this is where the submit logic goes
   }`}

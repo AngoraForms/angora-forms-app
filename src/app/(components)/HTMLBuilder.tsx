@@ -31,11 +31,20 @@ export default function HTMLBuilder (props: any) {
     const inputName = currentConfig.formControl[currentConfig.formControl.length - 1];
     const inputType = currentConfig.inputType[currentConfig.inputType.length - 1];
     const labelText = currentConfig.labelText[currentConfig.labelText.length - 1];
+    let errorHandler: string = ''; 
+    if (currentConfig.validators.length !== 0) {
+      const errorMessage = currentConfig.errorMessage[currentConfig.errorMessage.length - 1];
+      if (errorMessage === '') errorHandler = `<div *ngIf="form.${inputName}.invalid && (form.${inputName}.dirty || form.${inputName}.touched)">
+        <div *ngIf="form.${inputName}.errors">${errorMessage}</div>
+      </div>`;
+    }
+
     setFormStructure([...formStructure,`
 <div>
   <div> 
     <label for="${inputName}">${labelText}</label> 
     <input type="${inputType}" id="${inputName}" name="${inputName}">
+    ${errorHandler}
   </div>
 </div>
 `
