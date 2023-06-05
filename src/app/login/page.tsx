@@ -15,8 +15,6 @@ export default function Login() {
       type: 'log in'
     }
 
-    console.log(data)
-
     const response = await fetch('/api/users',{
       method: 'POST',
       headers: {'Content-Type':'application/json'},
@@ -29,7 +27,7 @@ export default function Login() {
       console.log('response is 200',jsonResponse)
 
       setCookie('key',jsonResponse.body);
-      router.push('/formBuilder')
+      router.push('/FormBuilder')
       
     } else {
       console.log('response is not 200', jsonResponse)
@@ -49,7 +47,7 @@ export default function Login() {
         </div>
         <div>
           <label htmlFor = 'password' ></label>
-          <input type = 'text' required id = 'password' className = 'box-border h-1/10 w-full p-4 border-4 cursor-pointer bg-cover bg-center mb-2 rounded-lg hover:border-gray-400 border-4 hover:shadow-2xl' autoFocus placeholder = 'Password'/>
+          <input type = 'password' required id = 'password' className = 'box-border h-1/10 w-full p-4 border-4 cursor-pointer bg-cover bg-center mb-2 rounded-lg hover:border-gray-400 border-4 hover:shadow-2xl' autoFocus placeholder = 'Password'/>
         </div>
         <button type = 'submit' className = 'text-lg cursor-pointer bg-transparent hover:to-gray-300 hover:ring-2 hover:body-gray-300 hover:outline-none py-2 px-4 rounded-full'>Submit</button>
       </form>
