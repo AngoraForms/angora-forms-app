@@ -9,10 +9,12 @@ import controllers from '../../../lib/controllers'
 import { useEffect, useState } from 'react';
 
 export default function ComponentBank () {
-
+  //code state is going to be the code that is displayed in the Editor component after being fetched
   const [code, setCode] = useState< {componentid: number, html:string, ts:string}[] | string>('');
 
+  //getCode function is going to fetch the saved Code and set it into code state
   const getCode = async () => {
+    //getUserId is a component saved in lib that gets the userId based on cookie
     const userid = await controllers.getUserId();
     const response = await fetch('/api/savedComponents', {
       method: 'POST',
@@ -24,6 +26,7 @@ export default function ComponentBank () {
     const data = await response.json();
     setCode(data.message);
   }
+
   useEffect(() => {
     //get code from database and the loop over it and save into variable
     getCode();
