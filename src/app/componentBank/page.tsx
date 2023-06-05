@@ -7,6 +7,7 @@ import 'prismjs/components/prism-javascript';
 import 'prismjs/themes/prism.css'; //Example style, you can use another
 import controllers from '../../../lib/controllers'
 import { useEffect, useState } from 'react';
+import { input } from '@testing-library/user-event/dist/types/event';
 
 export default function ComponentBank () {
   //code state is going to be the code that is displayed in the Editor component after being fetched
@@ -45,6 +46,31 @@ export default function ComponentBank () {
     }
   }
 
+  //inputSearch: tracks keypress into input
+  //searchBlurred: track if the form has been submitted once already, error message onyl appear if set true
+  //goodSearch: tracks searched formGroup is valid
+  const [inputSeach, setInputSearch] = useState<string>('')
+  const [searchBlurred, setSearchBlurred] = useState<boolean>(false);
+  const [goodSearch, setGoodSearch] = useState<boolean>(false);
+  //iterate through code array and search for groupname that matches with input
+  const searchByGroupName = (formGroup: string):void => {
+    setSearchBlurred(true);
+    if (code.length === 0) {
+      setGoodSearch(false);
+      return;
+    };
+    let found = false;
+    for (let i = 0; i < code.length; i++) {
+      if (code[i].html.includes(formGroup) && code[i].typescript.includes(formGroup)) {
+        found = true;
+        setPageIndex(i);
+        break;
+      }
+    }
+    (found) ? setGoodSearch(true) : setGoodSearch(false);
+
+  }
+
   //function to remove the current code from the dataBase utilizing pageIndex and componentId
   const deleteComponent = async () => {
     //getting the component id that we are currently on and sending it as part of the body with fetch
@@ -64,7 +90,22 @@ export default function ComponentBank () {
   }
 
   return (
-    <div className="flex flex-col mx-2 mt-[120px] h-screen ">
+    <div className="flex flex-col mx-2 mt-[120px] h-full ">
+      <form onSubmit={(e) => {
+        e.preventDefault();
+        searchByGroupName(inputSeach)
+        }} className='m-5 flex justify-evenly'>
+        <input className='w-1/2 p-5 bg-gray-200 rounded-md'
+          onChange={(e) => setInputSearch(e.target.value)}
+          type="search" 
+          placeholder='Search for component' />
+        <input className='p-5 border border-black rounded-md duration-500 hover:bg-black hover:text-white' type="submit" />
+      </form>
+      { (goodSearch === false) && (searchBlurred) && 
+        <div className='text-red-400 text-center mb-5'> 
+          FormGroup is not found, please check and search again 
+        </div> 
+      }
       <div id="buttons" className='flex justify-between mb-3'>
         <button className='p-5 border-2 border-primary text-primary rounded duration-500 hover:bg-primary hover:text-white'
           onClick={deleteComponent}>
@@ -91,7 +132,7 @@ export default function ComponentBank () {
         (<>
           <div className='w-1/2 relative max-sm:w-full'>
             <Editor
-              className='border-2 bg-gray-100 rounded-md w-full'
+              className='border-2 bg-gray-100 rounded-md w-full min-h-[400px] duration-500 hover:border-red-400'
               value={`${code[pageIndex]?.html}`}
               highlight={code => highlight(code, languages.js)}
               padding={10}
@@ -104,7 +145,7 @@ export default function ComponentBank () {
           </div>
           <div className='w-1/2 relative max-sm:w-full'>
             <Editor
-              className='border-2 bg-gray-100 rounded-md w-full'
+              className='border-2 bg-gray-100 rounded-md w-full min-h-[400px] duration-500 hover:border-blue-400'
               value={`${code[pageIndex]?.typescript}` }
               highlight={code => highlight(code, languages.js)}
               padding={10}

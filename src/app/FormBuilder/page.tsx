@@ -115,7 +115,7 @@ export default function FormBuilder () {
           <div style={{display: fileTab === 'ang' ? 'inline-block' : 'none'}} >
             <AngoraBuilder setAngCode={setAngCode} pressResetButton={pressResetButton} currentConfig={currentConfig}/>
           </div>
-          <button className=" m-auto border-2 border-black text-red-400 rounded-md w-1/4 p-2 duration-500 hover:text-white hover:bg-red-400"
+          <button className="m-auto mt-2 border-2 border-black text-red-400 rounded-md w-1/4 p-2 duration-500 hover:text-white hover:bg-red-400"
             onClick={saveEditor}>
             Save template
           </button>
