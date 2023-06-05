@@ -94,7 +94,8 @@ export default function ComponentBank () {
       <form onSubmit={(e) => {
         e.preventDefault();
         searchByGroupName(inputSeach);
-      }} className='m-5 flex justify-evenly'>
+      }} 
+      className='border-b border-black p-5 mb-5 flex justify-evenly'>
         <input className='w-1/2 p-5 bg-gray-200 rounded-md'
           onChange={(e) => setInputSearch(e.target.value)}
           type="search" 
