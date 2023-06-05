@@ -18,21 +18,21 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className + ' pt-8 pl-8'} >
+      <body className={inter.className + ' pt-8 px-8'} >
+      <div className="fixed top-8 left-8 right-8">
       <header className="flex justify-between">
         <nav className="justify-start">
-          <span className="text-lg">Angora Forms</span>
-
+          <Link href="/" className="text-lg mx-6 hover:underline">Angora Forms</Link>
         </nav>
         <nav className="justify-end">
-          <Link href="/login" className="text-lg mx-6 hover:underline"> Login</Link>
+          <Link href="/login" className="text-lg mx-6 hover:underline">Login</Link>
           <span className="text-lg">|</span>
           <Link href="/signup" className="text-lg mx-6 hover:underline">Signup</Link>
           <span className="text-lg">|</span>
-          <Link href="/FormBuilder" className="mx-6 me-8 text-lg hover:underline">Form Builder</Link>
-          {/* <div className="text-xl flex justified-center"> Angora Forms </div> */}
+          <Link href="/FormBuilder" className="mx-6 me-6 text-lg hover:underline">Form Builder</Link>
         </nav>
       </header>
+      </div>
       <div>
         {children}
       </div>
