@@ -1,14 +1,12 @@
 'use client'
 import { useRouter } from 'next/navigation';
 import { getCookies, setCookie, deleteCookie } from 'cookies-next';
+import { JsxAttribute } from 'typescript';
 
-export default function Login() {
-
-  const router = useRouter()
-
+export default function Login(){
+  const router = useRouter();
   async function handleSubmit(event: any) {
     event.preventDefault();
-
     const data = {
       usernameEmail: String(event.target.usernameEmail.value),
       password: String(event.target.password.value),
@@ -44,7 +42,7 @@ export default function Login() {
       <p className = 'text-3xl my-6'>Log In</p>
         <div>
           <label htmlFor = 'usernameEmail'></label>
-          <input type = 'text' required id = 'usernameEmail' className = 'box-border h-1/10 w-full p-4 border-4 cursor-pointer bg-cover bg-center mb-2 rounded-lg hover:border-gray-400 border-4 hover:shadow-2xl' autoFocus placeholder = 'Username or Email'/>
+          <input type = 'text' required id = 'usernameEmail' className = 'box-border h-1/10 w-full p-4 border-4 cursor-pointer bg-cover bg-center mb-2 rounded-lg hover:border-gray-400 border-4 hover:shadow-2xl' autoFocus placeholder='Username or Email'/>
         </div>
         <div>
           <label htmlFor = 'password' ></label>
