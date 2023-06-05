@@ -1,6 +1,6 @@
-'use client'
-import React, { useEffect } from "react"
-import { useState } from "react"
+'use client';
+import React, { useEffect } from 'react';
+import { useState } from 'react';
 
 const initialValidationState = {
   required: false,
@@ -29,12 +29,12 @@ export default function Customizers (props: any) {
   });
 
   const handleBlur = (inputName: string) => {
-      isTouched[inputName] = true;
-      return isTouched;
+    isTouched[inputName] = true;
+    return isTouched;
   };
 
   //validation States
-  const [validatorConfiguration, setValidatorConfiguration] = useState<{}>(initialValidationState)
+  const [validatorConfiguration, setValidatorConfiguration] = useState<{}>(initialValidationState);
   const [minLength, setMinLength] = useState<number | null>(null);
   const [maxLength, setMaxLength] = useState<number | null>(null);
   const [validators , setValidators] = useState<string[][]>([]);
@@ -45,7 +45,7 @@ export default function Customizers (props: any) {
     if (validatorDropdown.height === 0) setValidatorDropdown({ height: 'auto', overflow: 'auto'});
     else setValidatorDropdown({ height: 0, overflow: 'hidden'});
     // (validatorDropdown.display === 'none') ? setValidatorDropdown({display: 'flex'}) : setValidatorDropdown({display: 'none'})
-  }
+  };
 
   //function that checks if conditions are met and if so disable the submit functionality
   const checkConditions = ():boolean => {
@@ -53,14 +53,14 @@ export default function Customizers (props: any) {
       return false;
     }
     return true;
-  }
-  const [checkValidators, setCheckValidators] = useState<boolean>(true)
+  };
+  const [checkValidators, setCheckValidators] = useState<boolean>(true);
 
   //add form updates the state initially declare in FormBuilder page
   const addForm = ():void => {
     //this is the logic to ensure all the required input of the customizer form is fullfilled
-      //if it isn't stop the function, else do the other logic
-    let requirementFullfilled: boolean = true;
+    //if it isn't stop the function, else do the other logic
+    let requirementFullfilled = true;
     for (const keys in isTouched) {
       if (!isTouched[keys]){
         requirementFullfilled = false;
@@ -77,13 +77,13 @@ export default function Customizers (props: any) {
       } else if (key === 'emailValidation' && value === true) {
         currentInputValidator.push(' Validators.email');
       } else if (key === 'minLength' && typeof value === 'number') {
-        currentInputValidator.push(` Validators.minLength(${value})`)
+        currentInputValidator.push(` Validators.minLength(${value})`);
       } else if (key === 'maxLength' && typeof value === 'number') {
-        currentInputValidator.push(` Validators.maxLength(${value})`)
+        currentInputValidator.push(` Validators.maxLength(${value})`);
       } else if (key === 'passwordValidation' && value === true) {
-        currentInputValidator.push(`Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=[\]{};':"|,.<>/?]).*$/)`)
+        currentInputValidator.push('Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=[\]{};\':"|,.<>/?]).*$/)');
       } else if (key === 'phoneNumberValidation' && value === true) {
-        currentInputValidator.push(`Validators.pattern(/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im)`)
+        currentInputValidator.push('Validators.pattern(/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im)');
       }
     }
     setValidators(() => {
@@ -106,7 +106,7 @@ export default function Customizers (props: any) {
     setFormLabelText('');
     setFormInitialValue('');
     setFormTypeValue('');
-  }
+  };
   return (
     <>
       {/* onSubmit, invoke addForm to build form controllers
@@ -119,7 +119,7 @@ export default function Customizers (props: any) {
         setValidatorConfiguration(initialValidationState);
         setValidators([]);
       }}
-        className="flex flex-col justify-evenly w-1/2
+      className="flex flex-col justify-evenly w-1/2
         border border-black shadow-xl rounded-lg px-10 py-5 
         overflow-auto resize-y min-h-[500px]
         max-sm:w-full"
@@ -130,8 +130,8 @@ export default function Customizers (props: any) {
             <label htmlFor="label">LabelText</label>
             <input className="border border-black rounded-md px-2 w-1/2"
               name="labelText" 
-              onChange={(e) =>{setFormLabelText(e.target.value)}}
-              onBlur={() => handleBlur("labelTextTouched")}
+              onChange={(e) =>{setFormLabelText(e.target.value);}}
+              onBlur={() => handleBlur('labelTextTouched')}
             />
           </div>
           {/* Will display message under the input if condition isn't fullfilled: required and touched */}
@@ -141,7 +141,7 @@ export default function Customizers (props: any) {
             <input className="border border-black rounded-md px-2 w-1/2"
               name="inputName" 
               onChange={(e) => setFormInputValue(e.target.value)}
-              onBlur={() => handleBlur("inputNameTouched")}
+              onBlur={() => handleBlur('inputNameTouched')}
             />
           </div>
           {/* Will display message under the input if condition isn't fullfilled: required and touched */}
@@ -150,9 +150,9 @@ export default function Customizers (props: any) {
           <div className="flex justify-between">
             <label htmlFor="InputType">InputType</label>
             <select className="border border-black rounded-md px-2 w-1/2"
-            name="InputType" id="selectInputTypes"
-            onChange={(e) => setFormTypeValue(e.target.value)} 
-            onBlur={() => handleBlur("inputTypeTouched")}>
+              name="InputType" id="selectInputTypes"
+              onChange={(e) => setFormTypeValue(e.target.value)} 
+              onBlur={() => handleBlur('inputTypeTouched')}>
               <option value=""></option>
               <option value="button">button</option>
               <option value="checkbox">checkbox</option>
@@ -199,49 +199,49 @@ export default function Customizers (props: any) {
         
         <div className="flex justify-center">
           <div onClick={openValidator}
-          className="border border-black px-5 py-1 rounded-md
+            className="border border-black px-5 py-1 rounded-md
           hover:bg-black hover:text-white duration-500
           ">Validators &#9660;</div>
         </div>
         <div id="validators" className="flex flex-col justify-evenly" style={validatorDropdown}>
-        <div className="flex justify-between">
-          <label htmlFor="required">Required</label>
-          <input name="required" type="checkBox" onClick={(e) => {
-            if (e.target.checked) setValidatorConfiguration({...validatorConfiguration, required: true});
-            else setValidatorConfiguration({...validatorConfiguration, required: false});
-          }}/>            
-        </div>
-        <div className="flex justify-between">
-          <label htmlFor="emailValidation">Email Validation</label>
-          <input name="emailValidation" type="checkBox" onChange={(e) => {
-            if (e.target.checked) {
-              setValidatorConfiguration({...validatorConfiguration, emailValidation: true});
-            } else {
-              setValidatorConfiguration({...validatorConfiguration, emailValidation: false});
-            }
-          }} />
-        </div>
-        <div className="flex justify-between">
-          <label htmlFor="passwordValidation">Password Validation</label>
-          <input name="passwordValidation" type="checkBox" onChange={(e) => {
-            if (e.target.checked) {
-              setValidatorConfiguration({...validatorConfiguration, passwordValidation: true});
-            } else {
-              setValidatorConfiguration({...validatorConfiguration, passwordValidation: false});
-            }
-          }} />
-        </div>
-        <div className="flex justify-between">
-          <label htmlFor="phoneNumberValidation">Phone Number Validation</label>
-          <input name="phoneNumberValidation" type="checkBox" onChange={(e) => {
-            if (e.target.checked) {
-              setValidatorConfiguration({...validatorConfiguration, phoneNumberValidation: true});
-            } else {
-              setValidatorConfiguration({...validatorConfiguration, phoneNumberValidation: false});
-            }
-          }} />
-        </div>
-        <div className="flex justify-between">
+          <div className="flex justify-between">
+            <label htmlFor="required">Required</label>
+            <input name="required" type="checkBox" onClick={(e) => {
+              if (e.target.checked) setValidatorConfiguration({...validatorConfiguration, required: true});
+              else setValidatorConfiguration({...validatorConfiguration, required: false});
+            }}/>            
+          </div>
+          <div className="flex justify-between">
+            <label htmlFor="emailValidation">Email Validation</label>
+            <input name="emailValidation" type="checkBox" onChange={(e) => {
+              if (e.target.checked) {
+                setValidatorConfiguration({...validatorConfiguration, emailValidation: true});
+              } else {
+                setValidatorConfiguration({...validatorConfiguration, emailValidation: false});
+              }
+            }} />
+          </div>
+          <div className="flex justify-between">
+            <label htmlFor="passwordValidation">Password Validation</label>
+            <input name="passwordValidation" type="checkBox" onChange={(e) => {
+              if (e.target.checked) {
+                setValidatorConfiguration({...validatorConfiguration, passwordValidation: true});
+              } else {
+                setValidatorConfiguration({...validatorConfiguration, passwordValidation: false});
+              }
+            }} />
+          </div>
+          <div className="flex justify-between">
+            <label htmlFor="phoneNumberValidation">Phone Number Validation</label>
+            <input name="phoneNumberValidation" type="checkBox" onChange={(e) => {
+              if (e.target.checked) {
+                setValidatorConfiguration({...validatorConfiguration, phoneNumberValidation: true});
+              } else {
+                setValidatorConfiguration({...validatorConfiguration, phoneNumberValidation: false});
+              }
+            }} />
+          </div>
+          <div className="flex justify-between">
             <label htmlFor="minLengthValidation">MinLength</label>
             <input className="border border-black rounded-md px-2 w-1/2" name="minLengthValidationInput" onChange={(e) => {
               setMinLength(Number(e.target.value));
@@ -253,13 +253,13 @@ export default function Customizers (props: any) {
                 setValidatorConfiguration({...validatorConfiguration, minLength: null});                 
               }
             }}/>
-        </div>
-        <div className="flex justify-between">
+          </div>
+          <div className="flex justify-between">
             <label htmlFor="maxLengthValidation">MaxLength</label>
             <input className="border border-black rounded-md px-2 w-1/2"
-            name="maxLengthValidationInput" onChange={(e) => {
-              setMaxLength(Number(e.target.value));
-            }}/>
+              name="maxLengthValidationInput" onChange={(e) => {
+                setMaxLength(Number(e.target.value));
+              }}/>
             <input type="checkBox" name="maxLengthValidationConfirm" onChange={(e) => {
               if (e.target.checked) {
                 setValidatorConfiguration({...validatorConfiguration, maxLength: maxLength});
@@ -267,25 +267,25 @@ export default function Customizers (props: any) {
                 setValidatorConfiguration({...validatorConfiguration, maxLength: null});                 
               }
             }}/>
-        </div>
-      </div> 
-      {/* first input (button) resets form by detecting the form that wraps it */}
-      {/* second input is a submit input that will trigger an event noted within the form */}
-      <div className="flex justify-evenly">
-        <input className="border border-black p-3 rounded-md duration-500 hover:bg-red-600 hover:text-white" 
-        type="button" value="Clear Form" 
-        onClick={(e) => {
-          e.target.closest('form').reset();
-        }}/>
-        <input className={`border border-black p-3 duration-500 
+          </div>
+        </div> 
+        {/* first input (button) resets form by detecting the form that wraps it */}
+        {/* second input is a submit input that will trigger an event noted within the form */}
+        <div className="flex justify-evenly">
+          <input className="border border-black p-3 rounded-md duration-500 hover:bg-red-600 hover:text-white" 
+            type="button" value="Clear Form" 
+            onClick={(e) => {
+              e.target.closest('form').reset();
+            }}/>
+          <input className={`border border-black p-3 duration-500 
           ${ checkConditions() ? 'bg-gray-800 cursor-not-allowed' : 'hover:bg-blue-600 hover:text-white rounded-md'} `}
           type="submit" 
           value="Create Input"
           disabled={checkConditions} 
-        />
-      </div>
-      { checkConditions() === true && <p className="text-center text-red-400">Create Input button disabled, please fill out required field</p>}
+          />
+        </div>
+        { checkConditions() === true && <p className="text-center text-red-400">Create Input button disabled, please fill out required field</p>}
       </form>
     </>          
-  )
+  );
 }

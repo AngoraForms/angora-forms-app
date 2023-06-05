@@ -20,3 +20,6 @@ next-env-d.ts
 # production
 /build
 *.pem
+
+# test
+coverage
