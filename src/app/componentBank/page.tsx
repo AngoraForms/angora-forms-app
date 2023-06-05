@@ -83,6 +83,7 @@ export default function ComponentBank () {
         </div>
       </div>
       <div className="w-full flex max-sm:grid max-sm:grid-cols-1 ">
+        {/* if code is empty, then display Loading page, otherwise show Editor component */}
         { 
         (code === '') ? (<h1 className='text-4xl text-primary m-auto p-5 animate-bounce'>
           Loading...
