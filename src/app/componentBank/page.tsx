@@ -7,7 +7,6 @@ import 'prismjs/components/prism-javascript';
 import 'prismjs/themes/prism.css'; //Example style, you can use another
 import controllers from '../../../lib/controllers';
 import { useEffect, useState } from 'react';
-import { input } from '@testing-library/user-event/dist/types/event';
 
 export default function ComponentBank () {
   //code state is going to be the code that is displayed in the Editor component after being fetched

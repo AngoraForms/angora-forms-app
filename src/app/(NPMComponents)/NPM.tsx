@@ -1,6 +1,6 @@
 'use client'
 import React from "react"
-import { useState } from "react"
+import Link from "next/link";
 import NPMLogo from './npm-logo.png'
 import Image from "next/image";
 
@@ -28,7 +28,7 @@ export default function NPM (props: any) {
         <h6 className="text-gray-400 mt-5">3 Simple Steps to Solving Your Form Building Problems</h6>
         <div className="mt-6">
           <button className="bg-red-700 text-sm hover:bg-red-800 text-white py-3 px-4 rounded-lg mr-6">NPM Package</button>
-          <button className="bg-red-700 text-sm hover:bg-red-800 text-white py-3 px-4 rounded-lg mr-6">See how it works</button>
+          <Link href="/FormBuilder" className="bg-red-700 text-sm hover:bg-red-800 text-white py-3 px-4 rounded-lg mr-6">Build your form</Link>
         </div>
         </div>
         <div className="mx-48 mt-32 p-5 flex-1 flex flex-col justify-evenly mb-32">

@@ -24,7 +24,7 @@ module.exports = {
         test: /\\.ts$/, 
         use: [
             {
-            loader: "webpack-loader",
+            loader: "angora-loader",
             options: {
                 customComponents: customComponents
             }
@@ -70,14 +70,52 @@ module.exports = {
     }
 }`;
 
+  const fullExample = 
+`class hadarComp1 {
+    template = \`
+          <h1>{{value}}</h1>
+          <button (click)='increment()'>Increment</button>
+          <button (click)='decrement()'>Decrement</button>
+      \`;
+  
+    onChange = (value: any) => {};
+  
+    onTouched = () => {};
+  
+    value = 0;
+  
+    disabled = false
+  
+    increment() {
+      this.value++;
+      this.onChange(this.value);
+      this.onTouched();
+    }
+  
+    decrement() {
+      this.value--;
+      this.onChange(this.value);
+      this.onTouched();
+    }
+  }`;
+
 
 
   return (
     <article className="bg-primary">
       <section className="flex flex-col items-center justify-center bg-primary mt-20">
         <div className="bg-white rounded-lg p-5 mt-5 w-3/4 mt-10">
+          <h1 className="text-2xl">Instructions</h1>
+          <br></br>
+          <p className="text-xl">After completing the steps below, before using 'ng serve' to generate your Angular webpage, run 'npx webpack' to generate your custom components.</p>
+          <br></br>
+          <p className="text-xl">Reference custom component in your own form using class name Kebab Cased class name</p>
+          <SyntaxHighlighter language="typescript">{'<custom-component></custom-component>'}</SyntaxHighlighter>
+        </div>
+        <div className="bg-white rounded-lg p-5 mt-5 w-3/4 mt-10">
           <h1 className="text-2xl">WebpackConfig.ts</h1>
           <SyntaxHighlighter language="typescript">{webpackConfig}</SyntaxHighlighter>
+          <p className="text-xl">Create a webpack.config.ts file in the root directory of your project and follow the structure above</p>
         </div>
         <div className="bg-white rounded-lg p-5 mt-5 w-3/4">
           <h1 className="text-2xl">Custom Components Page</h1>
@@ -86,7 +124,7 @@ module.exports = {
           <ul>
             <hr></hr>
             <li className='m-5'>
-              <span className="text-xl">Template</span><br></br> Write all html code in backticks (``) in the template property.
+              <span className="text-xl">Template</span><br></br> Include all html code in backticks (``) in the template property.
               <SyntaxHighlighter language="typescript">{HTML}</SyntaxHighlighter>
 
             </li>
@@ -105,7 +143,7 @@ module.exports = {
             </li>
             <hr></hr>
             <li className='m-5'>
-              <span className="text-xl">Value</span> <br></br> Set equal the the value of the form component inside custom functionality. When changed invoke OnChange.
+              <span className="text-xl">Value</span> <br></br> Set equal the value of the form component inside custom functionality. When changed invoke OnChange.
               <SyntaxHighlighter language="typescript">{'<h1>{{value}}</h1>'}</SyntaxHighlighter>
               <SyntaxHighlighter language="typescript">{increment}</SyntaxHighlighter>
             </li>
@@ -121,11 +159,11 @@ module.exports = {
                             Write additional code (properties and/or functions) to provide custom functionality.
             </li>
             <hr></hr>
-            <li className='m-5'>
-                            Reference custom component in your own form using class name Kebab Cased class class name 
-              <SyntaxHighlighter language="typescript">{'<custom-component></custom-component>'}</SyntaxHighlighter>
-            </li>
           </ul>
+        </div>
+        <div className="bg-white rounded-lg p-5 mt-5 w-3/4 mt-10 mb-10">
+          <h2 className="text-2xl">Full Example:</h2>
+          <SyntaxHighlighter language="typescript">{fullExample}</SyntaxHighlighter>
         </div>
       </section>
     </article>

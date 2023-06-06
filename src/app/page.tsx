@@ -26,7 +26,7 @@ export default function Home() {
           <h6 className="text-sm text-gray-400">Build Angular custom form components efficiently</h6>
           <div className="mt-6">
             <button className="bg-red-700 text-sm hover:bg-red-800 text-white py-3 px-4 rounded-lg mr-6">Get Started</button>
-            <button className="bg-transparent text-sm hover:bg-red-800 text-white hover:text-white py-3 px-4 border border-white hover:border-transparent rounded-lg">See how it works</button>
+            <Link href="/docs"className="bg-transparent text-sm hover:bg-red-800 text-white hover:text-white py-3 px-4 border border-white hover:border-transparent rounded-lg">See how it works</Link>
           </div>
         </div>
         <div className="flex-1 flex items-center justify-center content-center mr-40 mb-40">
