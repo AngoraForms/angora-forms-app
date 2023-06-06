@@ -27,7 +27,7 @@ export default function NPM (props: any) {
         <h2 className="text-6xl mt-10 text-white">How To Use Our Package</h2>
         <h6 className="text-gray-400 mt-5">3 Simple Steps to Solving Your Form Building Problems</h6>
         <div className="mt-6">
-          <button className="bg-red-700 text-sm hover:bg-red-800 text-white py-3 px-4 rounded-lg mr-6">NPM Package</button>
+          <a href="https://www.npmjs.com/package/@angoraforms/angora-loader" className="bg-red-700 text-sm hover:bg-red-800 text-white py-3 px-4 rounded-lg mr-6">NPM Package</a>
           <Link href="/FormBuilder" className="bg-red-700 text-sm hover:bg-red-800 text-white py-3 px-4 rounded-lg mr-6">Build your form</Link>
         </div>
         </div>
