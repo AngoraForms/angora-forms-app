@@ -5,6 +5,7 @@ import Customizers from '../(components)/Customizers';
 import TSBuilder from '../(components)/TSBuilder';
 import HTMLBuilder from '../(components)/HTMLBuilder';
 import AngoraBuilder from '../(components)/AngoraBuilder';
+import AngoraCustomizer from '../(components)/AngoraCustomizer';
 import controllers from '../../../lib/controllers';
 
 
@@ -20,6 +21,11 @@ export default function FormBuilder () {
   const handleBlur = () => {
     setIsTouched(true);
   };
+  
+  //state containing custom form config for angora forms
+  const [angoraConfig, setAngoraConfig] = useState<{}>({
+    angoraHtmlTemplate: '<div>\n This is where the html template goes\n</div>'
+  });
 
   //this is where state is first defined for the form configuration
   //the formControl Arrray is going to contain all the html components and initialize to an empty array
@@ -90,8 +96,10 @@ export default function FormBuilder () {
           RESET
         </button>
       </div>
-      <div className="mt-6 mx-5 flex flex-row justify-evenly items-start max-sm:flex-col">   
-        <Customizers formGroupName={formGroupName} currentConfig={currentConfig} setCurrentConfig={setCurrentConfig} />
+      <div className="mt-6 mx-5 flex flex-row justify-evenly items-start max-sm:flex-col"> 
+        <div className="w-1/2 max-sm:w-full" style={{display: fileTab === 'ang' ? 'none' : 'flex'}}>
+          <Customizers formGroupName={formGroupName} currentConfig={currentConfig} setCurrentConfig={setCurrentConfig} />
+        </div>
         <div className="flex flex-col justify-center w-1/2 h-1/2 max-sm:w-full max-sm:mt-5">
           <header>
             <button className="inline border border-black w-1/3 rounded-tl-md py-1 hover:bg-red-400 hover:text-white duration-500"
@@ -104,7 +112,7 @@ export default function FormBuilder () {
             </button>
             <button className="inline border border-black w-1/3 rounded-tr-md py-1 whitespace-nowrap hover:bg-primary hover:text-white duration-500"
               onClick={() => setFileTab('ang')}>
-              Angora File
+              Angora Form 
             </button>
           </header>
           <div style={{display: fileTab === 'html' ? 'inline-block' : 'none'}}>
@@ -114,7 +122,7 @@ export default function FormBuilder () {
             <TSBuilder setTsCode={setTsCode} pressResetButton={pressResetButton} currentConfig={currentConfig}/>
           </div>
           <div style={{display: fileTab === 'ang' ? 'inline-block' : 'none'}} >
-            <AngoraBuilder setAngCode={setAngCode} pressResetButton={pressResetButton} currentConfig={currentConfig}/>
+            <AngoraBuilder setAngCode={setAngCode} pressResetButton={pressResetButton} angoraConfig={angoraConfig}/>
           </div>
           <button className="m-auto mt-2 border-2 border-black text-red-400 rounded-md w-1/4 p-2 duration-500 hover:text-white hover:bg-red-400"
             onClick={saveEditor}>
