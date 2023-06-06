@@ -1,4 +1,5 @@
-import { getCookies } from 'cookies-next';
+// import { getCookies } from 'cookies-next';
+import Cookies from 'js-cookie';
 import router from 'next/router';
 
 const controllers = {
@@ -7,10 +8,10 @@ const controllers = {
   },
   //function that gets userID from cookie
   getUserId: async () => {
-    const currentToken = getCookies('key');
+    const currentToken = Cookies.get('key');
 
     //if the currentToken returns a value then we make fetch requst, else we reroute to login
-    if (Object.keys(currentToken).length > 0) {
+    if (currentToken) {
 
       const data = {
         currentToken: currentToken,
