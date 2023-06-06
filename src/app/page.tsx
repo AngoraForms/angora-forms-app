@@ -24,7 +24,7 @@ export default function Home() {
       <br />
       <h6 className="text-sm text-gray-400">Build Angular custom form components efficiently</h6>
       <div className="mt-6">
-        <button className="bg-red-700 text-sm hover:bg-red-800 text-white py-3 px-4 rounded-lg mr-6">Get Started</button>
+        <a href="https://www.npmjs.com/package/@angoraforms/angora-loader" className="bg-red-700 text-sm hover:bg-red-800 text-white py-3 px-4 rounded-lg mr-6">Get Started</a>
         <Link href="/docs"className="bg-transparent text-sm hover:bg-red-800 text-white hover:text-white py-3 px-4 border border-white hover:border-transparent rounded-lg">See how it works</Link>
       </div>
     </div>

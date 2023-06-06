@@ -70,7 +70,7 @@ const incrementDisabled =
 }`
 
 const fullExample = 
-`class hadarComp1 {
+`class CustomComponent {
     template = \`
           <h1>{{value}}</h1>
           <button (click)='increment()'>Increment</button>
@@ -96,7 +96,9 @@ const fullExample =
       this.onChange(this.value);
       this.onTouched();
     }
-  }`
+  }
+  
+  module.exports = [CustomComponent]`
 
 
 
@@ -108,7 +110,7 @@ const fullExample =
                     <br></br>
                     <p className="text-xl">After completing the steps below, before using 'ng serve' to generate your Angular webpage, run 'npx webpack' to generate your custom components.</p>
                     <br></br>
-                    <p className="text-xl">Reference custom component in your own form using class name Kebab Cased class name</p>
+                    <p className="text-xl">Reference custom component in your own form using class name Kebab Cased</p>
                     <SyntaxHighlighter language="typescript">{`<custom-component></custom-component>`}</SyntaxHighlighter>
                 </div>
                 <div className="bg-white rounded-lg p-5 mt-5 w-3/4 mt-10">
@@ -152,6 +154,11 @@ const fullExample =
                             <SyntaxHighlighter language="typescript">{`<button (click)='increment()' [disabled]="disabled">Increment</button>`}</SyntaxHighlighter>
                             <SyntaxHighlighter language="typescript">{incrementDisabled}</SyntaxHighlighter>
                             (If value is equal to 5 disable the button)
+                        </li>
+                        <hr></hr>
+                        <li className="m-5">
+                            <span className="text-xl">Export</span> <br></br> Export your customComponent/s using module.exports
+                            <SyntaxHighlighter language="typescript">{`module.exports = [CustomComponent]`}</SyntaxHighlighter>
                         </li>
                         <hr></hr>
                         <li className='m-5'>
