@@ -6,7 +6,6 @@ import jwt from 'jsonwebtoken';
 let KEY = process.env.JWT_KEY;
 
 
-
 export async function POST(req: NextRequest, res: NextResponse) {
 
   const dataInPost = await req.json()
@@ -22,12 +21,18 @@ export async function POST(req: NextRequest, res: NextResponse) {
           password: dataInPost.password
         }
       })
+
+      const payload = {
+        id: newUser.id
+      }
+
+      const cookie = jwt.sign(payload, KEY, {expiresIn: 31556926})
     
   
-      return NextResponse.json({ message: 'success', status: 200 })
+      return NextResponse.json({ message: `successsful log in by ${dataInPost.username}`, status:200, body: cookie })
   
     } catch(error) {
-      return NextResponse.json({ error: error, status: 500 })
+      return NextResponse.json({ error: error, status: 401 })
     }
 
   }
