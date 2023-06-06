@@ -58,7 +58,7 @@ export default function FormBuilder () {
   }
 
   return (
-    <>
+    <article>
       <div className="mt-[100px] flex justify-evenly items-end">
         <div className="flex flex-col w-1/2 text-center">
           <label htmlFor="formGroup">Form Group Name</label>
@@ -119,6 +119,6 @@ export default function FormBuilder () {
           </button>
         </div>
       </div>
-    </>
+    </article>
   )
 }

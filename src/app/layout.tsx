@@ -40,7 +40,6 @@ export default function RootLayout({
         {children}
       </div>
       <footer>
-        <h1>hi</h1>
       </footer>
       </body>
     </html>
