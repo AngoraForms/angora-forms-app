@@ -21,13 +21,13 @@ export default function FormBuilder() {
   };
 
   //state containing custom form config for angora forms
-  const [angoraConfig, setAngoraConfig] = useState<{}>({
+  const [angoraConfig, setAngoraConfig] = useState<any>({
     angoraHtmlTemplate: '<div>\n This is where the html template goes\n</div>',
   });
 
   //this is where state is first defined for the form configuration
   //the formControl Arrray is going to contain all the html components and initialize to an empty array
-  const [currentConfig, setCurrentConfig] = useState<{}>({
+  const [currentConfig, setCurrentConfig] = useState<any>({
     formGroupName: '',
     formControl: [],
     initialValues: [],
@@ -46,6 +46,7 @@ export default function FormBuilder() {
   //save code, make post request
   const saveEditor = async () => {
     const currentUserId = await controllers.getUserId();
+    console.log('id', currentUserId)
     const savedCode: {
       htmlCode: string;
       tsCode: string;

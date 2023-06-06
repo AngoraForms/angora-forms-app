@@ -8,8 +8,9 @@ import 'prismjs/themes/prism.css'; //Example style, you can use another
 import controllers from '../../../lib/controllers';
 
 export default function TSEditor(props: any) {
+
   //create a reference to the Editor component allowing to grab the value which is the code in the editor
-  const IdeRef = useRef(null);
+  const IdeRef = useRef<any | undefined>(null);
 
   //currentConfig is the state that is drilled down from FormBuilder page
   //press reset button allow us toreset form configuration within this component
@@ -38,17 +39,17 @@ export default function TSEditor(props: any) {
           ? (controller =
               '     ' +
               currentConfig.formControl[i] +
-              " : ['" +
+              ' : [\'' +
               currentConfig.initialValues[i] +
-              "', [" +
+              '\', [' +
               currentConfig.validators[i] +
               ']] ')
           : (controller =
               '\n     ' +
               currentConfig.formControl[i] +
-              " : ['" +
+              ' : [\'' +
               currentConfig.initialValues[i] +
-              "', [" +
+              '\', [' +
               currentConfig.validators[i] +
               ']] ');
         setFormControlConfig(() => {
@@ -62,8 +63,11 @@ export default function TSEditor(props: any) {
 
   //useEffect to detect changes in the TS code editor and gives it to parent to save
   useEffect(() => {
+
     //there needs to be a delay for the TS code editor to be editted before going in
-    setTsCode(IdeRef.current.props.value);
+    if (IdeRef.current !== null || IdeRef.current !== undefined) {
+      setTsCode(IdeRef.current.props.value);
+    }
   }, [currentConfig.formGroupName, formControlConfig]);
 
   //whenever resetbutton is pressed, we refet the form configuration
@@ -81,6 +85,7 @@ export default function TSEditor(props: any) {
     <div className="relative min-h-[400px] border border-black shadow-xl rounded-b-md p-2 w-full resize-y overflow-auto">
       <Editor
         ref={IdeRef}
+        onValueChange={(code) => setCode(code)}
         value={`export class ${currentConfig.formGroupName} implements OnInit {
         ${currentConfig.formGroupName}: FormGroup;
 

@@ -8,13 +8,14 @@ import 'prismjs/themes/prism.css'; //Example style, you can use another
 import controllers from '../../../lib/controllers';
 
 export default function HTMLBuilder(props: any) {
+  const [code, setCode] = useState<string>('');
   //create a reference to the Editor component allowing to grab the value which is the code in the editor
-  const IdeRef = useRef(null);
-
+  const IdeRef = useRef<any | undefined>(null);
+  
   // const [code, setCode] = useState('')
   const { currentConfig, pressResetButton, setHTMLCode } = props;
   const [initialLoad, setInitialLoad] = useState<boolean>(false);
-  const [formStructure, setFormStructure] = useState<[]>([]);
+  const [formStructure, setFormStructure] = useState<string[]>([]);
 
   //useEffect is used to detect any changes within formControl property of state by looking at the length
   useEffect(() => {
@@ -57,7 +58,11 @@ export default function HTMLBuilder(props: any) {
   useEffect(() => {
     if (initialLoad === false) {
       setInitialLoad(true);
-    } else setHTMLCode(IdeRef.current.props.value);
+    } else {
+      if (IdeRef.current !== null || IdeRef.current !== undefined) {
+        setHTMLCode(IdeRef.current.props.value);
+      }
+    }
   }, [formStructure]);
 
   //will detect reset button pressing in parent component
@@ -79,6 +84,7 @@ export default function HTMLBuilder(props: any) {
           ',',
           ''
         )}
+        onValueChange={(code) => setCode(code)}
         highlight={(code) => highlight(code, languages.js)}
         padding={10}
         style={{

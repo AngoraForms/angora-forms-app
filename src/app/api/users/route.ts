@@ -4,11 +4,15 @@ import jwt from 'jsonwebtoken';
 
 const KEY = process.env.JWT_KEY;
 
+if (!KEY) {
+  throw new Error('Missing JWT_KEY environment variable');
+}
+
 export async function POST(req: NextRequest, res: NextResponse) {
   const dataInPost = await req.json();
+  console.log('datainpost:', dataInPost)
 
   if (dataInPost.type === 'sign up') {
-    console.log('signingup');
     try {
       const newUser = await prisma.user.create({
         data: {
@@ -17,7 +21,6 @@ export async function POST(req: NextRequest, res: NextResponse) {
           password: dataInPost.password,
         },
       });
-      console.log('new:', newUser);
       const payload = {
         id: newUser.id,
       };
@@ -76,7 +79,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
 
   if (dataInPost.type === 'auth') {
     try {
-      const decryptToken = jwt.verify(dataInPost.currentToken.key, KEY);
+      const decryptToken = jwt.verify(dataInPost.currentToken, KEY);
       return NextResponse.json({ status: 200, userId: decryptToken.id });
     } catch (error) {
       return NextResponse.json({ error: error });

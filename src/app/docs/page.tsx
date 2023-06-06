@@ -146,7 +146,7 @@ module.exports = {
               Invoke onChange passing in value as the argument every time value
               changes.
               <SyntaxHighlighter language="typescript">
-                {"<button (click)='increment()'>Increment</button>"}
+                {'<button (click)=\'increment()\'>Increment</button>'}
               </SyntaxHighlighter>
               <SyntaxHighlighter language="typescript">
                 {increment}
@@ -157,7 +157,7 @@ module.exports = {
               <span className="text-xl">OnTouched</span> <br></br> Invoke
               onTouched when the user interacts with the form component.
               <SyntaxHighlighter language="typescript">
-                {"<button (click)='increment()'>Increment</button>"}
+                {'<button (click)=\'increment()\'>Increment</button>'}
               </SyntaxHighlighter>
               <SyntaxHighlighter language="typescript">
                 {increment}

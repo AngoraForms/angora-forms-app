@@ -39,6 +39,7 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^14.0.0",
     "@types/js-cookie": "^3.0.3",
+    "@types/jsonwebtoken": "^9.0.2",
     "@types/prismjs": "^1.26.0",
     "@types/react-syntax-highlighter": "^15.5.7",
     "@types/supertest": "^2.0.12",

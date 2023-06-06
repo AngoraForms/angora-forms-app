@@ -22,7 +22,7 @@ export default function Login() {
       body: JSON.stringify(data),
     });
     const jsonResponse = await response.json();
-
+    
     if (jsonResponse.status === 200) {
       console.log('response is 200', jsonResponse);
 

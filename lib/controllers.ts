@@ -2,6 +2,7 @@
 import Cookies from 'js-cookie';
 import router from 'next/router';
 
+
 const controllers = {
   copyCode: (e:any) => {
     navigator.clipboard.writeText(e.target.parentNode.children[0].children[1].textContent);
@@ -9,7 +10,7 @@ const controllers = {
   //function that gets userID from cookie
   getUserId: async () => {
     const currentToken = Cookies.get('key');
-
+    console.log('current Token:', currentToken)
     //if the currentToken returns a value then we make fetch requst, else we reroute to login
     if (currentToken) {
 
@@ -24,7 +25,7 @@ const controllers = {
         body: JSON.stringify(data),
       });
       const authenticatedSession = await currentSession.json();
-
+      console.log('auth:', authenticatedSession)
       return authenticatedSession.userId;
 
     } else {

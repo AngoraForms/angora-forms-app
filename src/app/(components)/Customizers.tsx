@@ -36,7 +36,7 @@ export default function Customizers(props: any) {
   };
 
   //validation States
-  const [validatorConfiguration, setValidatorConfiguration] = useState<{}>(
+  const [validatorConfiguration, setValidatorConfiguration] = useState<any>(
     initialValidationState
   );
   const [minLength, setMinLength] = useState<number | null>(null);
@@ -138,7 +138,8 @@ export default function Customizers(props: any) {
         onSubmit={(e) => {
           e.preventDefault();
           addForm();
-          e.target.reset();
+          const formElement = e.target as HTMLFormElement
+          formElement.reset();
           setValidatorConfiguration(initialValidationState);
           setValidators([]);
         }}
@@ -256,16 +257,18 @@ export default function Customizers(props: any) {
               name="required"
               type="checkBox"
               onClick={(e) => {
-                if (e.target.checked)
+                const checkboxElement = e.target as HTMLInputElement;
+                if(checkboxElement.checked){
                   setValidatorConfiguration({
                     ...validatorConfiguration,
                     required: true,
                   });
-                else
+                } else{
                   setValidatorConfiguration({
                     ...validatorConfiguration,
                     required: false,
                   });
+                }  
               }}
             />
           </div>
@@ -394,19 +397,23 @@ export default function Customizers(props: any) {
             type="button"
             value="Clear Form"
             onClick={(e) => {
-              e.target.closest('form').reset();
+              const element = e.target as Element;
+              const formElement = element.closest('form') as HTMLFormElement;
+              if (formElement) {
+                formElement.reset();
+              }
             }}
           />
           <input
             className={`border border-black p-3 duration-500 
           ${
-            checkConditions()
-              ? 'bg-gray-800 cursor-not-allowed'
-              : 'hover:bg-blue-600 hover:text-white rounded-md'
-          } `}
+    checkConditions()
+      ? 'bg-gray-800 cursor-not-allowed'
+      : 'hover:bg-blue-600 hover:text-white rounded-md'
+    } `}
             type="submit"
             value="Create Input"
-            disabled={checkConditions}
+            disabled={checkConditions()}
           />
         </div>
         {checkConditions() === true && (

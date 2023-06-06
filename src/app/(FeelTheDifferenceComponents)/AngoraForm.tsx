@@ -79,7 +79,7 @@ module.exports = [FileUploadComponent, NumberComponent]`,
     },
   ];
 
-  const handleSelectedFile: Function = (file: any): void => {
+  const handleSelectedFile: any = (file: any): void => {
     setSelectedFile(file);
   };
 

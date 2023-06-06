@@ -142,7 +142,7 @@ export class hadarComp1 implements ControlValueAccessor {
     },
   ];
 
-  const handleSelectedFile: Function = (file: any): void => {
+  const handleSelectedFile: any = (file: any): void => {
     // set file to the file selected in the sidebar
     setSelectedFile(file);
   };

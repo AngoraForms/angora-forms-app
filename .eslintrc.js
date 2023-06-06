@@ -20,10 +20,10 @@ module.exports = {
     '@typescript-eslint'
   ],
   'rules': {
-    'quotes': ['error', 'single'],
+    // 'quotes': ['error', 'single'],
     // we want to force semicolons
-    'semi': ['error', 'always'],
+    // 'semi': ['error', 'always'],
     // we use 2 spaces to indent our code
-    'indent': ['error', 2],
+    // 'indent': ['error', 2],
   }
 };
