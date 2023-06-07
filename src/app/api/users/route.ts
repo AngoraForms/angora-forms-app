@@ -38,17 +38,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
   }
 
   if (dataInPost.type === 'log in') {
-    try {
-      const findUser = await prisma.user.findFirst({
-        where: {
-          OR: [
-            { username: dataInPost.usernameEmail },
-            { email: dataInPost.usernameEmail },
-          ],
-        },
-      });
 
-<<<<<<< HEAD
       try {
     
         const findUser = await prisma.user.findFirst({ 
@@ -69,32 +59,10 @@ export async function POST(req: NextRequest, res: NextResponse) {
           } else {
             return NextResponse.json({ error: 'log in request failed', status: 401 })
           }
-=======
-      if (findUser !== null) {
-        if (dataInPost.password === findUser.password) {
-          const payload = {
-            id: findUser.id,
-          };
-          const cookie = jwt.sign(payload, KEY, { expiresIn: 31556926 });
->>>>>>> dev
-
-          return NextResponse.json({
-            message: `successsful log in by ${dataInPost.usernameEmail}`,
-            status: 200,
-            body: cookie,
-          });
-        } else {
-          return NextResponse.json({
-            error: 'log in request failed',
-            status: 401,
-          });
+        }  else {
+          return NextResponse.json({ error: 'log in request failed', status: 401 })
         }
-      } else {
-        return NextResponse.json({
-          error: 'log in request failed',
-          status: 401,
-        });
-      }
+      
     } catch (error) {
       return NextResponse.json({ error: error, status: 401 });
     }
