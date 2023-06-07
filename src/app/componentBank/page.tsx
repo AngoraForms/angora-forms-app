@@ -4,7 +4,7 @@ import Editor from 'react-simple-code-editor';
 import { highlight, languages } from 'prismjs/components/prism-core';
 import 'prismjs/components/prism-clike';
 import 'prismjs/components/prism-javascript';
-import 'prismjs/themes/prism.css'; //Example style, you can use another
+import 'prismjs/themes/prism.css'; 
 import controllers from '../../../lib/controllers';
 import { useEffect, useState } from 'react';
 
@@ -100,6 +100,8 @@ export default function ComponentBank() {
           componentid: currentComponentId,
         }),
       });
+      //will use data later on to tell user what component was deleted
+      //eslint-disable-next-line @typescript-eslint/no-unused-vars
       const data = await response.json();
       //invoking getCode allow us to reload code state which determines what is displayed on the editor component
       getCode();

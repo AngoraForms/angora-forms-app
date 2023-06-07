@@ -1,6 +1,5 @@
 'use client';
 import React from 'react';
-import { useState } from 'react';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { isblEditorLight } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 

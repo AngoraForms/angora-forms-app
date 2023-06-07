@@ -4,7 +4,7 @@ import Link from 'next/link';
 import NPMLogo from './npm-logo.png';
 import Image from 'next/image';
 
-export default function NPM(props: any) {
+export default function NPM() {
   const imageStyle = { margin: "auto"};
 
   return (

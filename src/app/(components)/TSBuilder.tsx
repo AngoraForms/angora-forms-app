@@ -18,11 +18,11 @@ export default function TSEditor(props: any) {
   const { currentConfig, pressResetButton, setTsCode } = props;
   const [formControlConfig, setFormControlConfig] = useState<string[]>([]);
 
-  const [code, setCode] = useState<string>('');
 
   //intialRender variable help us prevent useEffect from running on initial load
   //useRef makes it so that initialRender doesn't go back to true (initial state) since useEffect rerenders component
   const initialRender: { current: boolean } = useRef(true);
+  
   //useEffect is used to detect changes of props (the states from FormBuilder)
   useEffect(() => {
     if (initialRender.current === true) {
@@ -85,7 +85,7 @@ export default function TSEditor(props: any) {
     <div className="relative min-h-[400px] border border-black shadow-xl rounded-b-md p-2 w-full resize-y overflow-auto">
       <Editor
         ref={IdeRef}
-        onValueChange={(code) => setCode(code)}
+        onValueChange={() => null}
         value={`export class ${currentConfig.formGroupName} implements OnInit {
         ${currentConfig.formGroupName}: FormGroup;
 

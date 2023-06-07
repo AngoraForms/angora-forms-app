@@ -1,36 +1,37 @@
 /* eslint-disable react/react-in-jsx-scope */
 'use client';
 import { useRouter } from 'next/navigation';
-import { getCookies, setCookie, deleteCookie } from 'cookies-next';
-import { JsxAttribute } from 'typescript';
+import { setCookie } from 'cookies-next';
+
 
 export default function Login() {
+  //save router method to variable
   const router = useRouter();
+
+  //when form is submitted fetch request is made 
   async function handleSubmit(event: any) {
     event.preventDefault();
+    //data is the info we are submitted to the backend
     const data = {
       usernameEmail: String(event.target.usernameEmail.value),
       password: String(event.target.password.value),
       type: 'log in',
     };
 
-    console.log(data);
-
+    //response from fetch request is saved into response variable
     const response = await fetch('/api/users', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data),
     });
+    //response from server is saved
     const jsonResponse = await response.json();
-    
     if (jsonResponse.status === 200) {
-      console.log('response is 200', jsonResponse);
-
+      //if the login request was successful, create a cookie with 
+      //reroute to form builder after creating cookie
       setCookie('key', jsonResponse.body);
       router.push('/formBuilder');
-    } else {
-      console.log('response is not 200', jsonResponse);
-    }
+    } 
   }
 
   return (
@@ -43,7 +44,6 @@ export default function Login() {
           >
             <p className="text-3xl my-6 text-white">Log In</p>
             <div>
-              <label htmlFor="usernameEmail"></label>
               <input
                 type="text"
                 required
@@ -54,7 +54,6 @@ export default function Login() {
               />
             </div>
             <div>
-              <label htmlFor="password"></label>
               <input
                 type="password"
                 required
@@ -64,12 +63,12 @@ export default function Login() {
                 placeholder="Password"
               />
             </div>
-            <button
+            <input
+              value="Login"
               type="submit"
               className="text-lg cursor-pointer bg-transparent hover:to-gray-300 hover:ring-2 hover:body-gray-300 hover:outline-none py-2 px-4 rounded-full text-white"
-            >
-              Login
-            </button>
+            />
+
           </form>
 
         </div>

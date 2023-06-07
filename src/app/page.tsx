@@ -50,7 +50,7 @@ export default function Home() {
       
 
         <div className="flex justify-center">
-          {formType === 'default' ? <Default></Default> : <AngoraForm></AngoraForm>}
+          {formType === 'default' ? <Default />: <AngoraForm />}
         </div>
       
       </div>
@@ -61,7 +61,7 @@ export default function Home() {
       <div className="relative z-10">
         <hr className="mx-10"></hr>
 
-        <NPM className=""></NPM>
+        <NPM />
       </div>
 
     </article>

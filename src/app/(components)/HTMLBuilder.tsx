@@ -8,7 +8,7 @@ import 'prismjs/themes/prism.css'; //Example style, you can use another
 import controllers from '../../../lib/controllers';
 
 export default function HTMLBuilder(props: any) {
-  const [code, setCode] = useState<string>('');
+
   //create a reference to the Editor component allowing to grab the value which is the code in the editor
   const IdeRef = useRef<any | undefined>(null);
   
@@ -84,7 +84,7 @@ export default function HTMLBuilder(props: any) {
           ',',
           ''
         )}
-        onValueChange={(code) => setCode(code)}
+        onValueChange={() => null}
         highlight={(code) => highlight(code, languages.js)}
         padding={10}
         style={{
