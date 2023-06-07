@@ -26,8 +26,6 @@ export default function Login() {
     if (jsonResponse.status === 200) {
       console.log('response is 200', jsonResponse);
 
-      console.log('response is 200',jsonResponse)
-
       setCookie('key',jsonResponse.body);
       
       router.push('/formBuilder')

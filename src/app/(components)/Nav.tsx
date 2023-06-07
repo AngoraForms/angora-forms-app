@@ -1,21 +1,21 @@
 'use client'
 
 import React, { useState, useEffect } from "react";
-import { getCookies, deleteCookie } from "cookies-next";
+import { deleteCookie } from "cookies-next";
+import Cookies from "js-cookie";
 import Link from "next/link";
 
 
 export function NavBar() {
 
-  const [authenticated, setAuthenticated] = useState(0)
+  const [authenticated, setAuthenticated] = useState('none')
 
-    
   console.log('NavBar re-render')
   
   console.log('state is:',authenticated)
    function logout() {
     deleteCookie('key')
-    setAuthenticated(0)
+    setAuthenticated('none')
   }
 
   // we need to make currentToken a string or something. 
@@ -26,9 +26,9 @@ export function NavBar() {
     
     async function fetchData() {
 
-      const currentToken = getCookies('key')
+      const currentToken = Cookies.get('key')
   
-        if (Object.keys(currentToken).length > 0) {
+        if (currentToken) {
     
           const data = {
             currentToken: currentToken,
@@ -45,13 +45,14 @@ export function NavBar() {
             // handle error for logout. error in object authenticatedSession from async call on currentSession.json()
             console.log('authenticated session:', authenticatedSession)
     
-            setAuthenticated(authenticatedSession.userId)
+            setAuthenticated(authenticatedSession.user)
+
         }
         catch {
-          setAuthenticated(0)
+          setAuthenticated('none')
         }
         } else {
-          setAuthenticated(0)
+          setAuthenticated('none')
         }
     }
 
@@ -60,7 +61,7 @@ export function NavBar() {
   })
 
 
-  if(authenticated === 0) {
+  if(authenticated === 'none') {
     
     return (
       <div>
@@ -68,7 +69,6 @@ export function NavBar() {
           <Link href="/login" className="text-sm mx-6 me-8 hover:underline">Login</Link>
           <span className="text-lg"></span>
           <Link href="/signup" className="text-sm bg-red-600 me-8 mx-8 hover:bg-red-400 text-white py-1 px-3 border-b-4 border-red-700 hover:border-red-700 rounded">Sign Up</Link>
-       
       </div>
     )
     
@@ -78,7 +78,10 @@ export function NavBar() {
       <div>
           <Link href="/componentBank" className="text-sm m-auto hover:underline">Component Bank</Link>
           <Link href="/formBuilder" className="text-sm me-8 hover:underline">Form Builder</Link>
-        <Link href="/" className="text-sm m-auto hover:underline" onClick={logout}>Log out</Link>
+          <Link href="/" className="text-sm m-auto hover:underline" onClick={logout}>Log out</Link>
+          <div>
+            welcome, {authenticated}
+          </div>
       </div>
     )
   }
