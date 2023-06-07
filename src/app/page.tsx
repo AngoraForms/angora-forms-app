@@ -14,24 +14,24 @@ export default function Home() {
 
 
   return (
-    <article className="bg-primary relative pt-[120px] h-sc">
+    <article className="bg-primary relative mt-10 max-sm:pt-[160px]">
       <div className="absolute inset-x-0 -top-40 z-0 transform-gpu overflow-hidden blur-3xl sm:-top-80" aria-hidden="true">
         <div className="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[30.125rem] -translate-x-1/4 rotate-[90deg] bg-gradient-to-tr from-[#FF0000] to-[#670000] opacity-30 sm:left-[calc(50%-30rem)] sm:w-[105.1875rem]"></div>
       </div>
-      <div className="relative z-10 flex justify-center text-center pb-10 border-b border-white max-sm:flex-col max-sm:h-screen">
-        <div className="flex-1 flex items-center justify-center content-center">
+      <div className="mx-10 relative z-10 flex justify-center text-center pb-30 border-b border-white max-sm:flex-col max-sm:h-screen">
+        <div className="flex-1 my-40 max-sm:my-20 flex items-center justify-center content-center ">
           <Image
             className="w-1/2"
             src={AngoraLogo}
             alt="Angora Logo"
           />
         </div>
-        <div className="flex-1 h-100 flex flex-col justify-evenly">
-          <h1 className="text-white text-6xl ">Construct <br /> Angular <br /> Forms the <br /> Right Way</h1>
+        <div className="flex-1 h-100 flex flex-col my-40 max-sm:my-20 items-center ">
+          <h1 className="text-white text-6xl">Construct <br /> Angular <br /> Forms the <br /> Right Way</h1>
           <br/>
           <h6 className="text-base text-gray-400">Build Angular custom form components efficiently</h6>
           <br/>
-          <div className="flex justify-evenly max-sm:flex-col max-sm:items-center">
+          <div className="flex justify-evenly w-full max-sm:flex-col max-sm:items-center">
             <a href="https://www.npmjs.com/package/@angoraforms/angora-loader" className="bg-red-700 text-sm hover:bg-red-800 text-white py-3 px-4 max-sm:w-1/3 rounded-lg">Get Started</a>
             <Link href="/docs"className="bg-transparent text-sm hover:bg-red-800 text-white hover:text-white py-3 px-4 border border-white max-sm:w-1/3 hover:border-transparent rounded-lg">See how it works</Link>
           </div>
