@@ -116,16 +116,17 @@ export default function ComponentBank() {
           e.preventDefault();
           searchByGroupName(inputSeach);
         }}
-        className="m-5 flex justify-evenly"
+        className="relative m-5 flex justify-evenly bg-gray-300 rounded-full p-2"
       >
-        <input
-          className="w-1/2 p-5 bg-gray-200 rounded-md"
+        <input 
+          className="w-3/4 p-2 rounded-md bg-gray-300"
           onChange={(e) => setInputSearch(e.target.value)}
           type="search"
           placeholder="Search for component"
         />
         <input
-          className="p-5 border border-black rounded-md duration-500 hover:bg-black hover:text-white"
+          className="absolute top-1/2 right-10 -translate-y-1/2 rounded-md duration-500 hover:text-white"
+          value="&#128269;"
           type="submit"
         />
       </form>
@@ -134,29 +135,7 @@ export default function ComponentBank() {
           FormGroup is not found, please check and search again
         </div>
       )}
-      <div id="buttons" className="flex justify-between mb-3">
-        <button
-          className="p-5 border-2 border-primary text-primary rounded duration-500 hover:bg-primary hover:text-white"
-          onClick={deleteComponent}
-        >
-          Remove Current Code
-        </button>
-        <div className="flex justify-between items-center w-1/4">
-          <button
-            className="duration-500 hover:text-red-400"
-            onClick={() => changePages('-')}
-          >
-            &#9664;
-          </button>
-          <h1>{pageIndex + 1}</h1>
-          <button
-            className="duration-500 hover:text-red-400"
-            onClick={() => changePages('+')}
-          >
-            &#9654;
-          </button>
-        </div>
-      </div>
+      
       <div className="w-full flex max-sm:grid max-sm:grid-cols-1 ">
         {/* if code is empty, then display Loading page, otherwise show Editor component */}
         {code === null ? (
@@ -205,6 +184,30 @@ export default function ComponentBank() {
             </div>
           </>
         )}
+      </div>
+      {/* buttons */}
+      <div id="buttons" className="flex justify-between mb-3 mt-5">
+        <button
+          className="p-2 border-2 border-primary text-primary rounded duration-500 hover:bg-primary hover:text-white"
+          onClick={deleteComponent}
+        >
+          Delete
+        </button>
+        <div className="flex justify-between items-center w-1/4">
+          <button
+            className="duration-500 hover:text-red-400"
+            onClick={() => changePages('-')}
+          >
+            &#9664;
+          </button>
+          <h1>{pageIndex + 1}</h1>
+          <button
+            className="duration-500 hover:text-red-400"
+            onClick={() => changePages('+')}
+          >
+            &#9654;
+          </button>
+        </div>
       </div>
     </div>
   );
