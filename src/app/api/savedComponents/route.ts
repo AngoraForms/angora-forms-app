@@ -1,62 +1,66 @@
-
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '../../../../lib/prisma/db';
 
-//rerouting all POST request into this function 
-export async function POST (req: Request, res:Response) {
+//rerouting all POST request into this function
+export async function POST(req: Request, res: Response) {
   //make the information that was sent readable
   const dataInPost = await req.json();
 
   //Here we are modularizing the type of request we are based on type property
   //if we are savingCode ...
-  if ( dataInPost.type === 'saveCode') {
+  if (dataInPost.type === 'saveCode') {
+    console.log('datainpost', dataInPost);
     const { htmlCode, tsCode, userid } = dataInPost;
-    
+    console.log('id', userid);
     try {
-      //creating a field in sql db 
+      //creating a field in sql db
       const newSavedComponent = await prisma.savedComponents.create({
         data: {
           html: htmlCode,
           typescript: tsCode,
           //refers to user table with userid
-          user: {connect: { id: userid }}
-        }
-      })
+          user: { connect: { id: userid } },
+        },
+      });
 
-      return NextResponse.json({ message: 'successfully saved form component' }, { status: 200 });
-    } catch(error) {
-      console.log(error)
-      return NextResponse.json({ error: error }, { status: 500 })
+      return NextResponse.json(
+        { message: 'successfully saved form component' },
+        { status: 200 }
+      );
+    } catch (error) {
+      console.log(error);
+      return NextResponse.json({ error: error }, { status: 500 });
     }
   }
   // if we are trying to get the savedCode ..
   else if (dataInPost.type === 'getCode') {
-
     try {
       //get every single gield with the logged in userid
       const getSavedComponent = await prisma.savedComponents.findMany({
-        where: { 
-          userid: dataInPost.userid 
-        }
-      })
-      return NextResponse.json({ message: getSavedComponent }, { status: 200 })
+        where: {
+          userid: dataInPost.userid,
+        },
+      });
+      return NextResponse.json({ message: getSavedComponent }, { status: 200 });
     } catch (error) {
-      return NextResponse.json({ error: error }, { status: 500 })
+      return NextResponse.json({ error: error }, { status: 500 });
     }
-  } 
+  }
   //we are deleting the savedCode from our db/account
   else if (dataInPost.type === 'deleteCode') {
-    
     try {
       //delete the component of the current displayed component
       const getDeletedComponent = await prisma.savedComponents.delete({
         where: {
-          componentid: dataInPost.componentid
-        }
-      })
-      return NextResponse.json({ message: 'deletedComp:' + getDeletedComponent }, { status: 200 })
+          componentid: dataInPost.componentid,
+        },
+      });
+      return NextResponse.json(
+        { message: 'deletedComp:' + getDeletedComponent },
+        { status: 200 }
+      );
     } catch (error) {
-      return NextResponse.json({ error: error }, { status: 500 })
+      return NextResponse.json({ error: error }, { status: 500 });
     }
   }
 }
