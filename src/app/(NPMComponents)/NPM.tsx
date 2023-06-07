@@ -8,8 +8,8 @@ export default function NPM(props: any) {
   const imageStyle = {};
 
   return (
-    <section className="flex mt-5">
-      <div className="flex-1">
+    <section className="flex justify-center mt-5 max-md:flex-col">
+      <div className="flex-1 m-5">
         <div
           className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
           aria-hidden="true"
