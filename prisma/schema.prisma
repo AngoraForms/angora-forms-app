@@ -8,9 +8,19 @@ datasource db {
 }
 
 model User {
-  id        Int       @id @default(autoincrement())
-  username  String?   @unique @db.VarChar(255)
-  email     String?   @unique @db.VarChar(255)
-  password  String?   @db.VarChar(255)
-  createdat DateTime? @default(now()) @db.Timestamp(6)
+  id              Int               @id @default(autoincrement())
+  username        String            @unique @db.VarChar(255)
+  email           String            @unique @db.VarChar(255)
+  password        String            @db.VarChar(255)
+  createddate     DateTime          @default(now()) @db.Timestamp(6)
+  SavedComponents SavedComponents[]
 }
+
+model SavedComponents {
+  componentid Int    @id @default(autoincrement())
+  html        String   @db.VarChar(65535)
+  typescript  String   @db.VarChar(65535)
+  userid      Int
+  user        User   @relation(fields: [userid], references: [id])
+}
+
