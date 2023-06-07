@@ -1,12 +1,12 @@
 /* eslint-disable react/react-in-jsx-scope */
 
-
 import './globals.css'
 import { Inter } from 'next/font/google'
 import Link from "next/link";
 import Image from "next/image";
 import linkedinLogo from './linkedin.png';
 import githubLogo from './github.png';
+import { NavBar } from './(components)/Nav';
 
 
 
@@ -29,18 +29,14 @@ export default function RootLayout({
 
         
       </head>
-      <body className={inter.className} >
-      <header className="fixed top-0 left-0 right-0 flex justify-evenly bg-white p-6 shadow-xl z-50">
+      <body className={inter.className}>
+      <header className="fixed top-0 w-screen flex justify-evenly bg-white p-6 shadow-xl z-50">
   <nav className="justify-start">
     <Link href="/" className="text-lg font-sans font-bold mr-10 whitespace-nowrap">Angora Forms</Link>
     <Link href="/docs" className="text-sm me-8 hover:underline">Docs</Link>
   </nav>
   <nav className="justify-end">
-    <Link href="/formBuilder" className="text-sm me-8 hover:underline">Form Builder</Link>
-    <span className="text-lg font-bold"></span>
-    <Link href="/login" className="text-sm mx-6 me-8 hover:underline">Login</Link>
-    <span className="text-lg"></span>
-    <Link href="/signup" className="text-sm bg-red-600 me-8 mx-8 hover:bg-red-400 text-white py-1 px-3 border-b-4 border-red-700 hover:border-red-700 rounded">Signup</Link>
+  <NavBar/>
   </nav>
 </header>
       <div>

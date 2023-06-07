@@ -29,6 +29,10 @@ export default function Signup() {
 
       setCookie('key', jsonResponse.body);
       router.push('/formBuilder');
+
+      window.location.reload();
+
+
     } else {
       console.log('response is not 200', jsonResponse);
     }

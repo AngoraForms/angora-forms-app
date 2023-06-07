@@ -38,40 +38,31 @@ export async function POST(req: NextRequest, res: NextResponse) {
   }
 
   if (dataInPost.type === 'log in') {
-    try {
-      const findUser = await prisma.user.findFirst({
-        where: {
-          OR: [
-            { username: dataInPost.usernameEmail },
-            { email: dataInPost.usernameEmail },
-          ],
-        },
-      });
 
-      if (findUser !== null) {
-        if (dataInPost.password === findUser.password) {
-          const payload = {
-            id: findUser.id,
-          };
-          const cookie = jwt.sign(payload, KEY, { expiresIn: 31556926 });
+      try {
+    
+        const findUser = await prisma.user.findFirst({ 
+          where: { OR: [{username: dataInPost.usernameEmail},{email: dataInPost.usernameEmail}]}
+        })
 
-          return NextResponse.json({
-            message: `successsful log in by ${dataInPost.usernameEmail}`,
-            status: 200,
-            body: cookie,
-          });
-        } else {
-          return NextResponse.json({
-            error: 'log in request failed',
-            status: 401,
-          });
+        if (findUser !== null) {
+          
+          if (dataInPost.password === findUser.password) {
+
+            const payload = {
+              id: findUser.id
+            }
+            const cookie = jwt.sign(payload, KEY, {expiresIn: 31556926})
+            
+            return NextResponse.json({ message: `successsful log in by ${dataInPost.usernameEmail}`, status:200, body: cookie, user: findUser.username })
+
+          } else {
+            return NextResponse.json({ error: 'log in request failed', status: 401 })
+          }
+        }  else {
+          return NextResponse.json({ error: 'log in request failed', status: 401 })
         }
-      } else {
-        return NextResponse.json({
-          error: 'log in request failed',
-          status: 401,
-        });
-      }
+      
     } catch (error) {
       return NextResponse.json({ error: error, status: 401 });
     }
@@ -81,7 +72,14 @@ export async function POST(req: NextRequest, res: NextResponse) {
     try {
       if (typeof dataInPost.currentToken === 'string') {
         const decryptToken = jwt.verify(dataInPost.currentToken, KEY) as JwtPayload;
-        return NextResponse.json({ status: 200, userId: decryptToken.id });
+        try {
+          const findUser = await prisma.user.findFirst({ 
+            where: {id: decryptToken.id}
+          })
+          return NextResponse.json({ status: 200, user: findUser?.username });
+        } catch (error) {
+          return NextResponse.json({erre:error})
+        }
       } else {
         throw new Error('Missing or invalid token');
       }
