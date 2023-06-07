@@ -9,8 +9,7 @@ import githubLogo from './github.png';
 import { NavBar } from './(components)/Nav';
 
 
-
-const inter = Inter({ subsets: ['latin'] });
+const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
   title: 'Create Next App',
@@ -26,8 +25,6 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
-
-        
       </head>
       <body className={inter.className}>
       <header className="fixed top-0 w-screen flex justify-evenly bg-white p-6 shadow-xl z-50">
@@ -64,6 +61,18 @@ export default function RootLayout({
               <span className="mr-4 md:mr-4">Connect With Our Team :</span>
               <ul className="flex flex-wrap items-center mt-3 text-sm font-medium text-gray-500 dark:text-gray-400 sm:mt-0">
               <li className="flex items-center mr-4">
+                  <a href="https://www.linkedin.com/in/aaron-c-335b48127/" className="hover:underline flex items-center">
+                    <Image
+                      className="mr-1"
+                      src={linkedinLogo}
+                      width={14}
+                      height={14}
+                      alt="Linkedin logo"
+                    />
+                    Aaron Chen
+                  </a>
+                </li>
+                <li className="flex items-center mr-4">
                   <a href="https://www.linkedin.com/in/aaron-c-335b48127/" className="hover:underline flex items-center">
                     <Image
                       className="mr-1"
@@ -126,10 +135,8 @@ export default function RootLayout({
               </ul>
             </menu>
           </div>
-
         </footer>
       </body>
     </html>
   );
 }
-
