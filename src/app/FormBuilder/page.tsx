@@ -45,7 +45,7 @@ export default function FormBuilder() {
   //save code, make post request
   const saveEditor = async () => {
     const currentUserId = await controllers.getUserId();
-    console.log('id', currentUserId)
+    console.log('id', currentUserId);
     const savedCode: {
       htmlCode: string;
       tsCode: string;

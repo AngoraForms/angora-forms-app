@@ -9,9 +9,9 @@ export async function POST(req: Request, res: Response) {
   //Here we are modularizing the type of request we are based on type property
   //if we are savingCode ...
   if (dataInPost.type === 'saveCode') {
-    console.log('datainpost', dataInPost)
+    console.log('datainpost', dataInPost);
     const { htmlCode, tsCode, userid } = dataInPost;
-    console.log('id', userid)
+    console.log('id', userid);
     try {
       //creating a field in sql db
       const newSavedComponent = await prisma.savedComponents.create({

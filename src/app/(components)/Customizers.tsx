@@ -138,7 +138,7 @@ export default function Customizers(props: any) {
         onSubmit={(e) => {
           e.preventDefault();
           addForm();
-          const formElement = e.target as HTMLFormElement
+          const formElement = e.target as HTMLFormElement;
           formElement.reset();
           setValidatorConfiguration(initialValidationState);
           setValidators([]);
@@ -258,17 +258,17 @@ export default function Customizers(props: any) {
               type="checkBox"
               onClick={(e) => {
                 const checkboxElement = e.target as HTMLInputElement;
-                if(checkboxElement.checked){
+                if (checkboxElement.checked) {
                   setValidatorConfiguration({
                     ...validatorConfiguration,
                     required: true,
                   });
-                } else{
+                } else {
                   setValidatorConfiguration({
                     ...validatorConfiguration,
                     required: false,
                   });
-                }  
+                }
               }}
             />
           </div>
