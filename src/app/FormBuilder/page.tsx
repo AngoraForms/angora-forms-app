@@ -5,7 +5,6 @@ import Customizers from '../(components)/Customizers';
 import TSBuilder from '../(components)/TSBuilder';
 import HTMLBuilder from '../(components)/HTMLBuilder';
 import AngoraBuilder from '../(components)/AngoraBuilder';
-import AngoraCustomizer from '../(components)/AngoraCustomizer';
 import controllers from '../../../lib/controllers';
 
 export default function FormBuilder() {
