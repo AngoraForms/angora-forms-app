@@ -29,8 +29,12 @@ export default function Login() {
     if (jsonResponse.status === 200) {
       //if the login request was successful, create a cookie with 
       //reroute to form builder after creating cookie
-      setCookie('key', jsonResponse.body);
-      router.push('/formBuilder');
+      setCookie('key',jsonResponse.body);
+
+      router.push('/formBuilder')
+
+      setTimeout(() => window.location.reload(), 500)
+      
     } 
   }
 
