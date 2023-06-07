@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import React, { useEffect, useRef, useState } from 'react';
 import Editor from 'react-simple-code-editor';
 import { highlight, languages } from 'prismjs/components/prism-core';
@@ -7,11 +7,10 @@ import 'prismjs/components/prism-javascript';
 import 'prismjs/themes/prism.css'; //Example style, you can use another
 import controllers from '../../../lib/controllers';
 
-
-export default function TSEditor (props: any) {
+export default function TSEditor(props: any) {
 
   //create a reference to the Editor component allowing to grab the value which is the code in the editor
-  const IdeRef = useRef(null);
+  const IdeRef = useRef<any | undefined>(null);
 
   //currentConfig is the state that is drilled down from FormBuilder page
   //press reset button allow us toreset form configuration within this component
@@ -20,39 +19,56 @@ export default function TSEditor (props: any) {
   const [formControlConfig, setFormControlConfig] = useState<string[]>([]);
 
   const [code, setCode] = useState<string>('');
-  
+
   //intialRender variable help us prevent useEffect from running on initial load
   //useRef makes it so that initialRender doesn't go back to true (initial state) since useEffect rerenders component
-  let initialRender: {current: boolean} = useRef(true);
+  const initialRender: { current: boolean } = useRef(true);
   //useEffect is used to detect changes of props (the states from FormBuilder)
   useEffect(() => {
     if (initialRender.current === true) {
       initialRender.current = false;
-    }
-    else {
+    } else {
       //newArray is used to contain the new set of validations
-      let newArray:string[] = [];
-      for (let i = 0; i < currentConfig.validators.length; i++) { 
+      const newArray: string[] = [];
+      for (let i = 0; i < currentConfig.validators.length; i++) {
         if (currentConfig.inputType[i] === 'submit') continue;
         //controllers stores the string version of the form controllers and the spaces needed
         // DO NOT TOUCH!!!
-        let controller:string;
-        ( i === 0 ) ? controller = "     " + currentConfig.formControl[i] + " : ['" + currentConfig.initialValues[i] + "', [" + currentConfig.validators[i] + "]] " 
-        : controller = "\n     " + currentConfig.formControl[i] + " : ['" + currentConfig.initialValues[i] + "', [" + currentConfig.validators[i] + "]] ";
+        let controller: string;
+        i === 0
+          ? (controller =
+              '     ' +
+              currentConfig.formControl[i] +
+              ' : [\'' +
+              currentConfig.initialValues[i] +
+              '\', [' +
+              currentConfig.validators[i] +
+              ']] ')
+          : (controller =
+              '\n     ' +
+              currentConfig.formControl[i] +
+              ' : [\'' +
+              currentConfig.initialValues[i] +
+              '\', [' +
+              currentConfig.validators[i] +
+              ']] ');
         setFormControlConfig(() => {
           newArray.push(controller);
           return newArray;
-        })
-      }           
+        });
+      }
     }
-      // setTimeout(() => setTsCode(IdeRef.current.props.value), 250)
-  },[currentConfig])
+    // setTimeout(() => setTsCode(IdeRef.current.props.value), 250)
+  }, [currentConfig]);
 
   //useEffect to detect changes in the TS code editor and gives it to parent to save
   useEffect(() => {
+
     //there needs to be a delay for the TS code editor to be editted before going in
-    setTsCode(IdeRef.current.props.value)
-  }, [currentConfig.formGroupName,formControlConfig])
+    if (IdeRef.current !== null || IdeRef.current !== undefined) {
+      setTsCode(IdeRef.current.props.value);
+    }
+  }, [currentConfig.formGroupName, formControlConfig]);
 
   //whenever resetbutton is pressed, we refet the form configuration
   useEffect(() => {
@@ -61,16 +77,16 @@ export default function TSEditor (props: any) {
     } else {
       setFormControlConfig([]);
     }
-  },[pressResetButton])
+  }, [pressResetButton]);
 
   return (
     // Editor componenet is a code editor IDE
     //value is the template of the typescript file of the form
-    <div
-      className='relative min-h-[400px] border border-blue-400 shadow-xl rounded-b-md p-2 w-full resize-y overflow-auto'>
+    <div className="relative min-h-[400px] border border-black shadow-xl rounded-b-md p-2 w-full resize-y overflow-auto">
       <Editor
-      ref={IdeRef}
-      value={`export class ${currentConfig.formGroupName} implements OnInit {
+        ref={IdeRef}
+        onValueChange={(code) => setCode(code)}
+        value={`export class ${currentConfig.formGroupName} implements OnInit {
         ${currentConfig.formGroupName}: FormGroup;
 
   constructor(private formBuilder: FormBuilder) {}
@@ -79,20 +95,23 @@ export default function TSEditor (props: any) {
 ${formControlConfig}
     })
   }
+  get form() { return this.${currentConfig.formGroupName}.controls; }
   onSubmit() {
     //this is where the submit logic goes
   }`}
-      highlight={code => highlight(code, languages.js)}
-      padding={10}
-      style={{
-        fontFamily: '"Fira code", "Fira Mono", monospace',
-        fontSize: 12,
-      }}/>
-      <span onClick={(e) => controllers.copyCode(e)}
-        className="material-symbols-outlined absolute top-2 right-2 duration-500 hover:text-blue-400 hover: cursor-pointer">
+        highlight={(code) => highlight(code, languages.js)}
+        padding={10}
+        style={{
+          fontFamily: '"Fira code", "Fira Mono", monospace',
+          fontSize: 12,
+        }}
+      />
+      <span
+        onClick={(e) => controllers.copyCode(e)}
+        className="material-symbols-outlined absolute top-2 right-2 duration-500 hover:text-blue-400 hover: cursor-pointer"
+      >
         content_paste
       </span>
     </div>
-
   );
 }

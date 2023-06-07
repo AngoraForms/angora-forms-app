@@ -1,18 +1,18 @@
-'use client'
-import React from "react"
-import { useState } from "react"
+'use client';
+import React from 'react';
+import { useState } from 'react';
 
-import Sidebar from "./Sidebar"
-import Code from "./Code"
+import Sidebar from './Sidebar';
+import Code from './Code';
 
-export default function AngoraForm (props: any) {
+export default function AngoraForm(props: any) {
+  const [selectedFile, setSelectedFile] = useState(null);
 
-    const [selectedFile, setSelectedFile] = useState(null)
-
-    // array of files that will be displayed under the 'Angora Forms' option
-    const files: Array<object> = [
-        { name: 'CustomComponents.ts', content: 
-`class FileUploadComponent {
+  // array of files that will be displayed under the 'Angora Forms' option
+  const files: Array<object> = [
+    {
+      name: 'CustomComponents.ts',
+      content: `class FileUploadComponent {
     template = '
         <input type="file" class="file-input" (change)="onFileSelected($event)" #fileUpload>
 
@@ -75,20 +75,28 @@ class NumberComponent {
 }
 
 
-module.exports = [FileUploadComponent, NumberComponent]`},
-    ]
+module.exports = [FileUploadComponent, NumberComponent]`,
+    },
+  ];
 
-    const handleSelectedFile: Function = (file: any): void => {
-        setSelectedFile(file)
-    }
+  const handleSelectedFile: any = (file: any): void => {
+    setSelectedFile(file);
+  };
 
-    return (
-        <div className="grid grid-cols-4 m-10 bg-gray-100 rounded-lg shadow-xl">
-            <Sidebar className="col-span-1" files={files} handleSelectedFile={handleSelectedFile}/>
-            <div className="col-start-2 col-span-3">
-                {selectedFile ? <Code className="flex-1" file={selectedFile}/> : <Code className="flex-1" file={files[0]}/>}
-            </div>
-        </div>
-    )
-
+  return (
+    <div className="grid grid-cols-4 m-10 bg-gray-100 rounded-lg shadow-xl">
+      <Sidebar
+        className="col-span-1"
+        files={files}
+        handleSelectedFile={handleSelectedFile}
+      />
+      <div className="col-start-2 col-span-3">
+        {selectedFile ? (
+          <Code className="flex-1" file={selectedFile} />
+        ) : (
+          <Code className="flex-1" file={files[0]} />
+        )}
+      </div>
+    </div>
+  );
 }
