@@ -23,3 +23,6 @@ next-env-d.ts
 
 # test
 coverage
+
+#
+package-lock.json
