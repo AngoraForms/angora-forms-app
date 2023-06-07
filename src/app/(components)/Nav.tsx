@@ -81,12 +81,16 @@ export function NavBar() {
     
     return (
       <div>
+          welcome, {authenticated}
+          <span className="text-lg font-bold"></span>
           <Link href="/componentBank" className="text-sm m-auto hover:underline">Component Bank</Link>
+          <span className="text-lg font-bold"></span>
           <Link href="/formBuilder" className="text-sm me-8 hover:underline">Form Builder</Link>
-          <Link href="/" className="text-sm m-auto hover:underline" onClick={logout}>Log out</Link>
-          <div>
-            welcome, {authenticated}
-          </div>
+          <button className="rounded-full">
+            <Link href="/" onClick={logout}>Log out</Link>
+          </button>
+          <span className="text-lg font-bold"></span>
+          
       </div>
     )
   }
