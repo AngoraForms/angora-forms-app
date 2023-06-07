@@ -5,5 +5,11 @@
 /* body {
     background-color: rgb(103, 0, 0);
 } */
-
+@media (max-width: 420px) {
+    /* CSS rules for screens with a maximum width of 200 pixels */
+    /* Add your styles here */
+    body {
+        width: 200%;
+    }
+  }
 
