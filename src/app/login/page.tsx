@@ -1,6 +1,7 @@
 'use client'
 import { useRouter } from 'next/navigation';
-import { getCookies, setCookie, deleteCookie } from 'cookies-next';
+import { setCookie } from 'cookies-next';
+import { test } from '../(components)/Nav';
 
 export default function Login() {
 
@@ -27,7 +28,9 @@ export default function Login() {
       console.log('response is 200',jsonResponse)
 
       setCookie('key',jsonResponse.body);
-      router.push('/FormBuilder')
+      window.location.reload();
+      
+      router.push('/formBuilder')
       
     } else {
       console.log('response is not 200', jsonResponse)
