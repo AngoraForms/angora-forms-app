@@ -20,3 +20,9 @@ next-env-d.ts
 # production
 /build
 *.pem
+
+# test
+coverage
+
+#
+package-lock.json
