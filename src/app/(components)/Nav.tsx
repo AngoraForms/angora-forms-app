@@ -4,18 +4,23 @@ import React, { useState, useEffect } from "react";
 import { deleteCookie } from "cookies-next";
 import Cookies from "js-cookie";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 
 export function NavBar() {
 
+  const router = useRouter();
   const [authenticated, setAuthenticated] = useState('none')
 
   console.log('NavBar re-render')
   
   console.log('state is:',authenticated)
    function logout() {
+
     deleteCookie('key')
     setAuthenticated('none')
+    router.push('/')
+
   }
 
   // we need to make currentToken a string or something. 
