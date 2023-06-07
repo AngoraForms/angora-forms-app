@@ -1,6 +1,7 @@
 'use client';
 import React from 'react';
 import { useState, Dispatch, SetStateAction } from 'react';
+import { ConfigType } from '../../../lib/types'
 
 const initialValidationState = {
   required: false,
@@ -10,16 +11,8 @@ const initialValidationState = {
   passwordValidation: null,
   phoneNumberValidation: null,
 };
-interface ConfigType {
-  formGroupName: string;
-  formControl: string[];
-  initialValues: string[];
-  inputType: string[];
-  labelText: string[];
-  validators: any;
-  errorMessage: string[];
-}
-export default function Customizers(props: {formGroupName: string, currentConfig: ConfigType,setCurrentConfig: Dispatch<SetStateAction<ConfigType>>}) {
+
+export default function Customizers(props: {formGroupName: string, currentConfig: ConfigType, setCurrentConfig: Dispatch<SetStateAction<ConfigType>>}) {
   const {formGroupName, setCurrentConfig, currentConfig } = props;
 
   //keep track of the what was inputted into the input elements

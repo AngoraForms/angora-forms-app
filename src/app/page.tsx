@@ -11,8 +11,6 @@ import NPM from './(NPMComponents)/NPM';
 export default function Home() {
   const [formType, setFormType] = useState('default');
 
-
-
   return (
     <article className="bg-primary relative mt-10 max-sm:pt-[160px]">
       <div className="absolute inset-x-0 -top-40 z-0 transform-gpu overflow-hidden blur-3xl sm:-top-80" aria-hidden="true">

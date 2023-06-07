@@ -7,16 +7,12 @@ import 'prismjs/components/prism-javascript';
 import 'prismjs/themes/prism.css'; 
 import controllers from '../../../lib/controllers';
 import { useEffect, useState } from 'react';
+import { DisplayedCode } from '../../../lib/types';
 
 export default function ComponentBank() {
   //code state is going to be the code that is displayed in the Editor component after being fetched
   const [code, setCode] = useState<
-    | {
-        componentid: number;
-        html: string | undefined | null;
-        typescript: string | null | undefined;
-      }[]
-    | null
+    DisplayedCode[] | null
   >(null);
 
   // if (code !== null) {
@@ -43,6 +39,8 @@ export default function ComponentBank() {
   //changes page aka go to the next page
   const [pageIndex, setPageIndex] = useState<number>(0);
   const changePages = (action: string) => {
+    //if code doesn't exist we want to stay on page 1 aka index 0
+    //if code exist then we can get the final index of it
     let maxPageIndex;
     if (!code) maxPageIndex = 0;
     else maxPageIndex = code.length - 1;
@@ -63,13 +61,18 @@ export default function ComponentBank() {
   const [goodSearch, setGoodSearch] = useState<boolean>(false);
   //iterate through code array and search for groupname that matches with input
   const searchByGroupName = (formGroup: string): void => {
+    //found detects if we successfully searched the code and found it
+    let found = false;
+    //let us know that searchbar is touched
     setSearchBlurred(true);
+    //if code doesn't exist search isn't touched
     if (code !== null && code.length === 0) {
       setGoodSearch(false);
       return;
     }
-    let found = false;
+    
     if (code !== null) {
+      //if code is found we changed the page accordingly and stop the forloop early
       for (let i = 0; i < code.length; i++) {
         if (
           code[i] &&
@@ -78,10 +81,11 @@ export default function ComponentBank() {
         ) {
           found = true;
           setPageIndex(i);
-          break;
+          break
         }
       }
     }
+    // depending on found condition we can setGoodSearch accordingly which assist with error handling
     found ? setGoodSearch(true) : setGoodSearch(false);
   };
 

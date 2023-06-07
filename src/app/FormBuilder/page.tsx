@@ -5,6 +5,7 @@ import Customizers from '../(components)/Customizers';
 import TSBuilder from '../(components)/TSBuilder';
 import HTMLBuilder from '../(components)/HTMLBuilder';
 import controllers from '../../../lib/controllers';
+import { ConfigType, SavedCode } from '../../../lib/types';
 
 export default function FormBuilder() {
   //detects when reset button is pressed by incrementing the numericla value
@@ -14,13 +15,13 @@ export default function FormBuilder() {
   //stores group name
   const [formGroupName, setFormGroupName] = useState<string>('');
   const [isTouched, setIsTouched] = useState<boolean>(false);
-  const handleBlur = () => {
+  const handleBlur = (): void => {
     setIsTouched(true);
   };
   
   //this is where state is first defined for the form configuration
   //the formControl Arrray is going to contain all the html components and initialize to an empty array
-  const [currentConfig, setCurrentConfig] = useState<any>({
+  const [currentConfig, setCurrentConfig] = useState<ConfigType>({
     formGroupName: '',
     formControl: [],
     initialValues: [],
@@ -38,12 +39,7 @@ export default function FormBuilder() {
   //save code, make post request
   const saveEditor = async () => {
     const currentUserId = await controllers.getUserId();
-    const savedCode: {
-      htmlCode: string;
-      tsCode: string;
-      userid: number | string;
-      type: string;
-    } = {
+    const savedCode: SavedCode = {
       htmlCode: htmlCode,
       tsCode: tsCode,
       userid: currentUserId,
@@ -56,8 +52,10 @@ export default function FormBuilder() {
       },
       body: JSON.stringify(savedCode),
     });
+    //will use data for error handling in future
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const data = await response.json();
-    console.log('data:', data);
+
   };
 
   return (

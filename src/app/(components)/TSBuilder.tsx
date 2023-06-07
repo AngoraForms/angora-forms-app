@@ -1,13 +1,14 @@
 'use client';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react';
 import Editor from 'react-simple-code-editor';
 import { highlight, languages } from 'prismjs/components/prism-core';
 import 'prismjs/components/prism-clike';
 import 'prismjs/components/prism-javascript';
 import 'prismjs/themes/prism.css'; //Example style, you can use another
 import controllers from '../../../lib/controllers';
+import { ConfigType } from '../../../lib/types';
 
-export default function TSEditor(props: any) {
+export default function TSEditor(props: {currentConfig: ConfigType, pressResetButton: number, setTsCode: Dispatch<SetStateAction<string>>}) {
 
   //create a reference to the Editor component allowing to grab the value which is the code in the editor
   const IdeRef = useRef<any | undefined>(null);

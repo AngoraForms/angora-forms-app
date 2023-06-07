@@ -10,7 +10,6 @@ const KEY = process.env.JWT_KEY!;
 
 export async function POST(req: NextRequest) {
   const dataInPost = await req.json();
-  console.log('datainpost:', dataInPost);
 
   if (dataInPost.type === 'sign up') {
     try {
