@@ -148,7 +148,9 @@ export class hadarComp1 implements ControlValueAccessor {
   };
 
   return (
-    <div className="grid grid-cols-4 m-10 bg-gray-100 rounded-lg shadow-xl">
+    <div className="grid grid-cols-4 m-10 bg-gray-100 rounded-lg shadow-xl
+    max-sm:m-2 
+    ">
       <Sidebar
         className="col-span-1"
         files={files}

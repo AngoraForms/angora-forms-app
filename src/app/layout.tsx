@@ -30,7 +30,7 @@ export default function RootLayout({
         
       </head>
       <body className={inter.className}>
-      <header className="fixed top-0 left-0 right-0 flex justify-evenly bg-white p-6 shadow-xl z-50">
+      <header className="fixed top-0 w-screen flex justify-evenly bg-white p-6 shadow-xl z-50">
   <nav className="justify-start">
     <Link href="/" className="text-lg font-sans font-bold mr-10 whitespace-nowrap">Angora Forms</Link>
     <Link href="/docs" className="text-sm me-8 hover:underline">Docs</Link>

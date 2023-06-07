@@ -14,7 +14,7 @@ export default function Home() {
 
 
   return (
-    <article className="bg-primary relative pt-[100px] h-sc">
+    <article className="bg-primary relative pt-[120px] h-sc">
       <div className="absolute inset-x-0 -top-40 z-0 transform-gpu overflow-hidden blur-3xl sm:-top-80" aria-hidden="true">
         <div className="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[30.125rem] -translate-x-1/4 rotate-[90deg] bg-gradient-to-tr from-[#FF0000] to-[#670000] opacity-30 sm:left-[calc(50%-30rem)] sm:w-[105.1875rem]"></div>
       </div>
@@ -46,7 +46,7 @@ export default function Home() {
         <button className="inline bg-white-500 hover:bg-red-800 py-2 px-4 rounded text-white bg-red-600" onClick={() => {setFormType('Angora');}}>Angora Forms</button>
       </div>
 
-      <div className="bg-white mx-10 rounded-lg shadow-lg text-center border-8 border-double mt-10 mb-32">
+      <div className="bg-white mx-10 max-sm:mx-2 rounded-lg shadow-lg text-center border-8 border-double mt-10 mb-32">
       
 
         <div className="flex justify-center">
