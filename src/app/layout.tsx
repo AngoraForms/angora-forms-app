@@ -25,8 +25,6 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
-
-        
       </head>
       <body className={inter.className}>
       <header className="fixed top-0 w-screen flex justify-evenly bg-white p-6 shadow-xl z-50">
@@ -129,7 +127,6 @@ export default function RootLayout({
               </ul>
             </menu>
           </div>
-
         </footer>
       </body>
     </html>
