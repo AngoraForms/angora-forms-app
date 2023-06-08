@@ -30,7 +30,7 @@ export default function Signup() {
       //if signup successful, create cookie and reroute to formBuilder
 
       setCookie('key', jsonResponse.body);
-      router.push('/formBuilder');
+      router.push('/FormBuilder');
 
       window.location.reload();
 

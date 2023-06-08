@@ -31,9 +31,12 @@ export default function Login() {
       //reroute to form builder after creating cookie
       setCookie('key',jsonResponse.body);
 
-      router.push('/formBuilder')
+      router.push('/FormBuilder')
 
-      setTimeout(() => window.location.reload(),500)
+      setTimeout(() => {
+        window.location.reload()
+      }, 500)
+
       
     } 
   }

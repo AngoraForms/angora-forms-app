@@ -12,7 +12,7 @@ import { NavBar } from './(components)/Nav';
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  title: 'Angora Forms for Angular',
+  title: 'Angora Forms',
   description: 'Generate and save your custom Angular forms',
 };
 

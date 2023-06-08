@@ -68,7 +68,7 @@ export function NavBar() {
   if(authenticated === 'none') {
     
     return (
-      <div className="flex justify-between mx-40">
+      <div className="flex justify-between mx-4">
         <span className="justify-self-start">
           <Link href="/" className="text-lg font-sans font-bold mr-10 whitespace-nowrap">Angora Forms</Link>
           <Link href="/docs" className="text-sm me-8 underline">Docs</Link>
@@ -84,12 +84,12 @@ export function NavBar() {
   } else {
     
     return (
-      <div className="flex justify-between mx-40">
+      <div className="flex justify-between mx-4">
         <span className="justify-self-start">
           <Link href="/" className="text-lg font-sans font-bold mr-10 whitespace-nowrap">Angora Forms</Link>
           <Link href="/docs" className="text-sm me-8 underline">Docs</Link>
           <Link href="/componentBank" className="text-sm bg-red-600 me-4 mx-2 hover:bg-red-400 text-white py-1 px-3 border-b-4 border-red-700 hover:border-red-700 rounded">Component Bank</Link>
-          <Link href="/formBuilder" className="text-sm bg-red-600 me-4 ml-2 hover:bg-red-400 text-white py-1 px-3 border-b-4 border-red-700 hover:border-red-700 rounded">Form Builder</Link>
+          <Link href="/FormBuilder" className="text-sm bg-red-600 me-4 ml-2 hover:bg-red-400 text-white py-1 px-3 border-b-4 border-red-700 hover:border-red-700 rounded">Form Builder</Link>
         </span>
           
         <span className="justify-self-end">
