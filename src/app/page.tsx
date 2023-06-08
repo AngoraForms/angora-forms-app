@@ -26,7 +26,7 @@ export default function Home() {
         <Link href="/docs"className="bg-transparent text-sm hover:bg-red-800 text-white hover:text-white py-3 px-4 border border-white hover:border-transparent rounded-lg">See how it works</Link>
       </div>
     </div>
-    <div className="flex-1 flex items-center px-32 pb-10 mr-40">
+    <div className="flex-1 flex items-center px-32 pb-10 mr-20">
       <Image
         className="flex-1"
         src={AngoraLogo}
@@ -59,7 +59,7 @@ export default function Home() {
   <div className="relative z-10">
   <hr className="mx-10"></hr>
 
-  <NPM className=""></NPM>
+  <NPM></NPM>
   </div>
 
 

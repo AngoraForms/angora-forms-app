@@ -41,9 +41,13 @@ export default function Login() {
   return (
     <div className="bg-primary">
       <div className="flex justify-center items-center h-screen">
-        <div className="h-1/2 w-1/2 justify-items-center">
+        <div className="h-1/2 w-1/2 relative z-0 justify-items-center">
+          <div className="absolute inset-x-0 -top-40 z-0 transform-gpu overflow-hidden blur-3xl sm:-top-80" aria-hidden="true">
+            <div className="relative left-[calc(50%-20rem)] aspect-[1155/678] w-[80.125rem] -translate-x-1 rotate-[90deg] bg-gradient-to-tr from-[#FF0000] to-[#670000] opacity-30 sm:left-[calc(10%-30rem)] sm:w-[90.1875rem]"></div>
+          </div>
+          <h1 className="text-white relative text-5xl mb-10">Log In</h1>
           <form
-            className="min-h-full w-full space-y-4 "
+            className="min-h-full w-full space-y-4 relative"
             onSubmit={handleSubmit}
           >
             <div>
@@ -61,7 +65,7 @@ export default function Login() {
                 type="password"
                 required
                 id="password"
-                className="box-border h-1/10 w-full p-4 border-4 cursor-pointer bg-cover bg-center mb-2 rounded-lg hover:border-gray-400 border-4 hover:shadow-2xl"
+                className="box-border h-1/10 w-full p-4 border-4 cursor-pointer bg-cover bg-center mb-5 rounded-lg hover:border-gray-400 border-4 hover:shadow-2xl"
                 autoFocus
                 placeholder="Password"
               />

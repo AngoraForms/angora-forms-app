@@ -6,7 +6,7 @@ import Sidebar from './Sidebar';
 import Code from './Code';
 
 export default function AngoraForm() {
-  const [selectedFile, setSelectedFile] = useState(null);
+  const [selectedFile, setSelectedFile] = useState<{name: string, content: string} | null>(null);
 
   // array of files that will be displayed under the 'Angora Forms' option
   const files: Array<object> = [
@@ -79,7 +79,7 @@ module.exports = [FileUploadComponent, NumberComponent]`,
     },
   ];
 
-  const handleSelectedFile: any = (file: any): void => {
+  const handleSelectedFile: any = (file: {name: string, content: string} | null): void => {
     setSelectedFile(file);
   };
 

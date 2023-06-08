@@ -13,7 +13,6 @@ export default function HTMLBuilder(props: {currentConfig: ConfigType, pressRese
   //create a reference to the Editor component allowing to grab the value which is the code in the editor
   const IdeRef = useRef<any | undefined>(null);
   
-  // const [code, setCode] = useState('')
   const { currentConfig, pressResetButton, setHTMLCode } = props;
   const [initialLoad, setInitialLoad] = useState<boolean>(false);
   const [formStructure, setFormStructure] = useState<string[]>([]);
