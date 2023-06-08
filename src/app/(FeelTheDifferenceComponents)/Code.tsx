@@ -16,7 +16,7 @@ export default function Code({ file }: any) {
       {file.content}
     </SyntaxHighlighter>
   );
-}
+// }
 
     return (
         // display the code for the current selected file using react-syntax-highlighter

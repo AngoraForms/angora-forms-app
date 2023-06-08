@@ -210,6 +210,3 @@ export default function ComponentBank() {
   );
 }
 
-    </div>
-  )
-}

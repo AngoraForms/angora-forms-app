@@ -20,4 +20,4 @@ export default function Sidebar({ files, handleSelectedFile }: any) {
   );
 }
 
-}
+// }
