@@ -30,7 +30,10 @@ export default function Login() {
 
       router.push('/FormBuilder')
 
-      setTimeout(() => window.location.reload(),1000)
+      setTimeout(() => {
+        window.location.reload()
+      }, 500)
+
       
     } else {
       console.log('response is not 200', jsonResponse);
