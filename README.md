@@ -1,34 +1,42 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<div align="center">
+  <img width="400" src="https://i.ibb.co/QmqpnBL/angoralogo.png">
+</div>
+
+# Angora Form APP
+The Angora Form APP is an extension of the AngoraForm NPM library with the same mission to make creating reactive form in Angular easier.
+
+Instead of creating a custom components solely through code, the website allows interactivity with a GUI.
+
+See [our website] or below for example code comparison.
+
+## Key Features
+- Landing Page for the Angora Form ecosystem, including documentation for NPM package.
+- Creation of Angular form typescript code and html code through a GUI interface including aspects such as error handling and validations.
+- Saving and deleting of codes made through the GUI interface
+
+## Upcoming Features
+- Borrow general reusable form components made through the Angora Forms.
+- Ability to save and reuse Angora Form code.
 
 ## Getting Started
+1. Create an account to allow full access to AngoraForm App's full functionality. However you do not need an account to access the GUI interface
+2. Navigate to form builder to create your typescript and html Angular form component!
+3. Use the save template button to save the generated form if logged in.
+4. If user is logged in, visit the component bank to retrieve any saved components previously.
 
-First, run the development server:
+## Other Information
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+AngoraForms is in beta and will be updated in the future. 
+You should also take a look at the [NPM package repo](https://github.com/oslabs-beta/angora-forms/) and the official library on [NPM](https://www.npmjs.com/package/@angular/forms?activeTab=readme)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Contributors
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Aaron Chen - [Github](https://github.com/achen220)
+- Ryan Hastings - [Github](https://github.com/rhaasti)
+- Wayne Leung - [Github](https://github.com/waynetwleung)
+- Curtis Lovrak - [Github](https://github.com/CurtisLovrak)
+- Hadar Weinstein - [Github](https://github.com/HWein8)
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## License
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+This project is licensed under the MIT License.
