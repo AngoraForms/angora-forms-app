@@ -45,7 +45,7 @@ export default function Signup() {
         <div className="absolute inset-x-0 -top-40 z-0 transform-gpu overflow-hidden blur-3xl sm:-top-80" aria-hidden="true">
             <div className="relative left-[calc(50%-20rem)] aspect-[1155/678] w-[80.125rem] -translate-x-1 rotate-[90deg] bg-gradient-to-tr from-[#FF0000] to-[#670000] opacity-30 sm:left-[calc(10%-30rem)] sm:w-[90.1875rem]"></div>
           </div>
-          <h1 className="text-white relative text-5xl mb-10">Sign In</h1>
+          <h1 className="text-white relative text-5xl mb-10">Sign Up</h1>
           <form className="min-h-full relative w-full space-y-4" onSubmit={handleSubmit}>
             <div>
               <label htmlFor="username"></label>
@@ -80,12 +80,11 @@ export default function Signup() {
                 placeholder="Password"
               />
             </div>
-            <button
+            <input
+              value="Start Building"
               type="submit"
-              className="text-lg cursor-pointer bg-black hover:to-gray-300 border-gray-500 hover:bg-gray-800 py-2 px-4 rounded-full text-white"
-            >
-              Sign Up
-            </button>
+              className="text-lg cursor-pointer bg-transparent hover:to-gray-300 hover:ring-2 hover:body-gray-300 hover:outline-none py-2 px-4 rounded-full text-white"
+            />
           </form>
         </div>
       </div>

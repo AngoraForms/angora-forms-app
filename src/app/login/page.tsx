@@ -74,13 +74,11 @@ export default function Login() {
               />
             </div>
             <input
-              value="Login"
+              value="Start Building"
               type="submit"
               className="text-lg cursor-pointer bg-transparent hover:to-gray-300 hover:ring-2 hover:body-gray-300 hover:outline-none py-2 px-4 rounded-full text-white"
             />
-
           </form>
-
         </div>
       </div>
     </div>
