@@ -4,13 +4,12 @@ import jwt, { JwtPayload } from 'jsonwebtoken';
 
 const KEY = process.env.JWT_KEY!;
 
-if (!KEY) {
-  throw new Error('Missing JWT_KEY environment variable');
-}
+// if (!KEY) {
+//   throw new Error('Missing JWT_KEY environment variable');
+// }
 
-export async function POST(req: NextRequest, res: NextResponse) {
+export async function POST(req: NextRequest) {
   const dataInPost = await req.json();
-  console.log('datainpost:', dataInPost);
 
   if (dataInPost.type === 'sign up') {
     try {

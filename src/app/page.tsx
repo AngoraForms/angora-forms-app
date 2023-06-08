@@ -9,9 +9,7 @@ import NPM from "./(NPMComponents)/NPM"
 
 
 export default function Home() {
-  const [formType, setFormType] = useState('default')
-
-
+  const [formType, setFormType] = useState('default');
 
   return (
     <article className="bg-primary relative mt-10">
@@ -49,9 +47,9 @@ export default function Home() {
     <div className="bg-white mx-10 rounded-lg shadow-lg text-center border-8 border-double mt-10 mb-32">
       
 
-      <div className="flex justify-center">
-        {formType === 'default' ? <Default></Default> : <AngoraForm></AngoraForm>}
-      </div>
+        <div className="flex justify-center">
+          {formType === 'default' ? <Default />: <AngoraForm />}
+        </div>
       
     </div>
     
@@ -63,6 +61,7 @@ export default function Home() {
 
   <NPM></NPM>
   </div>
+
 
     </article>
   )

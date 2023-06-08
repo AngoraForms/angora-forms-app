@@ -1,14 +1,15 @@
 'use client';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react';
 import Editor from 'react-simple-code-editor';
 import { highlight, languages } from 'prismjs/components/prism-core';
 import 'prismjs/components/prism-clike';
 import 'prismjs/components/prism-javascript';
 import 'prismjs/themes/prism.css'; //Example style, you can use another
 import controllers from '../../../lib/controllers';
+import { ConfigType } from '../../../lib/types';
 
-export default function HTMLBuilder(props: any) {
-  const [code, setCode] = useState<string>('');
+export default function HTMLBuilder(props: {currentConfig: ConfigType, pressResetButton: number, setHTMLCode: Dispatch<SetStateAction<string>>}) {
+
   //create a reference to the Editor component allowing to grab the value which is the code in the editor
   const IdeRef = useRef<any | undefined>(null);
   
@@ -31,17 +32,17 @@ export default function HTMLBuilder(props: any) {
         currentConfig.labelText[currentConfig.labelText.length - 1];
       let errorHandler = '';
       if (currentConfig.validators.length !== 0) {
-        const errorMessage =
-          currentConfig.errorMessage[currentConfig.errorMessage.length - 1];
-        if (errorMessage === '')
+
+        const errorMessage = currentConfig.errorMessage[currentConfig.errorMessage.length - 1];
+        if (errorMessage !== '') {
           errorHandler = `<div *ngIf="form.${inputName}.invalid && (form.${inputName}.dirty || form.${inputName}.touched)">
-        <div *ngIf="form.${inputName}.errors">${errorMessage}</div>
-      </div>`;
+            <div *ngIf="form.${inputName}.errors">${errorMessage}</div>
+          </div>`;
+        }
       }
 
       setFormStructure([
-        ...formStructure,
-        `
+        ...formStructure,`
 <div>
   <div> 
     <label for="${inputName}">${labelText}</label> 
@@ -83,7 +84,7 @@ export default function HTMLBuilder(props: any) {
           ',',
           ''
         )}
-        onValueChange={(code) => setCode(code)}
+        onValueChange={() => null}
         highlight={(code) => highlight(code, languages.js)}
         padding={10}
         style={{

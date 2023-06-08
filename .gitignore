@@ -26,3 +26,6 @@ coverage
 
 #
 package-lock.json
+
+#new feature for npmpackage premade file
+angoraBank

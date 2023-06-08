@@ -4,28 +4,30 @@ import { useRouter } from 'next/navigation';
 import { setCookie } from 'cookies-next';
 
 export default function Signup() {
+  //save next router method inot variable
   const router = useRouter();
 
+  //function used to handle signup form submission
   async function handleSubmit(event: any) {
     event.preventDefault();
-
+    //data is the information inputted into the form
     const data = {
       username: String(event.target.username.value),
       email: String(event.target.email.value),
       password: String(event.target.password.value),
       type: 'sign up',
     };
-
+    //make fetch request to the backend with the submitted info
     const response = await fetch('/api/users', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data),
     });
-
+    //saved the response from the server into var
     const jsonResponse = await response.json();
-    console.log('jsonREs', jsonResponse);
+
     if (jsonResponse.status === 200) {
-      console.log('response is 200', jsonResponse);
+      //if signup successful, create cookie and reroute to formBuilder
 
       setCookie('key', jsonResponse.body);
       router.push('/FormBuilder');
@@ -33,9 +35,7 @@ export default function Signup() {
       window.location.reload();
 
 
-    } else {
-      console.log('response is not 200', jsonResponse);
-    }
+    } 
   }
 
   return (
