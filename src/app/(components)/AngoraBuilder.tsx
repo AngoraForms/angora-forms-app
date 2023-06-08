@@ -6,8 +6,7 @@ import 'prismjs/themes/prism.css';
 import controllers from '../../../lib/controllers';
 import { useState } from 'react';
 
-export default function AngoraBuilder(props: any) {
-  const { angoraConfig } = props;
+export default function AngoraBuilder() {
   const [code, setCode] = useState(`class CustomComponent {
   template = 'your html code'
 

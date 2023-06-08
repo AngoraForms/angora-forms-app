@@ -1,10 +1,9 @@
 /* eslint-disable react/react-in-jsx-scope */
 'use client';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Customizers from '../(components)/Customizers';
 import TSBuilder from '../(components)/TSBuilder';
 import HTMLBuilder from '../(components)/HTMLBuilder';
-import AngoraBuilder from '../(components)/AngoraBuilder';
 import controllers from '../../../lib/controllers';
 
 export default function FormBuilder() {
@@ -19,10 +18,6 @@ export default function FormBuilder() {
     setIsTouched(true);
   };
 
-  //state containing custom form config for angora forms
-  const [angoraConfig, setAngoraConfig] = useState<any>({
-    angoraHtmlTemplate: '<div>\n This is where the html template goes\n</div>',
-  });
 
   //this is where state is first defined for the form configuration
   //the formControl Arrray is going to contain all the html components and initialize to an empty array
@@ -40,7 +35,6 @@ export default function FormBuilder() {
   //these states are used to register the changes within the TS and HTML editors/IDE
   const [htmlCode, setHTMLCode] = useState<string>('');
   const [tsCode, setTsCode] = useState<string>('');
-  const [angCode, setAngCode] = useState<string>('');
 
   //save code, make post request
   const saveEditor = async () => {
@@ -118,22 +112,16 @@ export default function FormBuilder() {
         <div className="flex flex-col justify-center w-1/2 h-1/2 max-sm:w-full max-sm:mt-5">
           <header>
             <button
-              className="inline border border-black w-1/3 rounded-tl-md py-1 hover:bg-red-400 hover:text-white duration-500"
+              className="inline border border-black w-1/2 rounded-tl-md py-1 hover:bg-red-400 hover:text-white duration-500"
               onClick={() => setFileTab('html')}
             >
               HTML File
             </button>
             <button
-              className="inline border border-black w-1/3 py-1 whitespace-nowrap hover:bg-blue-400 hover:text-white duration-500"
+              className="inline border border-black w-1/2 py-1 whitespace-nowrap hover:bg-blue-400 hover:text-white duration-500"
               onClick={() => setFileTab('ts')}
             >
               TypeScript File
-            </button>
-            <button
-              className="inline border border-black w-1/3 rounded-tr-md py-1 whitespace-nowrap hover:bg-primary hover:text-white duration-500"
-              onClick={() => setFileTab('ang')}
-            >
-              Angora Form
             </button>
           </header>
           <div
@@ -150,13 +138,6 @@ export default function FormBuilder() {
               setTsCode={setTsCode}
               pressResetButton={pressResetButton}
               currentConfig={currentConfig}
-            />
-          </div>
-          <div style={{ display: fileTab === 'ang' ? 'inline-block' : 'none' }}>
-            <AngoraBuilder
-              setAngCode={setAngCode}
-              pressResetButton={pressResetButton}
-              angoraConfig={angoraConfig}
             />
           </div>
           <button

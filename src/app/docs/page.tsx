@@ -1,7 +1,6 @@
 /* eslint-disable react/display-name */
 'use client';
 import React from 'react';
-import { useState } from 'react';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 
 export default function () {
