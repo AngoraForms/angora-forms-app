@@ -1,9 +1,9 @@
 /* eslint-disable react/react-in-jsx-scope */
 
-import './globals.css'
-import { Inter } from 'next/font/google'
-import Link from "next/link";
-import Image from "next/image";
+import './globals.css';
+import { Inter } from 'next/font/google';
+import Link from 'next/link';
+import Image from 'next/image';
 import linkedinLogo from './linkedin.png';
 import githubLogo from './github.png';
 import { NavBar } from './(components)/Nav';
@@ -25,23 +25,21 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
-
-        
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
       </head>
       <body className={inter.className}>
-      <header className="fixed top-0 w-screen flex justify-evenly bg-white p-6 shadow-xl z-50">
-  <nav className="justify-start">
-    <Link href="/" className="text-lg font-sans font-bold mr-10 whitespace-nowrap">Angora Forms</Link>
-    <Link href="/docs" className="text-sm me-8 hover:underline">Docs</Link>
-  </nav>
-  <nav className="justify-end">
-  <NavBar/>
-  </nav>
-</header>
-      <div>
-        {children}
-      </div>
+        <header className="fixed top-0 w-screen flex justify-between bg-white p-6 shadow-xl z-50">
+          <nav className='flex justify-center'>
+            <Link href="/" className="text-lg font-sans font-bold m-auto mr-5 whitespace-nowrap">Angora Forms</Link>
+            <Link href="/docs" className="text-sm m-auto hover:underline">Docs</Link>
+          </nav>
+          <nav className="flex justify-between">
+            <NavBar/>
+          </nav>
+        </header>
+        <div>
+          {children}
+        </div>
         <footer className="bg-white rounded-lg shadow m-4 dark:bg-gray-800">
           <div className="w-full mx-auto max-w-screen-xl p-4 flex flex-col md:flex-row md:items-center md:justify-between">
             <div className="flex flex-col md:flex-row md:items-center">

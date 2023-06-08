@@ -33,7 +33,7 @@ export default function Login() {
 
       router.push('/formBuilder')
 
-      setTimeout(() => window.location.reload(), 500)
+      setTimeout(() => window.location.reload(), 300)
       
     } 
   }
