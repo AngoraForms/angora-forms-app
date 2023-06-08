@@ -28,9 +28,12 @@ export default function Login() {
 
       setCookie('key',jsonResponse.body);
 
-      router.push('/formBuilder')
+      router.push('/FormBuilder')
 
-      setTimeout(() => window.location.reload(),500)
+      setTimeout(() => {
+        window.location.reload()
+      }, 500)
+
       
     } else {
       console.log('response is not 200', jsonResponse);

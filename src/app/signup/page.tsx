@@ -28,7 +28,7 @@ export default function Signup() {
       console.log('response is 200', jsonResponse);
 
       setCookie('key', jsonResponse.body);
-      router.push('/formBuilder');
+      router.push('/FormBuilder');
 
       window.location.reload();
 
