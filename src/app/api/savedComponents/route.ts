@@ -1,17 +1,18 @@
-import { NextRequest, NextResponse } from 'next/server';
+
+import { NextResponse } from 'next/server';
 import { prisma } from '../../../../lib/prisma/db';
 
 //rerouting all POST request into this function
-export async function POST(req: Request, res: Response) {
+export async function POST(req: Request) {
   //make the information that was sent readable
   const dataInPost = await req.json();
 
   //Here we are modularizing the type of request we are based on type property
   //if we are savingCode ...
   if (dataInPost.type === 'saveCode') {
-    console.log('datainpost', dataInPost);
+ 
     const { htmlCode, tsCode, userid } = dataInPost;
-    console.log('id', userid);
+
     try {
       //creating a field in sql db
       const newSavedComponent = await prisma.savedComponents.create({
@@ -24,11 +25,11 @@ export async function POST(req: Request, res: Response) {
       });
 
       return NextResponse.json(
-        { message: 'successfully saved form component' },
+        { message: 'successfully saved form component ' + newSavedComponent },
         { status: 200 }
       );
     } catch (error) {
-      console.log(error);
+
       return NextResponse.json({ error: error }, { status: 500 });
     }
   }

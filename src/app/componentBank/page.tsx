@@ -4,19 +4,15 @@ import Editor from 'react-simple-code-editor';
 import { highlight, languages } from 'prismjs/components/prism-core';
 import 'prismjs/components/prism-clike';
 import 'prismjs/components/prism-javascript';
-import 'prismjs/themes/prism.css'; //Example style, you can use another
+import 'prismjs/themes/prism.css'; 
 import controllers from '../../../lib/controllers';
 import { useEffect, useState } from 'react';
+import { DisplayedCode } from '../../../lib/types';
 
 export default function ComponentBank() {
   //code state is going to be the code that is displayed in the Editor component after being fetched
   const [code, setCode] = useState<
-    | {
-        componentid: number;
-        html: string | undefined | null;
-        typescript: string | null | undefined;
-      }[]
-    | null
+    DisplayedCode[] | null
   >(null);
 
   // if (code !== null) {
@@ -43,6 +39,8 @@ export default function ComponentBank() {
   //changes page aka go to the next page
   const [pageIndex, setPageIndex] = useState<number>(0);
   const changePages = (action: string) => {
+    //if code doesn't exist we want to stay on page 1 aka index 0
+    //if code exist then we can get the final index of it
     let maxPageIndex;
     if (!code) maxPageIndex = 0;
     else maxPageIndex = code.length - 1;
@@ -63,13 +61,18 @@ export default function ComponentBank() {
   const [goodSearch, setGoodSearch] = useState<boolean>(false);
   //iterate through code array and search for groupname that matches with input
   const searchByGroupName = (formGroup: string): void => {
+    //found detects if we successfully searched the code and found it
+    let found = false;
+    //let us know that searchbar is touched
     setSearchBlurred(true);
+    //if code doesn't exist search isn't touched
     if (code !== null && code.length === 0) {
       setGoodSearch(false);
       return;
     }
-    let found = false;
+    
     if (code !== null) {
+      //if code is found we changed the page accordingly and stop the forloop early
       for (let i = 0; i < code.length; i++) {
         if (
           code[i] &&
@@ -78,10 +81,11 @@ export default function ComponentBank() {
         ) {
           found = true;
           setPageIndex(i);
-          break;
+          break
         }
       }
     }
+    // depending on found condition we can setGoodSearch accordingly which assist with error handling
     found ? setGoodSearch(true) : setGoodSearch(false);
   };
 
@@ -100,6 +104,8 @@ export default function ComponentBank() {
           componentid: currentComponentId,
         }),
       });
+      //will use data later on to tell user what component was deleted
+      //eslint-disable-next-line @typescript-eslint/no-unused-vars
       const data = await response.json();
       //invoking getCode allow us to reload code state which determines what is displayed on the editor component
       getCode();
@@ -116,16 +122,17 @@ export default function ComponentBank() {
           e.preventDefault();
           searchByGroupName(inputSeach);
         }}
-        className="m-5 flex justify-evenly"
+        className="relative m-5 flex justify-evenly bg-gray-300 rounded-full p-2"
       >
-        <input
-          className="w-1/2 p-5 bg-gray-200 rounded-md"
+        <input 
+          className="w-3/4 p-2 rounded-md bg-gray-300"
           onChange={(e) => setInputSearch(e.target.value)}
           type="search"
           placeholder="Search for component"
         />
         <input
-          className="p-5 border border-black rounded-md duration-500 hover:bg-black hover:text-white"
+          className="absolute top-1/2 right-10 -translate-y-1/2 rounded-md duration-500 hover:text-white"
+          value="&#128269;"
           type="submit"
         />
       </form>
@@ -134,29 +141,7 @@ export default function ComponentBank() {
           FormGroup is not found, please check and search again
         </div>
       )}
-      <div id="buttons" className="flex justify-between mb-3">
-        <button
-          className="p-5 border-2 border-primary text-primary rounded duration-500 hover:bg-primary hover:text-white"
-          onClick={deleteComponent}
-        >
-          Remove Current Code
-        </button>
-        <div className="flex justify-between items-center w-1/4">
-          <button
-            className="duration-500 hover:text-red-400"
-            onClick={() => changePages('-')}
-          >
-            &#9664;
-          </button>
-          <h1>{pageIndex + 1}</h1>
-          <button
-            className="duration-500 hover:text-red-400"
-            onClick={() => changePages('+')}
-          >
-            &#9654;
-          </button>
-        </div>
-      </div>
+      
       <div className="w-full flex max-sm:grid max-sm:grid-cols-1 ">
         {/* if code is empty, then display Loading page, otherwise show Editor component */}
         {code === null ? (
@@ -205,6 +190,30 @@ export default function ComponentBank() {
             </div>
           </>
         )}
+      </div>
+      {/* buttons */}
+      <div id="buttons" className="flex justify-between mb-3 mt-5">
+        <button
+          className="p-2 border-2 border-primary text-primary rounded duration-500 hover:bg-primary hover:text-white"
+          onClick={deleteComponent}
+        >
+          Delete
+        </button>
+        <div className="flex justify-between items-center w-1/4">
+          <button
+            className="duration-500 hover:text-red-400"
+            onClick={() => changePages('-')}
+          >
+            &#9664;
+          </button>
+          <h1>{pageIndex + 1}</h1>
+          <button
+            className="duration-500 hover:text-red-400"
+            onClick={() => changePages('+')}
+          >
+            &#9654;
+          </button>
+        </div>
       </div>
     </div>
   );

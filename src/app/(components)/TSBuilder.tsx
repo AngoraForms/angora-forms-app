@@ -1,13 +1,14 @@
 'use client';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react';
 import Editor from 'react-simple-code-editor';
 import { highlight, languages } from 'prismjs/components/prism-core';
 import 'prismjs/components/prism-clike';
 import 'prismjs/components/prism-javascript';
 import 'prismjs/themes/prism.css'; //Example style, you can use another
 import controllers from '../../../lib/controllers';
+import { ConfigType } from '../../../lib/types';
 
-export default function TSEditor(props: any) {
+export default function TSEditor(props: {currentConfig: ConfigType, pressResetButton: number, setTsCode: Dispatch<SetStateAction<string>>}) {
 
   //create a reference to the Editor component allowing to grab the value which is the code in the editor
   const IdeRef = useRef<any | undefined>(null);
@@ -18,11 +19,11 @@ export default function TSEditor(props: any) {
   const { currentConfig, pressResetButton, setTsCode } = props;
   const [formControlConfig, setFormControlConfig] = useState<string[]>([]);
 
-  const [code, setCode] = useState<string>('');
 
   //intialRender variable help us prevent useEffect from running on initial load
   //useRef makes it so that initialRender doesn't go back to true (initial state) since useEffect rerenders component
   const initialRender: { current: boolean } = useRef(true);
+  
   //useEffect is used to detect changes of props (the states from FormBuilder)
   useEffect(() => {
     if (initialRender.current === true) {
@@ -85,7 +86,7 @@ export default function TSEditor(props: any) {
     <div className="relative min-h-[400px] border border-black shadow-xl rounded-b-md p-2 w-full resize-y overflow-auto">
       <Editor
         ref={IdeRef}
-        onValueChange={(code) => setCode(code)}
+        onValueChange={() => null}
         value={`export class ${currentConfig.formGroupName} implements OnInit {
         ${currentConfig.formGroupName}: FormGroup;
 

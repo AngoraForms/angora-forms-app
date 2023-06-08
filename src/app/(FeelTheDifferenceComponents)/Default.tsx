@@ -5,8 +5,8 @@ import { useState } from 'react';
 import Sidebar from './Sidebar';
 import Code from './Code';
 
-export default function Default(props: any) {
-  const [selectedFile, setSelectedFile] = useState(null);
+export default function Default() {
+  const [selectedFile, setSelectedFile] = useState<{name: string, content: string} | null>(null);
 
   // array of files that will be displayed under the 'Defualt Angular' option
   const files: Array<object> = [
@@ -142,7 +142,7 @@ export class hadarComp1 implements ControlValueAccessor {
     },
   ];
 
-  const handleSelectedFile: any = (file: any): void => {
+  const handleSelectedFile: any = (file: {name: string, content: string} | null): void => {
     // set file to the file selected in the sidebar
     setSelectedFile(file);
   };
