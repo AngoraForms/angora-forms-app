@@ -70,9 +70,8 @@ export default function Login() {
               value="Login"
               type="submit"
               className="text-lg cursor-pointer bg-transparent hover:to-gray-300 hover:ring-2 hover:body-gray-300 hover:outline-none py-2 px-4 rounded-full text-white"
-            >
-              Login
-            </button>
+            />
+
           </form>
 
         </div>
