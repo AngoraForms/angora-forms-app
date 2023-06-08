@@ -101,4 +101,3 @@ module.exports = [FileUploadComponent, NumberComponent]`,
   );
 }
 
-}
