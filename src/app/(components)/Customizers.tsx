@@ -1,5 +1,4 @@
 'use client';
-import React, { useEffect } from 'react';
 import { useState } from 'react';
 
 const initialValidationState = {
@@ -12,7 +11,7 @@ const initialValidationState = {
 };
 
 export default function Customizers(props: any) {
-  const { currentConfig, setCurrentConfig, formGroupName } = props;
+  const { formGroupName } = props;
 
   const [formInputValue, setFormInputValue] = useState<string>('');
   const [formLabelText, setFormLabelText] = useState<string>('');
@@ -408,7 +407,7 @@ export default function Customizers(props: any) {
             className={`border border-black p-3 duration-500 
           ${
     checkConditions()
-      ? 'bg-gray-800 cursor-not-allowed'
+      ? 'bg-gray-300 text-gray-400 cursor-not-allowed rounded-md border-gray-400'
       : 'hover:bg-blue-600 hover:text-white rounded-md'
     } `}
             type="submit"

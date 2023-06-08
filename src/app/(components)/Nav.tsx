@@ -69,7 +69,7 @@ export function NavBar() {
   if(authenticated === 'none') {
     
     return (
-      <div className="flex justify-between">
+      <div className="flex justify-between mx-40">
         <span className="justify-self-start">
           <Link href="/" className="text-lg font-sans font-bold mr-10 whitespace-nowrap">Angora Forms</Link>
           <Link href="/docs" className="text-sm me-8 underline">Docs</Link>
@@ -85,7 +85,7 @@ export function NavBar() {
   } else {
     
     return (
-      <div className="flex justify-between">
+      <div className="flex justify-between mx-40">
         <span className="justify-self-start">
           <Link href="/" className="text-lg font-sans font-bold mr-10 whitespace-nowrap">Angora Forms</Link>
           <Link href="/docs" className="text-sm me-8 underline">Docs</Link>
