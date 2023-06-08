@@ -1,6 +1,7 @@
 'use client';
-import React, { useEffect } from 'react';
-import { useState } from 'react';
+import React from 'react';
+import { useState, Dispatch, SetStateAction } from 'react';
+import { ConfigType } from '../../../lib/types'
 
 const initialValidationState = {
   required: false,
@@ -11,16 +12,18 @@ const initialValidationState = {
   phoneNumberValidation: null,
 };
 
-export default function Customizers(props: any) {
-  const { currentConfig, setCurrentConfig, formGroupName } = props;
+export default function Customizers(props: {formGroupName: string, currentConfig: ConfigType, setCurrentConfig: Dispatch<SetStateAction<ConfigType>>}) {
+  const {formGroupName, setCurrentConfig, currentConfig } = props;
 
+  //keep track of the what was inputted into the input elements
   const [formInputValue, setFormInputValue] = useState<string>('');
   const [formLabelText, setFormLabelText] = useState<string>('');
   const [formInitialValue, setFormInitialValue] = useState<string>('');
   const [formTypeValue, setFormTypeValue] = useState<string>('');
   const [formErrorMessage, setFormErrorMessage] = useState<string>('');
 
-  //detect if we touched the input elements
+  //state to track if necessary inputs were clicked on
+  //this is used for error handling
   const [isTouched, setIsTouched] = useState<{
     [key: string]: boolean | string;
   }>({
@@ -28,6 +31,8 @@ export default function Customizers(props: any) {
     inputNameTouched: false,
     inputTypeTouched: false,
   });
+
+  //detect if we touched the input elements 
   const handleBlur = (inputName: string) => {
     setIsTouched((prevIsTouched) => ({
       ...prevIsTouched,
@@ -36,24 +41,26 @@ export default function Customizers(props: any) {
   };
 
   //validation States
+  //keep tracks of all validators
   const [validatorConfiguration, setValidatorConfiguration] = useState<any>(
     initialValidationState
   );
+
   const [minLength, setMinLength] = useState<number | null>(null);
   const [maxLength, setMaxLength] = useState<number | null>(null);
   const [validators, setValidators] = useState<string[][]>([]);
-
+  
+  //state to render dropdown of validator part of form
   const [validatorDropdown, setValidatorDropdown] = useState<{
     height: number | string;
     overflow: string;
   }>({ height: 0, overflow: 'hidden' });
-  //function that open the validator dropdown
+  
+  //function that open the validator dropdown by changing height style
   const openValidator = (): void => {
     if (validatorDropdown.height === 0)
       setValidatorDropdown({ height: 'auto', overflow: 'auto' });
-    else setValidatorDropdown({ height: 0, overflow: 'hidden' });
-    // (validatorDropdown.display === 'none') ? setValidatorDropdown({display: 'flex'}) : setValidatorDropdown({display: 'none'})
-  };
+    else setValidatorDropdown({ height: 0, overflow: 'hidden' });  };
 
   //function that checks if conditions are met and if so disable the submit functionality
   const checkConditions = (): boolean => {
@@ -62,7 +69,10 @@ export default function Customizers(props: any) {
     }
     return true;
   };
-  const [checkValidators, setCheckValidators] = useState<boolean>(true);
+
+  //bottom state is suppose to be used to toggle usage of error messag input
+  //if a validator is selected error message is not disabled. Will expand on later date
+  // const [checkValidators, setCheckValidators] = useState<boolean>(true);
 
   //add form updates the state initially declare in FormBuilder page
   const addForm = (): void => {
@@ -103,24 +113,15 @@ export default function Customizers(props: any) {
       return validators;
     });
     //using useState to change the configuration of the form
-    props.setCurrentConfig(
-      (prevState: {
-        formGroupName: string;
-        formControl: any[];
-        initialValues: any[];
-        inputType: any[];
-        labelText: any[];
-        validators: any[];
-        errorMessage: any[];
-      }): object => ({
-        ...prevState,
+    setCurrentConfig((): ConfigType => ({
+        ...currentConfig,
         formGroupName: formGroupName,
-        formControl: [...prevState.formControl, formInputValue],
-        initialValues: [...prevState.initialValues, formInitialValue],
-        inputType: [...prevState.inputType, formTypeValue],
-        labelText: [...prevState.labelText, formLabelText],
-        errorMessage: [...prevState.errorMessage, formErrorMessage],
-        validators: [...prevState.validators, validators],
+        formControl: [...currentConfig.formControl, formInputValue],
+        initialValues: [...currentConfig.initialValues, formInitialValue],
+        inputType: [...currentConfig.inputType, formTypeValue],
+        labelText: [...currentConfig.labelText, formLabelText],
+        errorMessage: [...currentConfig.errorMessage, formErrorMessage],
+        validators: [...currentConfig.validators, validators],
       })
     );
     //reset state
@@ -231,7 +232,6 @@ export default function Customizers(props: any) {
               className="border border-black rounded-md px-2 w-1/2"
               name="errorMessage"
               onChange={(e) => setFormErrorMessage(e.target.value)}
-              disabled={checkValidators}
             />
           </div>
         </div>

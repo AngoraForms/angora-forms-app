@@ -5,7 +5,7 @@ import { useState } from 'react';
 import Sidebar from './Sidebar';
 import Code from './Code';
 
-export default function AngoraForm(props: any) {
+export default function AngoraForm() {
   const [selectedFile, setSelectedFile] = useState(null);
 
   // array of files that will be displayed under the 'Angora Forms' option
@@ -100,3 +100,4 @@ module.exports = [FileUploadComponent, NumberComponent]`,
     </div>
   );
 }
+

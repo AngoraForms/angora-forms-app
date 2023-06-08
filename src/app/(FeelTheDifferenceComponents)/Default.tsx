@@ -5,7 +5,7 @@ import { useState } from 'react';
 import Sidebar from './Sidebar';
 import Code from './Code';
 
-export default function Default(props: any) {
+export default function Default() {
   const [selectedFile, setSelectedFile] = useState(null);
 
   // array of files that will be displayed under the 'Defualt Angular' option
