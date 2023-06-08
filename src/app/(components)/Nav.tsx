@@ -81,16 +81,14 @@ export function NavBar() {
     
     return (
       <div>
-          welcome, {authenticated}
-          <span className="text-lg font-bold"></span>
-          <Link href="/componentBank" className="text-sm m-auto hover:underline">Component Bank</Link>
-          <span className="text-lg font-bold"></span>
-          <Link href="/formBuilder" className="text-sm me-8 hover:underline">Form Builder</Link>
-          <button className="rounded-full">
-            <Link href="/" onClick={logout}>Log out</Link>
-          </button>
-          <span className="text-lg font-bold"></span>
+          <Link href="/componentBank" className="text-sm bg-red-600 me-4 mx-2 hover:bg-red-400 text-white py-1 px-3 border-b-4 border-red-700 hover:border-red-700 rounded">Component Bank</Link>
+          <Link href="/formBuilder" className="text-sm bg-red-600 me-4 ml-2 mr-64 hover:bg-red-400 text-white py-1 px-3 border-b-4 border-red-700 hover:border-red-700 rounded">Form Builder</Link>
           
+            Welcome, {authenticated}
+          
+          <button className="text-sm bg-gray-500 hover:opacity-70 text-white py-1 px-2 ml-7 border-b-4 rounded border-gray-600">
+            <Link href="/" onClick={logout}>Log out</Link>
+          </button>          
       </div>
     )
   }
