@@ -18,10 +18,6 @@ export default function FormBuilder() {
     setIsTouched(true);
   };
 
-  //state containing custom form config for angora forms
-  const [angoraConfig, setAngoraConfig] = useState<any>({
-    angoraHtmlTemplate: '<div>\n This is where the html template goes\n</div>',
-  });
 
   //this is where state is first defined for the form configuration
   //the formControl Arrray is going to contain all the html components and initialize to an empty array
