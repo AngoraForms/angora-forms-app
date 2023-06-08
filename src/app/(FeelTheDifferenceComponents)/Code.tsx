@@ -15,5 +15,4 @@ export default function Code({ file }: any) {
       {file.content}
     </SyntaxHighlighter>
   );
-// }
-
+}
