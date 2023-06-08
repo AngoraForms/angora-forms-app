@@ -43,7 +43,6 @@ export default function Signup() {
       <div className="flex justify-center items-center h-screen">
         <div className="h-1/2 w-1/2 justify-items-center">
           <form className="min-h-full w-full space-y-4" onSubmit={handleSubmit}>
-            <p className="text-3xl my-6 text-white">Sign Up</p>
             <div>
               <label htmlFor="username"></label>
               <input
@@ -79,7 +78,7 @@ export default function Signup() {
             </div>
             <button
               type="submit"
-              className="text-white text-lg cursor-pointer bg-transparent hover:to-gray-300 hover:ring-2 hover:body-gray-300 hover:outline-none py-2 px-4 rounded-full"
+              className="text-lg cursor-pointer bg-black hover:to-gray-300 border-gray-500 hover:bg-gray-800 py-2 px-4 rounded-full text-white"
             >
               Sign Up
             </button>
