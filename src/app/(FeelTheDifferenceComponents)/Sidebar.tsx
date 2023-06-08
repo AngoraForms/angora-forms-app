@@ -19,3 +19,4 @@ export default function Sidebar({ files, handleSelectedFile }: any) {
     </div>
   );
 }
+

@@ -100,3 +100,4 @@ module.exports = [FileUploadComponent, NumberComponent]`,
     </div>
   );
 }
+

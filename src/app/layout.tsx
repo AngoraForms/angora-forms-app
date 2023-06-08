@@ -9,8 +9,7 @@ import githubLogo from './github.png';
 import { NavBar } from './(components)/Nav';
 
 
-
-const inter = Inter({ subsets: ['latin'] });
+const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
   title: 'Create Next App',
@@ -25,21 +24,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
       </head>
       <body className={inter.className}>
-        <header className="fixed top-0 w-screen flex justify-between bg-white p-6 shadow-xl z-50">
-          <nav className='flex justify-center'>
-            <Link href="/" className="text-lg font-sans font-bold m-auto mr-5 whitespace-nowrap">Angora Forms</Link>
-            <Link href="/docs" className="text-sm m-auto hover:underline">Docs</Link>
-          </nav>
-          <nav className="flex justify-between">
-            <NavBar/>
-          </nav>
-        </header>
-        <div>
-          {children}
-        </div>
+  <nav className="fixed top-0 w-screen bg-white p-6 shadow-xl z-50">
+    <NavBar/>
+  </nav>
+      <div>
+        {children}
+      </div>
         <footer className="bg-white rounded-lg shadow m-4 dark:bg-gray-800">
           <div className="w-full mx-auto max-w-screen-xl p-4 flex flex-col md:flex-row md:items-center md:justify-between">
             <div className="flex flex-col md:flex-row md:items-center">
@@ -61,6 +54,30 @@ export default function RootLayout({
             <menu className="flex flex-col md:flex-row">
               <span className="mr-4 md:mr-4">Connect With Our Team :</span>
               <ul className="flex flex-wrap items-center mt-3 text-sm font-medium text-gray-500 dark:text-gray-400 sm:mt-0">
+              <li className="flex items-center mr-4">
+                  <a href="https://www.linkedin.com/in/aaron-c-335b48127/" className="hover:underline flex items-center">
+                    <Image
+                      className="mr-1"
+                      src={linkedinLogo}
+                      width={14}
+                      height={14}
+                      alt="Linkedin logo"
+                    />
+                    Aaron Chen
+                  </a>
+                </li>
+                <li className="flex items-center mr-4">
+                  <a href="https://www.linkedin.com/in/aaron-c-335b48127/" className="hover:underline flex items-center">
+                    <Image
+                      className="mr-1"
+                      src={linkedinLogo}
+                      width={14}
+                      height={14}
+                      alt="Linkedin logo"
+                    />
+                    Aaron Chen
+                  </a>
+                </li>
                 <li className="flex items-center mr-4">
                   <a href="https://www.linkedin.com/in/CurtisLovrak/" className="hover:underline flex items-center">
                     <Image
@@ -97,18 +114,6 @@ export default function RootLayout({
                     Ryan Hastings
                   </a>
                 </li>
-                <li className="flex items-center mr-4">
-                  <a href="https://www.linkedin.com/in/aaron-c-335b48127/" className="hover:underline flex items-center">
-                    <Image
-                      className="mr-1"
-                      src={linkedinLogo}
-                      width={14}
-                      height={14}
-                      alt="Linkedin logo"
-                    />
-                    Aaron Chen
-                  </a>
-                </li>
                 <li className="flex items-center">
                   <a href="https://www.linkedin.com/in/wayne-leung-1242422a/" className="hover:underline flex items-center">
                     <Image
@@ -124,10 +129,8 @@ export default function RootLayout({
               </ul>
             </menu>
           </div>
-
         </footer>
       </body>
     </html>
   );
 }
-

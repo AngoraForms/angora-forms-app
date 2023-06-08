@@ -68,49 +68,39 @@ export function NavBar() {
   if(authenticated === 'none') {
     
     return (
-      <div className='flex justify-center'>
-        <Link href="/login" className="text-sm max-sm:mx-2 mx-7 my-auto hover:underline text-end">Login</Link>
-        <Link href="/signup" className="text-sm bg-red-600 max-sm:mx-2 mx-7 my-auto hover:bg-red-400 text-white py-1 px-3 border-b-4 border-red-700 hover:border-red-700 rounded">Sign Up</Link>
+      <div className="flex justify-between">
+        <span className="justify-self-start">
+          <Link href="/" className="text-lg font-sans font-bold mr-10 whitespace-nowrap">Angora Forms</Link>
+          <Link href="/docs" className="text-sm me-8 underline">Docs</Link>
+        </span>
+
+        <span className="justify-self-end">
+          <Link href="/login" className="text-sm mx-6 mr-10 underline">Login</Link>
+          <Link href="/signup" className="text-sm bg-red-600 hover:bg-red-400 text-white py-1 px-2 border-b-4 border-red-700 hover:border-red-700 rounded">Sign Up</Link>
+        </span>
       </div>
     );
     
   } else {
     
     return (
-      <>
-        {(openMenu === true) && (
-          <div className='fixed top-0 bottom-0 left-0 right-0 bg-black bg-opacity-50'>
-            <div className='fixed top-0 right-0 w-1/3 bg-white h-2/5 z-50 '>
-              <button className='absolute top-1 p-2 right-1 text-red-400'
-                onClick={clickOpenMenu}
-              >
-                &#10005;
-              </button>
-              <h1 className='text-xl text-center font-bold p-2 border-black border-b'>Menu</h1>
-              <div className='flex flex-col items-center justify-between'>
-                <p className="m-auto px-2 py-4 text-lg"> Welcome {authenticated} </p>
-                <Link href="/componentBank" className="text-lg m-auto px-2 py-4 hover:underline"> Component Bank </Link>
-                <Link href="/formBuilder" className="text-lg m-auto px-2 py-4 hover:underline"> Form Builder </Link>
-                <Link className="text-center border border-black rounded-md p-2 m-2 w-1/2" href="/" onClick={logout}> Log out</Link>  
-              </div>
-            </div>
-          </div>
-        )}
-        <div className="flex flex-col justify-center items-center w-8 h-8 focus:outline-none hidden max-lg:flex"
-          onClick={clickOpenMenu}
-        >
-          <span className="hamburger-bar w-5 h-0.5 bg-gray-700 mb-1"></span>
-          <span className="hamburger-bar w-5 h-0.5 bg-gray-700 mb-1"></span>
-          <span className="hamburger-bar w-5 h-0.5 bg-gray-700 mb-1"></span>
-        </div>
-        <div className="flex max-lg:hidden">
-          <p className="m-auto px-2 text-sm"> Welcome {authenticated} </p>
-          <Link href="/componentBank" className="text-sm m-auto px-2 hover:underline"> Component Bank </Link>
-          <Link href="/formBuilder" className="text-sm m-auto px-2 hover:underline"> Form Builder </Link>
-          <Link className="border border-black rounded-md p-2" href="/" onClick={logout}> Log out</Link>    
-        </div>
-      </>
-    );
+      <div className="flex justify-between">
+        <span className="justify-self-start">
+          <Link href="/" className="text-lg font-sans font-bold mr-10 whitespace-nowrap">Angora Forms</Link>
+          <Link href="/docs" className="text-sm me-8 underline">Docs</Link>
+          <Link href="/componentBank" className="text-sm bg-red-600 me-4 mx-2 hover:bg-red-400 text-white py-1 px-3 border-b-4 border-red-700 hover:border-red-700 rounded">Component Bank</Link>
+          <Link href="/formBuilder" className="text-sm bg-red-600 me-4 ml-2 hover:bg-red-400 text-white py-1 px-3 border-b-4 border-red-700 hover:border-red-700 rounded">Form Builder</Link>
+        </span>
+          
+        <span className="justify-self-end">
+              Welcome, {authenticated}!
+
+            <button className="text-sm bg-gray-500 hover:opacity-70 text-white py-1 px-2 ml-7 border-b-4 rounded border-gray-600">
+              <Link href="/" onClick={logout}>Log Out</Link>
+            </button>          
+          </span>
+      </div>
+    )
   }
 
 }

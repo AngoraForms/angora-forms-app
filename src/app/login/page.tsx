@@ -33,7 +33,7 @@ export default function Login() {
 
       router.push('/formBuilder')
 
-      setTimeout(() => window.location.reload(), 300)
+      setTimeout(() => window.location.reload(),500)
       
     } 
   }
@@ -46,7 +46,6 @@ export default function Login() {
             className="min-h-full w-full space-y-4 "
             onSubmit={handleSubmit}
           >
-            <p className="text-3xl my-6 text-white">Log In</p>
             <div>
               <input
                 type="text"
@@ -71,8 +70,9 @@ export default function Login() {
               value="Login"
               type="submit"
               className="text-lg cursor-pointer bg-transparent hover:to-gray-300 hover:ring-2 hover:body-gray-300 hover:outline-none py-2 px-4 rounded-full text-white"
-            />
-
+            >
+              Login
+            </button>
           </form>
 
         </div>
