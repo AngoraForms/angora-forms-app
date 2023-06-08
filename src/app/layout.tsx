@@ -27,15 +27,9 @@ export default function RootLayout({
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
       </head>
       <body className={inter.className}>
-      <header className="fixed top-0 w-screen flex justify-evenly bg-white p-6 shadow-xl z-50">
-  <nav className="justify-start">
-    <Link href="/" className="text-lg font-sans font-bold mr-10 whitespace-nowrap">Angora Forms</Link>
-    <Link href="/docs" className="text-sm me-8 hover:underline">Docs</Link>
+  <nav className="fixed top-0 w-screen bg-white p-6 shadow-xl z-50">
+    <NavBar/>
   </nav>
-  <nav className="justify-end">
-  <NavBar/>
-  </nav>
-</header>
       <div>
         {children}
       </div>

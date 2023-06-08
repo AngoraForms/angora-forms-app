@@ -30,7 +30,7 @@ export default function Login() {
 
       router.push('/formBuilder')
 
-      setTimeout(() => window.location.reload(), 500)
+      setTimeout(() => window.location.reload(),500)
       
     } else {
       console.log('response is not 200', jsonResponse);
@@ -45,7 +45,6 @@ export default function Login() {
             className="min-h-full w-full space-y-4 "
             onSubmit={handleSubmit}
           >
-            <p className="text-3xl my-6 text-white">Log In</p>
             <div>
               <label htmlFor="usernameEmail"></label>
               <input
@@ -70,7 +69,7 @@ export default function Login() {
             </div>
             <button
               type="submit"
-              className="text-lg cursor-pointer bg-transparent hover:to-gray-300 hover:ring-2 hover:body-gray-300 hover:outline-none py-2 px-4 rounded-full text-white"
+              className="text-lg cursor-pointer bg-black hover:to-gray-300 border-gray-500 hover:bg-gray-800 py-2 px-4 rounded-full text-white"
             >
               Login
             </button>

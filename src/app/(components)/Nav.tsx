@@ -69,28 +69,37 @@ export function NavBar() {
   if(authenticated === 'none') {
     
     return (
-      <div>
-        <span className="text-lg font-bold"></span>
-          <Link href="/login" className="text-sm mx-6 me-8 hover:underline">Login</Link>
-          <span className="text-lg"></span>
-          <Link href="/signup" className="text-sm bg-red-600 me-8 mx-8 hover:bg-red-400 text-white py-1 px-3 border-b-4 border-red-700 hover:border-red-700 rounded">Sign Up</Link>
+      <div className="flex justify-between">
+        <span className="justify-self-start">
+          <Link href="/" className="text-lg font-sans font-bold mr-10 whitespace-nowrap">Angora Forms</Link>
+          <Link href="/docs" className="text-sm me-8 underline">Docs</Link>
+        </span>
+
+        <span className="justify-self-end">
+          <Link href="/login" className="text-sm mx-6 mr-10 underline">Login</Link>
+          <Link href="/signup" className="text-sm bg-red-600 hover:bg-red-400 text-white py-1 px-2 border-b-4 border-red-700 hover:border-red-700 rounded">Sign Up</Link>
+        </span>
       </div>
     )
     
   } else {
     
     return (
-      <div>
-          welcome, {authenticated}
-          <span className="text-lg font-bold"></span>
-          <Link href="/componentBank" className="text-sm m-auto hover:underline">Component Bank</Link>
-          <span className="text-lg font-bold"></span>
-          <Link href="/formBuilder" className="text-sm me-8 hover:underline">Form Builder</Link>
-          <button className="rounded-full">
-            <Link href="/" onClick={logout}>Log out</Link>
-          </button>
-          <span className="text-lg font-bold"></span>
+      <div className="flex justify-between">
+        <span className="justify-self-start">
+          <Link href="/" className="text-lg font-sans font-bold mr-10 whitespace-nowrap">Angora Forms</Link>
+          <Link href="/docs" className="text-sm me-8 underline">Docs</Link>
+          <Link href="/componentBank" className="text-sm bg-red-600 me-4 mx-2 hover:bg-red-400 text-white py-1 px-3 border-b-4 border-red-700 hover:border-red-700 rounded">Component Bank</Link>
+          <Link href="/formBuilder" className="text-sm bg-red-600 me-4 ml-2 hover:bg-red-400 text-white py-1 px-3 border-b-4 border-red-700 hover:border-red-700 rounded">Form Builder</Link>
+        </span>
           
+        <span className="justify-self-end">
+              Welcome, {authenticated}!
+
+            <button className="text-sm bg-gray-500 hover:opacity-70 text-white py-1 px-2 ml-7 border-b-4 rounded border-gray-600">
+              <Link href="/" onClick={logout}>Log Out</Link>
+            </button>          
+          </span>
       </div>
     )
   }
