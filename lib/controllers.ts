@@ -11,7 +11,6 @@ const controllers = {
   //function that gets userID from cookie
   getUserId: async () => {
     const currentToken = Cookies.get('key');
-    console.log('current Token:', currentToken);
     //if the currentToken returns a value then we make fetch requst, else we reroute to login
     if (currentToken) {
       const data = {
@@ -25,7 +24,6 @@ const controllers = {
         body: JSON.stringify(data),
       });
       const authenticatedSession = await currentSession.json();
-      console.log('auth:', authenticatedSession);
       return authenticatedSession.userId;
     } else {
       router.push('/login');

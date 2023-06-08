@@ -1,9 +1,10 @@
 
-import { NextResponse } from 'next/server';
+import { NextResponse, NextRequest } from 'next/server';
 import { prisma } from '../../../../lib/prisma/db';
 
 //rerouting all POST request into this function
-export async function POST(req: Request) {
+export async function POST(req: Request,res: Response) {
+  console.log('posting')
   //make the information that was sent readable
   const dataInPost = await req.json();
 
@@ -36,7 +37,7 @@ export async function POST(req: Request) {
   // if we are trying to get the savedCode ..
   else if (dataInPost.type === 'getCode') {
     try {
-      //get every single gield with the logged in userid
+      //get every single field with the logged in userid
       const getSavedComponent = await prisma.savedComponents.findMany({
         where: {
           userid: dataInPost.userid,
