@@ -4,7 +4,6 @@ import { useState } from 'react';
 import Customizers from '../(components)/Customizers';
 import TSBuilder from '../(components)/TSBuilder';
 import HTMLBuilder from '../(components)/HTMLBuilder';
-import AngoraBuilder from '../(components)/AngoraBuilder';
 import controllers from '../../../lib/controllers';
 
 export default function FormBuilder() {
