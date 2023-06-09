@@ -23,7 +23,9 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" style={{ height: '100%' }}>
+    <html lang="en" 
+    style={{ height: '100%' }}
+    >
       <head>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
       </head>
@@ -40,7 +42,7 @@ export default function RootLayout({
         <div>
           {children}
         </div>
-        <footer className="bg-white rounded-lg shadow p-4 absolute left-0 right-0">
+        <footer className="bg-white rounded-t-lg shadow p-4 absolute bottom-0 left-0 right-0">
           <div className="w-full mx-auto max-w-screen-xl p-4 flex flex-col md:flex-row md:items-center md:justify-between">
             <div className="flex flex-col md:flex-row md:items-center">
               <ul className="flex flex-wrap items-center mt-3 text-sm font-medium text-gray-500 dark:text-gray-400 sm:mt-0">
