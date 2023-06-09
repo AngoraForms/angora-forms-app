@@ -58,12 +58,11 @@ export function NavBar() {
     fetchData();
     
   });
-
-  const [openMenu, setOpenMenu] = useState<boolean>(false);
-  const clickOpenMenu = () => {
-    console.log('open');
-    setOpenMenu(!openMenu);
-  };
+  // used for hamburder menu when screen size is small
+  // const [openMenu, setOpenMenu] = useState<boolean>(false);
+  // const clickOpenMenu = () => {
+  //   setOpenMenu(!openMenu);
+  // };
   if(authenticated === 'none') {
     
     return (
