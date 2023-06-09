@@ -206,7 +206,7 @@ module.exports = {
             <hr></hr>
           </ul>
         </div>
-        <div className="bg-white rounded-lg p-5 mt-5 w-3/4 mt-10 mb-10">
+        <div className="bg-white rounded-lg p-5 mt-5 w-3/4 mt-10 mb-[140px] max-lg:mb-[160px] max-md:mb-[180px] max-sm:mb-[200px]">
           <h2 className="text-2xl">Full Example:</h2>
           <SyntaxHighlighter language="typescript">
             {fullExample}
