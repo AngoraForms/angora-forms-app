@@ -24,7 +24,7 @@ export async function POST(req: Request, res: Response) {
           user: { connect: { id: userid } },
         },
       });
-      console.log('dsad', newSavedComponent)
+
       return NextResponse.json(
         { message: 'successfully saved form component ' + newSavedComponent },
         { status: 200 }

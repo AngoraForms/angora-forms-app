@@ -43,7 +43,6 @@ export function NavBar() {
           });
           const authenticatedSession = await currentSession.json();
           // handle error for logout. error in object authenticatedSession from async call on currentSession.json()
-          console.log('authenticated session:', authenticatedSession);
     
           setAuthenticated(authenticatedSession.user);
 
@@ -62,9 +61,9 @@ export function NavBar() {
 
   const [openMenu, setOpenMenu] = useState<boolean>(false);
   const clickOpenMenu = () => {
-    console.log('open')
+    console.log('open');
     setOpenMenu(!openMenu);
-  }
+  };
   if(authenticated === 'none') {
     
     return (
@@ -95,12 +94,12 @@ export function NavBar() {
         <span className="justify-self-end">
               Welcome, {authenticated}!
 
-            <button className="text-sm bg-gray-500 hover:opacity-70 text-white py-1 px-2 ml-7 border-b-4 rounded border-gray-600">
-              <Link href="/" onClick={logout}>Log Out</Link>
-            </button>          
-          </span>
+          <button className="text-sm bg-gray-500 hover:opacity-70 text-white py-1 px-2 ml-7 border-b-4 rounded border-gray-600">
+            <Link href="/" onClick={logout}>Log Out</Link>
+          </button>          
+        </span>
       </div>
-    )
+    );
   }
 
 }

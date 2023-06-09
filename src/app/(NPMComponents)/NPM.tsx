@@ -27,8 +27,8 @@ export default function NPM () {
         <h2 className="text-6xl mt-10 text-white">How To Use Our Package</h2>
         <h6 className="text-gray-400 mt-5">3 Simple Steps to Solving Your Form Building Problems</h6>
         <div className="mt-6">
-          <a href="https://www.npmjs.com/package/@angoraforms/angora-loader" className="bg-red-700 text-sm hover:bg-red-800 text-white py-3 px-4 rounded-lg mr-6">NPM Package</a>
-          <Link href="/login" className="bg-red-700 text-sm hover:bg-red-800 text-white py-3 px-4 rounded-lg mr-6">Login to Build Your Form</Link>
+          <a href="https://www.npmjs.com/package/@angoraforms/angora-loader" className="inline-block bg-red-700 text-sm hover:bg-red-800 text-white py-3 px-4 rounded-lg m-3">NPM Package</a>             
+          <Link href="/login" className="inline-block bg-red-700 text-sm hover:bg-red-800 text-white py-3 px-4 rounded-lg m-3">Login to Build Your Form</Link>
         </div>
       </div>
       <div className="mx-48 mt-32 p-5 flex-1 flex flex-col justify-evenly mb-32 max-lg:m-auto max-lg:mt-[20px] max-lg:mb-[120px] max-md:mb-[140px] max-sm:mb-[160px]">

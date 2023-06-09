@@ -43,16 +43,11 @@ export default function Home() {
         <p className="inline mx-10 text-white">to</p>
         <button className="inline bg-white-500 hover:bg-red-800 py-2 px-4 rounded text-white bg-red-600" onClick={() => {setFormType('Angora');}}>Angora Forms</button>
       </div>
-
       <div className="bg-white mx-10 rounded-lg shadow-lg text-center border-8 border-double mt-10 mb-32">
-      
-
         <div className="flex justify-center">
           {formType === 'default' ? <Default />: <AngoraForm />}
         </div>
-      
       </div>
-    
       <div className="absolute inset-x-0 z-0 transform-gpu overflow-hidden blur-3xl" aria-hidden="true">
         <div className="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[30.125rem] -translate-x-1/4 rotate-[90deg] bg-gradient-to-tr from-[#FF0000] to-[#670000] opacity-30 sm:left-[calc(50%-30rem)] sm:w-[80.1875rem]"></div>
       </div>

@@ -18,10 +18,8 @@ export default function ComponentBank() {
   // if (code !== null) {
   //getCode function is going to fetch the saved Code and set it into code state
   const getCode = async () => {
-    console.log("get code")
     //getUserId is a component saved in lib that gets the userId based on cookie
     const userid = await controllers.getUserId();
-    console.log(userid)
     const response = await fetch('/api/savedComponents', {
       method: 'POST',
       headers: {
@@ -30,7 +28,6 @@ export default function ComponentBank() {
       body: JSON.stringify({ type: 'getCode', userid: userid }),
     });
     const data = await response.json();
-    console.log("getting code:", data)
     setCode(data.message);
   };
 
@@ -84,7 +81,7 @@ export default function ComponentBank() {
         ) {
           found = true;
           setPageIndex(i);
-          break
+          break;
         }
       }
     }
