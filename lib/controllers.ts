@@ -23,7 +23,9 @@ const controllers = {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),
       });
+      console.log('current session:', currentSession.body)
       const authenticatedSession = await currentSession.json();
+      console.log(authenticatedSession)
       return authenticatedSession.userId;
     } else {
       router.push('/login');

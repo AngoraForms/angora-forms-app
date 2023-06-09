@@ -5,31 +5,31 @@ import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 
 export default function () {
   const webpackConfig = `const path = require("path");
-const customComponents = require('local path to your custom components file')
+const customComponents = require(/* insert path to custom component e.g.'./src/app/customComponents.ts' */)
 
 module.exports = {
-    mode: "development",
-    entry: ["./src/main.ts"],
-    output: {
-    filename: "main.js", 
-    path: path.resolve(__dirname, "dist"), 
-    },
-    devtool: false,
-    module: {
+  mode: "development",
+  entry: ["./src/app/app.module.ts"],
+  output: {},
+  devtool: false,
+  module: {
     rules: [
-        {
+      {
         test: /\\.ts$/, 
         use: [
-            {
-            loader: "angora-loader",
+          {
+            loader: "@angoraforms/angora-loader",
             options: {
-                customComponents: customComponents
+              customComponents: customComponents
             }
-            },
+          },
         ],
-        },
+      },
     ],
-    },
+  },
+  resolve: {
+    extensions: ['.tsx', '.ts', '.js'],
+  },
 };`;
 
   const CustomComponent = `class CustomComponent {

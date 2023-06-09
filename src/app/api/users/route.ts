@@ -75,9 +75,10 @@ export async function POST(req: NextRequest) {
           const findUser = await prisma.user.findFirst({ 
             where: {id: decryptToken.id}
           })
-          return NextResponse.json({ status: 200, user: findUser?.username });
+          console.log('founder user:',findUser)
+          return NextResponse.json({ status: 200, user: findUser?.username, userId: findUser?.id });
         } catch (error) {
-          return NextResponse.json({erre:error})
+          return NextResponse.json({error:error})
         }
       } else {
         throw new Error('Missing or invalid token');

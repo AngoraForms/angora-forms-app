@@ -6,6 +6,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import linkedinLogo from './linkedin.png';
 import githubLogo from './github.png';
+import mediumLogo from './medium.png';
 import { NavBar } from './(components)/Nav';
 
 
@@ -36,7 +37,7 @@ export default function RootLayout({
         <footer className="bg-white rounded-lg shadow m-4 dark:bg-gray-800">
           <div className="w-full mx-auto max-w-screen-xl p-4 flex flex-col md:flex-row md:items-center md:justify-between">
             <div className="flex flex-col md:flex-row md:items-center">
-              <ul className="flex flex-wrap items-center mt-3 text-m font-medium text-gray-500 dark:text-gray-400 sm:mt-0">
+              <ul className="flex flex-wrap items-center mt-3 text-sm font-medium text-gray-500 dark:text-gray-400 sm:mt-0">
                 <li className="flex items-center mr-4">
                   <a href="https://github.com/oslabs-beta/angora-forms" className="hover:underline flex items-center">
                     <Image
@@ -49,23 +50,23 @@ export default function RootLayout({
                     Angora Forms
                   </a>
                 </li>
+                <li className="flex items-center mr-4">
+                  <a href="https://medium.com/@wayneleung_2900/making-angular-custom-form-components-easier-to-work-with-e2f7ace48cb2" className="hover:underline flex items-center">
+                    <Image
+                      className="mr-2"
+                      src={mediumLogo}
+                      width={22}
+                      height={22}
+                      alt="Medium logo"
+                    />
+                    Medium Article
+                  </a>
+                </li>
               </ul>
             </div>
             <menu className="flex flex-col md:flex-row">
               <span className="mr-4 md:mr-4">Connect With Our Team :</span>
               <ul className="flex flex-wrap items-center mt-3 text-sm font-medium text-gray-500 dark:text-gray-400 sm:mt-0">
-              <li className="flex items-center mr-4">
-                  <a href="https://www.linkedin.com/in/aaron-c-335b48127/" className="hover:underline flex items-center">
-                    <Image
-                      className="mr-1"
-                      src={linkedinLogo}
-                      width={14}
-                      height={14}
-                      alt="Linkedin logo"
-                    />
-                    Aaron Chen
-                  </a>
-                </li>
                 <li className="flex items-center mr-4">
                   <a href="https://www.linkedin.com/in/aaron-c-335b48127/" className="hover:underline flex items-center">
                     <Image

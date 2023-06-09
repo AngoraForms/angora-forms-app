@@ -39,6 +39,7 @@ export default function FormBuilder() {
   //save code, make post request
   const saveEditor = async () => {
     const currentUserId = await controllers.getUserId();
+    console.log('current user', currentUserId)
     const savedCode: SavedCode = {
       htmlCode: htmlCode,
       tsCode: tsCode,
@@ -55,7 +56,6 @@ export default function FormBuilder() {
     //will use data for error handling in future
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const data = await response.json();
-    console.log('dataaasa:', data)
   };
 
   return (
