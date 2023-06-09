@@ -58,8 +58,7 @@ export default function Home() {
       </div>
       <div className="relative z-10">
         <hr className="mx-10"></hr>
-
-        <NPM></NPM>
+        <NPM />
       </div>
 
 

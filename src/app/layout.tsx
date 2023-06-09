@@ -24,7 +24,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" 
-    style={{ height: '100%' }}
+      style={{ height: '100%' }}
     >
       <head>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
