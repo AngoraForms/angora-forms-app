@@ -42,7 +42,7 @@ export default function RootLayout({
         <div>
           {children}
         </div>
-        <footer className="bg-white rounded-t-lg shadow p-4 absolute bottom-0 left-0 right-0">
+        <footer className="bg-white rounded-t-lg shadow p-4 absolute bottom-0 left-0 right-0 z-50">
           <div className="w-full mx-auto max-w-screen-xl p-4 flex flex-col md:flex-row md:items-center md:justify-between">
             <div className="flex flex-col md:flex-row md:items-center">
               <ul className="flex flex-wrap items-center mt-3 text-sm font-medium text-gray-500 dark:text-gray-400 sm:mt-0">

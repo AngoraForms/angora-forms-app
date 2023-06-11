@@ -31,7 +31,7 @@ export default function NPM () {
           <Link href="/login" className="inline-block bg-red-700 text-sm hover:bg-red-800 text-white py-3 px-4 rounded-lg m-3">Login to Build Your Form</Link>
         </div>
       </div>
-      <div className="mx-48 mt-32 p-5 flex-1 flex flex-col justify-evenly mb-32 max-lg:m-auto max-lg:mt-[20px] max-lg:mb-[120px] max-md:mb-[140px] max-sm:mb-[160px]">
+      <div className="mx-48 mt-32 p-5 flex-1 flex flex-col justify-evenly mb-32 max-lg:m-auto max-lg:mt-[20px] max-lg:mb-[140px] max-md:mb-[150px] max-sm:mb-[160px]">
         <div className="flex-1 bg-white rounded-lg mb-5 shadow-3xl">
           <h3 className="text-red-700 text-3xl p-5">Step One</h3>
           <p className="pb-5 pl-5">NPM Install @AngoraForms</p>
