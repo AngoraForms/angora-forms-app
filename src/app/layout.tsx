@@ -2,7 +2,6 @@
 
 import './globals.css';
 import { Inter } from 'next/font/google';
-import Link from 'next/link';
 import Image from 'next/image';
 import linkedinLogo from './linkedin.png';
 import githubLogo from './github.png';

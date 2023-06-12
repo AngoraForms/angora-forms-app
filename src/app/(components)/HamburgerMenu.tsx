@@ -25,7 +25,7 @@ export default function HamburgerMenu (props: HamburgerFunc) {
   };
   //when we click modal, we want to exit the menu
   const modalClick = (e:any) => {
-    console.log(e.target.id);
+    //uses id modal to detect if pressing on non menu area
     if (e.target.id === 'modal') {
       setOpenModal({width:'0%'});
       setOpenMenu({width:'0%'});
@@ -69,7 +69,6 @@ export default function HamburgerMenu (props: HamburgerFunc) {
               <Link href="/FormBuilder" className="p-4 inline-block duration-300 hover:bg-gray-400">Form Builder</Link>
               <Link href="/" className="p-4 inline-block duration-300 hover:bg-gray-400" onClick={logout}>Log Out</Link>
             </> 
-
           }
         </div>
       </div>
