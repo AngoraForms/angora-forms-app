@@ -1,9 +1,9 @@
 
-import { NextResponse, NextRequest } from 'next/server';
+import { NextResponse} from 'next/server';
 import { prisma } from '../../../../lib/prisma/db';
 
 //rerouting all POST request into this function
-export async function POST(req: Request, res: Response) {
+export async function POST(req: Request) {
 
   //make the information that was sent readable
   const dataInPost = await req.json();

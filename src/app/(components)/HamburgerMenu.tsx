@@ -13,24 +13,24 @@ export default function HamburgerMenu (props: HamburgerFunc) {
     deleteCookie('key');
     setAuthenticated('none');
     router.push('/');
-  }
+  };
   //state for controlling the width of the modal and menu
   //default states is style object with width because we want sliding animation
-  const [openMenu, setOpenMenu] = useState<{width:string}>({width: "0"});
-  const [openModal, setOpenModal] = useState<{width:string}>({width: "0"});
+  const [openMenu, setOpenMenu] = useState<{width:string}>({width: '0'});
+  const [openModal, setOpenModal] = useState<{width:string}>({width: '0'});
   //when hamburger is clicked, we cover screen with modal and open menu
   const clickOpenMenu = ():void => {
-    setOpenModal({width:"100%"})
-    setOpenMenu({width:"50%"});
+    setOpenModal({width:'100%'});
+    setOpenMenu({width:'50%'});
   };
   //when we click modal, we want to exit the menu
   const modalClick = (e:any) => {
-    console.log(e.target.id)
-    if (e.target.id === "modal") {
-      setOpenModal({width:"0%"})
-      setOpenMenu({width:"0%"});
+    console.log(e.target.id);
+    if (e.target.id === 'modal') {
+      setOpenModal({width:'0%'});
+      setOpenMenu({width:'0%'});
     }
-  }
+  };
   return (
     <>
       <div className="hamburger-menu hidden flex-col justify-between w-6 h-4 cursor-pointer items-center
@@ -46,7 +46,7 @@ export default function HamburgerMenu (props: HamburgerFunc) {
           flex flex-col max-w-[500px] overflow-hidden'>
           <div className='text-4xl p-4 bg-primary text-white'>Menu</div>
           {/* depending on if we are loggined in or not menu will display diff things */}
-          { authenticated === "none" ? 
+          { authenticated === 'none' ? 
             <>
               <Link href="/" className="p-4 inline-block duration-300 hover:bg-gray-400">
                 Home
@@ -74,5 +74,5 @@ export default function HamburgerMenu (props: HamburgerFunc) {
         </div>
       </div>
     </>
-  )
+  );
 }
