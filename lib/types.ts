@@ -1,3 +1,5 @@
+import { Dispatch, SetStateAction } from "react";
+
 export interface ConfigType {
   formGroupName: string;
   formControl: string[];
@@ -19,4 +21,8 @@ export interface DisplayedCode {
   componentid: number;
   html: string | undefined | null;
   typescript: string | null | undefined;
+}
+export interface HamburgerFunc {
+  authenticated: string, 
+  setAuthenticated: Dispatch<SetStateAction<string>> 
 }
