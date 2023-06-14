@@ -2,18 +2,25 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { HamburgerFunc } from '../../../lib/types';
+// import { HamburgerFunc } from '../../../lib/types';
 import { deleteCookie } from 'cookies-next';
 import router from 'next/router';
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState } from '../GlobalRedux/store';
+import { logoutAuthRedux } from '../GlobalRedux/Features/slice/slice';
 
-export default function HamburgerMenu (props: HamburgerFunc) {
-  const { authenticated, setAuthenticated } = props;
+export default function HamburgerMenu () {
+  const auth = useSelector((state:RootState) => state.auth.authenticated)
+  const dispatch = useDispatch();
+  // const { authenticated, setAuthenticated } = props;
   // logout function
-  const logout = ():void =>  {
+  function logout() {
     deleteCookie('key');
-    setAuthenticated('none');
+    dispatch(logoutAuthRedux());
+    // setAuthenticated('none');
     router.push('/');
-  };
+
+  }
   //state for controlling the width of the modal and menu
   //default states is style object with width because we want sliding animation
   const [openMenu, setOpenMenu] = useState<{width:string}>({width: '0'});
@@ -46,7 +53,7 @@ export default function HamburgerMenu (props: HamburgerFunc) {
           flex flex-col max-w-[500px] overflow-hidden'>
           <div className='text-4xl p-4 bg-primary text-white'>Menu</div>
           {/* depending on if we are loggined in or not menu will display diff things */}
-          { authenticated === 'none' ? 
+          { auth === 'none' ? 
             <>
               <Link href="/" className="p-4 inline-block duration-300 hover:bg-gray-400">
                 Home
@@ -62,7 +69,7 @@ export default function HamburgerMenu (props: HamburgerFunc) {
               </Link>
             </> :
             <>
-              <p className='p-4 inline-block text-center bg-gray-700 text-white font-bold'>Hello, {authenticated}</p>
+              <p className='p-4 inline-block text-center bg-gray-700 text-white font-bold'>Hello, {auth}</p>
               <Link href="/" className="p-4 duration-300 hover:bg-gray-400">Home</Link>
               <Link href="/docs" className="p-4 inline-block duration-300 hover:bg-gray-400">Docs</Link>
               <Link href="/componentBank" className="p-4 inline-block duration-300 hover:bg-gray-400">Component Bank</Link>

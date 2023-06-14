@@ -2,9 +2,13 @@
 'use client';
 import { useRouter } from 'next/navigation';
 import { setCookie } from 'cookies-next';
-
+import { loginAuthRedux, logoutAuthRedux } from '../GlobalRedux/Features/slice/slice';
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState } from '../GlobalRedux/store';
 
 export default function Login() {
+  const auth = useSelector((state:RootState) => state.auth.authenticated)
+  const dispatch = useDispatch();
   //save router method to variable
   const router = useRouter();
 
@@ -30,12 +34,12 @@ export default function Login() {
       //if the login request was successful, create a cookie with 
       //reroute to form builder after creating cookie
       setCookie('key',jsonResponse.body);
-
+      dispatch(loginAuthRedux(jsonResponse.user));
       router.push('/FormBuilder')
 
-      setTimeout(() => {
-        window.location.reload()
-      }, 500)
+      // setTimeout(() => {
+      //   window.location.reload()
+      // }, 500)
 
       
     } 

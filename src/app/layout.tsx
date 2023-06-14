@@ -7,7 +7,7 @@ import linkedinLogo from './linkedin.png';
 import githubLogo from './github.png';
 import mediumLogo from './medium.png';
 import { NavBar } from './(components)/Nav';
-
+import { Providers } from './GlobalRedux/provider'
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -36,10 +36,14 @@ export default function RootLayout({
         }}
       >
         <nav className="fixed top-0 w-screen bg-white p-6 shadow-xl z-50">
-          <NavBar/>
+          <Providers>
+            <NavBar/>
+          </Providers>
         </nav>
-        <div>
-          {children}
+        <div> 
+          <ProviderOne>
+            {children}
+          </ProviderOne>
         </div>
         <footer className="bg-white rounded-t-lg shadow p-4 absolute bottom-0 left-0 right-0 z-40">
           <div className="w-full mx-auto max-w-screen-xl p-4 flex flex-col md:flex-row md:items-center md:justify-between">
