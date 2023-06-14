@@ -41,9 +41,9 @@ export default function RootLayout({
           </Providers>
         </nav>
         <div> 
-          <ProviderOne>
+          <Providers>
             {children}
-          </ProviderOne>
+          </Providers>
         </div>
         <footer className="bg-white rounded-t-lg shadow p-4 absolute bottom-0 left-0 right-0 z-40">
           <div className="w-full mx-auto max-w-screen-xl p-4 flex flex-col md:flex-row md:items-center md:justify-between">
