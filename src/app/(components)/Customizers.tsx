@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 import { useState, Dispatch, SetStateAction } from 'react';
-import { ConfigType } from '../../../lib/types'
+import { ConfigType } from '../../../lib/types';
 
 const initialValidationState = {
   required: false,
@@ -114,15 +114,15 @@ export default function Customizers(props: {formGroupName: string, currentConfig
     });
     //using useState to change the configuration of the form
     setCurrentConfig((): ConfigType => ({
-        ...currentConfig,
-        formGroupName: formGroupName,
-        formControl: [...currentConfig.formControl, formInputValue],
-        initialValues: [...currentConfig.initialValues, formInitialValue],
-        inputType: [...currentConfig.inputType, formTypeValue],
-        labelText: [...currentConfig.labelText, formLabelText],
-        errorMessage: [...currentConfig.errorMessage, formErrorMessage],
-        validators: [...currentConfig.validators, validators],
-      })
+      ...currentConfig,
+      formGroupName: formGroupName,
+      formControl: [...currentConfig.formControl, formInputValue],
+      initialValues: [...currentConfig.initialValues, formInitialValue],
+      inputType: [...currentConfig.inputType, formTypeValue],
+      labelText: [...currentConfig.labelText, formLabelText],
+      errorMessage: [...currentConfig.errorMessage, formErrorMessage],
+      validators: [...currentConfig.validators, validators],
+    })
     );
     //reset state
     setFormInputValue('');

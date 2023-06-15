@@ -2,3 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+.hamburger-menu:hover .hamburger-line:nth-child(1) {
+  background-color: rgb(289, 83, 80);
+  transform: rotate(45deg) translate(0.5rem, 0.5rem);
+}
+
+.hamburger-menu:hover .hamburger-line:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger-menu:hover .hamburger-line:nth-child(3) {
+  background-color: rgb(289, 83, 80);
+  transform: rotate(-45deg) translate(0.5rem, -0.5rem);
+}

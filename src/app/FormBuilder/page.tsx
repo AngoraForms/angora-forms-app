@@ -55,7 +55,6 @@ export default function FormBuilder() {
     //will use data for error handling in future
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const data = await response.json();
-
   };
 
   return (

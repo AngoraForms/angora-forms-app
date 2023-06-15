@@ -2,8 +2,13 @@
 'use client';
 import { useRouter } from 'next/navigation';
 import { setCookie } from 'cookies-next';
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState } from '../GlobalRedux/store';
+import { loginAuthRedux, logoutAuthRedux } from '../GlobalRedux/Features/slice/slice';
 
 export default function Signup() {
+  const auth = useSelector((state:RootState) => state.auth.authenticated)
+  const dispatch = useDispatch();
   //save next router method inot variable
   const router = useRouter();
 
@@ -30,10 +35,8 @@ export default function Signup() {
       //if signup successful, create cookie and reroute to formBuilder
 
       setCookie('key', jsonResponse.body);
+      dispatch(loginAuthRedux(jsonResponse.username))
       router.push('/FormBuilder');
-
-      window.location.reload();
-
 
     } 
   }

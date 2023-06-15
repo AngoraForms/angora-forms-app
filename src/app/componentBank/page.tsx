@@ -81,7 +81,7 @@ export default function ComponentBank() {
         ) {
           found = true;
           setPageIndex(i);
-          break
+          break;
         }
       }
     }
