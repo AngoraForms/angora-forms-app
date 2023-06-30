@@ -149,14 +149,14 @@ export class hadarComp1 implements ControlValueAccessor {
 
   return (
     <div className="grid grid-cols-4 m-10 bg-gray-100 rounded-lg shadow-xl
-    max-sm:m-2 
+    max-sm:m-2 w-full
     ">
       <Sidebar
-        className="col-span-1"
+        className="col-span-1 w-full max-xl:col-span-4"
         files={files}
         handleSelectedFile={handleSelectedFile}
       />
-      <div className="col-start-2 col-span-3">
+      <div className="col-start-2 col-span-3 max-xl:col-span-4">
         {/* if file selected has a value, display the selected file, else display the first file in the array */}
         {selectedFile ? <Code file={selectedFile} /> : <Code file={files[0]} />}
       </div>
