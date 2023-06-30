@@ -28,23 +28,15 @@ export default function RootLayout({
       <head>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
       </head>
-      <body className={inter.className}
-        style={{
-          position: 'relative',
-          margin: 0,
-          minHeight: '100%'
-        }}
-      >
+      <body className={inter.className}>
         <nav className="fixed top-0 w-screen bg-white p-6 shadow-xl z-50">
           <Providers>
             <NavBar/>
           </Providers>
         </nav>
-        <div> 
-          <Providers>
-            {children}
-          </Providers>
-        </div>
+        <Providers>
+          {children}
+        </Providers>
         <footer className="bg-white rounded-t-lg shadow p-4 absolute bottom-0 left-0 right-0 z-40">
           <div className="w-full mx-auto max-w-screen-xl p-4 flex flex-col md:flex-row md:items-center md:justify-between">
             <div className="flex flex-col md:flex-row md:items-center">

@@ -49,14 +49,12 @@ export default function Home() {
         </div>
       </div>
       <div className="absolute inset-x-0 z-0 transform-gpu overflow-hidden blur-3xl" aria-hidden="true">
-        <div className="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[30.125rem] -translate-x-1/4 rotate-[90deg] bg-gradient-to-tr from-[#FF0000] to-[#670000] opacity-30 sm:left-[calc(50%-30rem)] sm:w-[80.1875rem]"></div>
+        <div className="relative left-[calc(50%-11rem)] aspect-[1300/678] w-[30.125rem] -translate-x-1/4 rotate-[90deg] bg-gradient-to-tr from-[#FF0000] to-[#670000] opacity-30 sm:left-[calc(50%-30rem)] sm:w-[80.1875rem]"></div>
       </div>
       <div className="relative z-10">
         <hr className="mx-10"></hr>
         <NPM />
       </div>
-
-
     </article>
   );
 }

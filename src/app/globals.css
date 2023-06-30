@@ -15,3 +15,9 @@
   background-color: rgb(289, 83, 80);
   transform: rotate(-45deg) translate(0.5rem, -0.5rem);
 }
+
+body {
+  position: relative;
+  margin: 0;
+  min-height: 100%;
+}
