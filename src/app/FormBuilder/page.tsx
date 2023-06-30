@@ -58,8 +58,8 @@ export default function FormBuilder() {
   };
 
   return (
-    <article>
-      <div className="mt-[100px] flex justify-evenly items-end">
+    <article className='pb-[40px] pt-[130px] bg-gray-100 h-screen'>
+      <div className=" flex justify-evenly items-end">
         <div className="flex flex-col w-1/2 text-center">
           <label htmlFor="formGroup">Form Group Name</label>
           <input
@@ -136,7 +136,7 @@ export default function FormBuilder() {
             />
           </div>
           <button
-            className="m-auto mt-2 border-2 border-black text-red-400 rounded-md w-1/4 p-2 duration-500 hover:text-white hover:bg-red-400"
+            className="m-auto mt-2 border-2 border-black bg-white rounded-md w-1/4 p-2 duration-500 hover:text-white hover:bg-red-400"
             onClick={saveEditor}
           >
             Save template

@@ -76,7 +76,7 @@ export default function HTMLBuilder(props: {currentConfig: ConfigType, pressRese
     <div
       className="inline-block relative p-2 
     border border-black shadow-xl rounded-b-md 
-    w-full min-h-[400px] overflow-auto resize-y"
+    w-full min-h-[400px] overflow-auto resize-y bg-white"
     >
       <Editor
         ref={IdeRef}

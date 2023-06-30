@@ -34,10 +34,13 @@ export default function RootLayout({
             <NavBar/>
           </Providers>
         </nav>
-        <Providers>
-          {children}
-        </Providers>
-        <footer className="bg-white rounded-t-lg shadow p-4 absolute bottom-0 left-0 right-0 z-40">
+        <div>
+          <Providers>
+            {children}
+          </Providers>
+        </div>
+
+        <footer className="bg-white rounded-t-lg shadow p-4 absolute bottom-0 left-0 right-0 z-40 border border-t-gray-400 max-sm:relative">
           <div className="w-full mx-auto max-w-screen-xl p-4 flex flex-col md:flex-row md:items-center md:justify-between">
             <div className="flex flex-col md:flex-row md:items-center">
               <ul className="flex flex-wrap items-center mt-3 text-sm font-medium text-gray-500 dark:text-gray-400 sm:mt-0">

@@ -21,7 +21,7 @@ export default function AngoraBuilder() {
 
   return (
     <div
-      className="inline-block relative p-2 
+      className="inline-block relative p-2
     border border-black shadow-xl rounded-b-md 
     w-full min-h-[400px] overflow-auto resize-y"
     >
