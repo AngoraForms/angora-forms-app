@@ -76,7 +76,7 @@ export function NavBar() {
           <Link href="/docs" className="text-sm me-8 underline max-md:hidden">Docs</Link>
         </span>
 
-        <span className="justify-self-end flex items-end">
+        <span className="justify-self-end flex items-center">
           <HamburgerMenu />
           <Link href="/login" className="text-sm mx-6 underline max-md:hidden">Login</Link>
           <Link href="/signup" className="text-sm bg-red-600 hover:bg-red-400 text-white py-1 px-2 border-b-4 border-red-700 hover:border-red-700 rounded max-md:hidden">Sign Up</Link>
@@ -89,7 +89,7 @@ export function NavBar() {
     
     return (
       <div className="flex justify-between mx-4">
-        <span className="justify-self-start flex items-end">
+        <span className="justify-self-start flex items-center">
           <Link href="/" className="text-lg font-sans font-bold mr-8 whitespace-nowrap">Angora Forms</Link>
           <Link href="/docs" className="text-sm mx-4 underline max-md:hidden">Docs</Link>
           <Link href="/componentBank" className="text-sm inline-block bg-red-600 mx-4 hover:bg-red-400 text-white py-1 px-3 border-b-4 border-red-700 hover:border-red-700 rounded max-md:hidden">
@@ -100,7 +100,7 @@ export function NavBar() {
           </Link>
         </span>
 
-        <span className="justify-self-end flex items-end "> 
+        <span className="justify-self-end flex items-center"> 
           <HamburgerMenu/>
           <p className='max-md:hidden'>Welcome, {auth}!</p>
           <button className="text-sm bg-gray-500 hover:opacity-70 text-white py-1 px-2 ml-7 border-b-4 rounded border-gray-600 max-md:hidden">
