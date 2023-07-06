@@ -12,8 +12,12 @@ const initialValidationState = {
   phoneNumberValidation: null,
 };
 
-export default function Customizers(props: {formGroupName: string, currentConfig: ConfigType, setCurrentConfig: Dispatch<SetStateAction<ConfigType>>}) {
-  const {formGroupName, setCurrentConfig, currentConfig } = props;
+export default function Customizers(props: {
+  formGroupName: string;
+  currentConfig: ConfigType;
+  setCurrentConfig: Dispatch<SetStateAction<ConfigType>>;
+}) {
+  const { formGroupName, setCurrentConfig, currentConfig } = props;
 
   //keep track of the what was inputted into the input elements
   const [formInputValue, setFormInputValue] = useState<string>('');
@@ -32,7 +36,7 @@ export default function Customizers(props: {formGroupName: string, currentConfig
     inputTypeTouched: false,
   });
 
-  //detect if we touched the input elements 
+  //detect if we touched the input elements
   const handleBlur = (inputName: string) => {
     setIsTouched((prevIsTouched) => ({
       ...prevIsTouched,
@@ -49,18 +53,19 @@ export default function Customizers(props: {formGroupName: string, currentConfig
   const [minLength, setMinLength] = useState<number | null>(null);
   const [maxLength, setMaxLength] = useState<number | null>(null);
   const [validators, setValidators] = useState<string[][]>([]);
-  
+
   //state to render dropdown of validator part of form
   const [validatorDropdown, setValidatorDropdown] = useState<{
     height: number | string;
     overflow: string;
   }>({ height: 0, overflow: 'hidden' });
-  
+
   //function that open the validator dropdown by changing height style
   const openValidator = (): void => {
     if (validatorDropdown.height === 0)
       setValidatorDropdown({ height: 'auto', overflow: 'auto' });
-    else setValidatorDropdown({ height: 0, overflow: 'hidden' });  };
+    else setValidatorDropdown({ height: 0, overflow: 'hidden' });
+  };
 
   //function that checks if conditions are met and if so disable the submit functionality
   const checkConditions = (): boolean => {
@@ -113,16 +118,17 @@ export default function Customizers(props: {formGroupName: string, currentConfig
       return validators;
     });
     //using useState to change the configuration of the form
-    setCurrentConfig((): ConfigType => ({
-      ...currentConfig,
-      formGroupName: formGroupName,
-      formControl: [...currentConfig.formControl, formInputValue],
-      initialValues: [...currentConfig.initialValues, formInitialValue],
-      inputType: [...currentConfig.inputType, formTypeValue],
-      labelText: [...currentConfig.labelText, formLabelText],
-      errorMessage: [...currentConfig.errorMessage, formErrorMessage],
-      validators: [...currentConfig.validators, validators],
-    })
+    setCurrentConfig(
+      (): ConfigType => ({
+        ...currentConfig,
+        formGroupName: formGroupName,
+        formControl: [...currentConfig.formControl, formInputValue],
+        initialValues: [...currentConfig.initialValues, formInitialValue],
+        inputType: [...currentConfig.inputType, formTypeValue],
+        labelText: [...currentConfig.labelText, formLabelText],
+        errorMessage: [...currentConfig.errorMessage, formErrorMessage],
+        validators: [...currentConfig.validators, validators],
+      })
     );
     //reset state
     setFormInputValue('');
@@ -407,10 +413,10 @@ export default function Customizers(props: {formGroupName: string, currentConfig
           <input
             className={`border border-black p-3 duration-500 
           ${
-    checkConditions()
-      ? 'bg-gray-300 text-gray-400 cursor-not-allowed rounded-md border-gray-400'
-      : 'hover:bg-blue-600 hover:text-white rounded-md'
-    } `}
+            checkConditions()
+              ? 'bg-gray-300 text-gray-400 cursor-not-allowed rounded-md border-gray-400'
+              : 'hover:bg-blue-600 hover:text-white rounded-md'
+          } `}
             type="submit"
             value="Create Input"
             disabled={checkConditions()}

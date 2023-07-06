@@ -72,7 +72,7 @@ export function NavBar() {
     return (
       <div className="flex justify-between mx-4">
         <span className="justify-self-start">
-          <Link href="/" className="text-lg font-sans font-bold mr-10 whitespace-nowrap">Angora Forms</Link>
+          <Link href="/" className="text-lg font-sans font-bold mr-10 whitespace-nowrap">AngoraForms</Link>
           <Link href="/docs" className="text-sm me-8 underline max-md:hidden">Docs</Link>
         </span>
 
