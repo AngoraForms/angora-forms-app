@@ -84,13 +84,12 @@ module.exports = [FileUploadComponent, NumberComponent]`,
   };
 
   return (
-    <div className="grid grid-cols-4 m-10 bg-gray-100 rounded-lg shadow-xl">
+    <div className="grid grid-cols-4 m-10 w-full bg-gray-100 rounded-lg shadow-xl">
       <Sidebar
-        className="col-span-1"
         files={files}
         handleSelectedFile={handleSelectedFile}
       />
-      <div className="col-start-2 col-span-3">
+      <div className="col-start-2 col-span-3 max-xl:col-span-4">
         {selectedFile ? (
           <Code className="flex-1" file={selectedFile} />
         ) : (

@@ -11,12 +11,12 @@ export default function NPM () {
   };
 
   return (
-    <section className="flex max-lg:flex-col">
-      <div className="ml-48 mt-32 flex-1 max-lg:m-auto max-lg:p-5 max-lg:mt-32">
+
+    <section className="flex max-xl:flex-col pb-10">
+      <div className="ml-48 mt-32 flex-1 max-lg:m-auto max-lg:p-5 max-lg:mt-32 ">
         <div className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80" aria-hidden="true">
           <div className="bg-gradient-to-tr from-[#FF0000] to-[#670000] opacity-30" ></div>
         </div>
-        
         <Image
           src={NPMLogo}
           width={500}
@@ -26,7 +26,7 @@ export default function NPM () {
         />
         <h2 className="text-6xl mt-10 text-white">How To Use Our Package</h2>
         <h6 className="text-gray-400 mt-5">3 Simple Steps to Solving Your Form Building Problems</h6>
-        <div className="mt-6">
+        <div className="mt-6 whitespace-nowrap">
           <a href="https://www.npmjs.com/package/@angoraforms/angora-loader" className="inline-block bg-red-700 text-sm hover:bg-red-800 text-white py-3 px-4 rounded-lg m-3">NPM Package</a>             
           <Link href="/login" className="inline-block bg-red-700 text-sm hover:bg-red-800 text-white py-3 px-4 rounded-lg m-3">Login to Build Your Form</Link>
         </div>

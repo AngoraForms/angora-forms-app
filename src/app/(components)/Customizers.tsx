@@ -153,7 +153,7 @@ export default function Customizers(props: {
         className="flex flex-col justify-evenly w-full
         border border-black shadow-xl rounded-lg px-10 py-5 
         overflow-auto resize-y min-h-[500px]
-        max-sm:w-full"
+        max-sm:w-full bg-white"
       >
         <h1 className="text-2xl text-center">Form Customizer</h1>
         <div id="input-customizer">
