@@ -8,8 +8,6 @@ export async function POST(req: Request) {
   //make the information that was sent readable
   const dataInPost = await req.json();
 
-  //Here we are modularizing the type of request we are based on type property
-  //if we are savingCode ...
   if (dataInPost.type === 'saveCode') {
     
     const { htmlCode, tsCode, userid } = dataInPost;
